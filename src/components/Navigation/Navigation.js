@@ -10,7 +10,7 @@ function Navigation() {
         Home
       </NavLink>
       <NavLink activeClassName={classes.active} exact to="/users/profile">
-        Profile
+        Wellcome back username
       </NavLink>
       <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
         Mechanic Shops
@@ -21,7 +21,7 @@ function Navigation() {
       <NavLink activeClassName={classes.active} exact to="/shops/performance">
         Performance Shops
       </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/user/loin">
+      <NavLink activeClassName={classes.active} exact to="/user/login">
         Login
       </NavLink>
       <NavLink activeClassName={classes.active} exact to="/user/register">
