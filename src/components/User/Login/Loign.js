@@ -1,3 +1,5 @@
+import styles from "./Login.module.css";
+
 import { useState } from "react";
 import FormField from "../../UI/FormField.js";
 
@@ -13,16 +15,15 @@ function Login({ history }) {
   };
 
   return (
-    <>
+    <section className={styles.loginSection}>
       <div className="info">
         <h2>Wellcome back</h2>
       </div>
-      <form onSubmit={submitHandler}>
+      <form className={styles.loginForm} onSubmit={submitHandler}>
         <FormField
           id="email"
-          label="Email"
+          label="Email:"
           type="email"
-          className="input"
           placeholder="email_12@domain.com"
           value={email}
           onChange={setEmail}
@@ -32,9 +33,8 @@ function Login({ history }) {
         />
         <FormField
           id="password"
-          label="Password"
+          label="Password:"
           type="password"
-          className="input"
           placeholder="password"
           value={password}
           onChange={setPassword}
@@ -44,7 +44,7 @@ function Login({ history }) {
         />
         <button>Login</button>
       </form>
-    </>
+    </section>
   );
 }
 

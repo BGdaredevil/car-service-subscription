@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormField from "../../UI/FormField.js";
+import RadioBtn from "../../UI/RadioBtn.js";
 
 function Register({ history }) {
   const [userName, setUserName] = useState("");
@@ -10,7 +11,7 @@ function Register({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("submited");
+    console.log("submited", accType);
   };
   return (
     <>
@@ -25,7 +26,6 @@ function Register({ history }) {
           type="text"
           placeholder="username"
           value={userName}
-          className=""
           onChange={setUserName}
           onBlur={() => {
             console.log("Blurred -- time to validate");
@@ -38,7 +38,6 @@ function Register({ history }) {
           type="email"
           placeholder="email_12@domain.com"
           value={email}
-          className=""
           onChange={setEmail}
           onBlur={() => {
             console.log("Blurred -- time to validate");
@@ -51,7 +50,6 @@ function Register({ history }) {
           type="password"
           value={password}
           placeholder="password"
-          className=""
           onChange={setPassword}
           onBlur={() => {
             console.log("Blurred -- time to validate");
@@ -64,29 +62,26 @@ function Register({ history }) {
           type="password"
           value={repeatPassword}
           placeholder="repeat password"
-          className=""
           onChange={setRepeatPassword}
           onBlur={() => {
             console.log("Blurred -- time to validate");
           }}
         />
-        <FormField
+        <RadioBtn
           label="Business"
           id="Business"
           name="accountType"
           type="radio"
           value="business"
-          className=""
           checked={accType === "business"}
           onChange={setAccType}
         />
-        <FormField
-          label="Person"
-          id="Person"
+        <RadioBtn
+          label="Personal"
+          id="Personal"
           name="accountType"
           type="radio"
-          value="person"
-          className=""
+          value="personal"
           checked={accType === "person"}
           onChange={setAccType}
         />

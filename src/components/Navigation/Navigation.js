@@ -7,29 +7,34 @@ function Navigation() {
   return (
     <nav>
       <NavLink activeClassName={classes.active} exact to="/">
-        Home
+        WIP: LOGO
       </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/users/profile">
-        Wellcome back username
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
-        Mechanic Shops
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/shops/body">
-        Body Shops
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/shops/performance">
-        Performance Shops
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/user/login">
-        Login
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/user/register">
-        Register
-      </NavLink>
-      <NavLink activeClassName={classes.active} exact to="/user/logout">
-        Logout
-      </NavLink>
+      <div>
+        <NavLink activeClassName={classes.active} exact to="/">
+          Home
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/users/profile">
+          Wellcome back username
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
+          Mechanic Shops
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/shops/body">
+          Body Shops
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/shops/performance">
+          Performance Shops
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/user/login">
+          Login
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/user/register">
+          Register
+        </NavLink>
+        <NavLink activeClassName={classes.active} exact to="/user/logout">
+          Logout
+        </NavLink>
+      </div>
     </nav>
   );
 }
