@@ -20,8 +20,8 @@ function Login({ history }) {
       <form onSubmit={submitHandler}>
         <FormField
           id="email"
-          name="Email"
-          type="text"
+          label="Email"
+          type="email"
           className="input"
           placeholder="email_12@domain.com"
           value={email}
@@ -32,7 +32,7 @@ function Login({ history }) {
         />
         <FormField
           id="password"
-          name="Password"
+          label="Password"
           type="password"
           className="input"
           placeholder="password"

@@ -7,22 +7,26 @@ function FormField({
   value,
   onChange,
   onBlur,
+  label,
   name,
+  checked,
 }) {
   return (
     <>
       <label className={className} htmlFor={id}>
-        {name}
+        {label}
       </label>
       <input
         id={id}
         type={type}
-        placeholder={placeholder}
+        name={name}
         value={value}
+        placeholder={placeholder}
         className={className}
         disabled={isDisabled}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange && ((e) => onChange(e.target.value))}
         onBlur={onBlur && ((e) => onBlur(e))}
+        checked={checked}
       ></input>
     </>
   );

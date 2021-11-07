@@ -7,6 +7,7 @@ import Home from "./components/Home/Home.js";
 import Login from "./components/User/Login/Loign.js";
 import Footer from "./components/Footer/Footer.js";
 import Navigation from "./components/Navigation/Navigation.js";
+import Register from "./components/User/Register/Register.js";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       {/* <Switch> */}
       <Route exact path="/" component={Home} />
       <Route exact path="/user/login" component={Login} />
+      <Route exact path="/user/register" component={Register} />
       {/* <Route path="*" component={Error404} /> */}
       {/* </Switch> */}
       <Footer />
