@@ -1,0 +1,24 @@
+nav {
+  background-color: white;
+}
+
+nav > a {
+  margin: 2px;
+  padding: 1%;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  display: inline-flex;
+  border-radius: 5px;
+}
+
+nav > a:hover {
+  /* active class coppy */
+  background-color: black;
+  color: white;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}

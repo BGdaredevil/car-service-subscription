@@ -1,6 +1,7 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 
-import "./App.css";
+import "./App.module.css";
+import Navigation from "./components/Navigation/Navigation.js";
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
       {/* <ErrorContextProvider> */}
       {/* <AuthContextProvider> */}
       {/* <ErrorComp /> */}
-      {/* <Navigation /> */}
+      <Navigation />
+      <Link to="">pesho</Link>
       {/* <Switch> */}
       {/* <Route exact path="/" component={Home} /> */}
       {/* <Route path="*" component={Error404} /> */}
