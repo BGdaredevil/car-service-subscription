@@ -1,4 +1,6 @@
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route, Redirect, Link, NavLink } from "react-router-dom";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.module.css";
 import Navigation from "./components/Navigation/Navigation.js";
@@ -10,7 +12,6 @@ function App() {
       {/* <AuthContextProvider> */}
       {/* <ErrorComp /> */}
       <Navigation />
-      <Link to="">pesho</Link>
       {/* <Switch> */}
       {/* <Route exact path="/" component={Home} /> */}
       {/* <Route path="*" component={Error404} /> */}

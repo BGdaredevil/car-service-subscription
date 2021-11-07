@@ -1,4 +1,6 @@
 nav {
+  width: 100%;
+  overflow: hidden;
   background-color: white;
 }
 
@@ -13,7 +15,6 @@ nav > a {
 }
 
 nav > a:hover {
-  /* active class coppy */
   background-color: black;
   color: white;
 }
