@@ -9,12 +9,21 @@ import styles from "./Register.module.css";
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
+import { validateField } from "../../../utils/validator.js";
 
 function Register({ history }) {
   const [userName, setUserName] = useState("");
+  const [isValidName, setValidName] = useState(undefined);
+
   const [email, setEmail] = useState("");
+  const [isValidEmail, setValidEmail] = useState(undefined);
+
   const [password, setPassword] = useState("");
+  const [isValidPassword, setValidPassword] = useState(undefined);
+
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [isValidPassMatch, setValidPassMatch] = useState(undefined);
+
   const [accType, setAccType] = useState("personal");
 
   const submitHandler = (e) => {
@@ -36,14 +45,22 @@ function Register({ history }) {
             placeholder="username"
             value={userName}
             onChange={setUserName}
-            onBlur={() => {
-              console.log("Blurred -- time to validate");
-            }}
+            onBlur={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
           />
-          <FontAwesomeIcon icon={faTimes} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-          <FontAwesomeIcon icon={faCheck} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          {isValidName !== undefined ? (
+            isValidName ? (
+              <>
+                <FontAwesomeIcon icon={faCheck} />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faTimes} />
+                <p>Username must be at least 3 long. No special characters allowed.</p>
+              </>
+            )
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
@@ -54,17 +71,26 @@ function Register({ history }) {
             placeholder="email_12@domain.com"
             value={email}
             onChange={setEmail}
-            onBlur={() => {
-              console.log("Blurred -- time to validate");
-            }}
+            onBlur={(e) =>
+              setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
+            }
           />
-          <FontAwesomeIcon icon={faTimes} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-          <FontAwesomeIcon icon={faCheck} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          {isValidEmail !== undefined ? (
+            isValidEmail ? (
+              <>
+                <FontAwesomeIcon icon={faCheck} />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faTimes} />
+                <p>Email must be valid to mailbox@d omain.bg/com</p>
+              </>
+            )
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.formFieldGroup}>
-          {" "}
           <FormField
             label="Password"
             id="password"
@@ -73,14 +99,22 @@ function Register({ history }) {
             value={password}
             placeholder="password"
             onChange={setPassword}
-            onBlur={() => {
-              console.log("Blurred -- time to validate");
-            }}
+            onBlur={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
           />
-          <FontAwesomeIcon icon={faTimes} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-          <FontAwesomeIcon icon={faCheck} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          {isValidPassword !== undefined ? (
+            isValidPassword ? (
+              <>
+                <FontAwesomeIcon icon={faCheck} />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faTimes} />
+                <p>Password must be at least 4 chars long</p>
+              </>
+            )
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
@@ -91,14 +125,22 @@ function Register({ history }) {
             value={repeatPassword}
             placeholder="repeat password"
             onChange={setRepeatPassword}
-            onBlur={() => {
-              console.log("Blurred -- time to validate");
-            }}
+            onBlur={() => setValidPassMatch(repeatPassword === password)}
           />
-          <FontAwesomeIcon icon={faTimes} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-          <FontAwesomeIcon icon={faCheck} />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          {isValidPassMatch !== undefined ? (
+            isValidPassMatch ? (
+              <>
+                <FontAwesomeIcon icon={faCheck} />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faTimes} />
+                <p>Passwords do not match</p>
+              </>
+            )
+          ) : (
+            ""
+          )}
         </div>
         <RadioBtn
           label="Business account"
