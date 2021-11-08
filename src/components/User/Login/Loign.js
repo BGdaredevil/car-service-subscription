@@ -2,6 +2,7 @@ import styles from "./Login.module.css";
 
 import { useState } from "react";
 import FormField from "../../UI/FormField.js";
+import ClickButton from "../../UI/ClickButton.js";
 
 function Login({ history }) {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ function Login({ history }) {
             console.log("Blurred -- time to validate");
           }}
         />
-        <button>Login</button>
+        <ClickButton label="Login" />
       </form>
     </section>
   );

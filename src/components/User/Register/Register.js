@@ -4,13 +4,14 @@ import styles from "./Register.module.css";
 
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
+import ClickButton from "../../UI/ClickButton.js";
 
 function Register({ history }) {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [accType, setAccType] = useState("person");
+  const [accType, setAccType] = useState("personal");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -85,10 +86,10 @@ function Register({ history }) {
           name="accountType"
           type="radio"
           value="personal"
-          checked={accType === "person"}
+          checked={accType === "personal"}
           onChange={setAccType}
         />
-        <button>Register</button>
+        <ClickButton label="Register" />
       </form>
     </section>
   );

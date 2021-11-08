@@ -1,6 +1,6 @@
 import styles from "./RadioBtn.module.css";
 
-function RadioBtn({ label, name, value, id, onChange }) {
+function RadioBtn({ label, name, value, id, onChange, checked }) {
   return (
     <div className={styles.base}>
       <label className={styles.container}>
@@ -10,6 +10,7 @@ function RadioBtn({ label, name, value, id, onChange }) {
           type="radio"
           name={name}
           value={value}
+          checked={checked}
         />
         {/* <i></i> */}
         <span>{label}</span>
