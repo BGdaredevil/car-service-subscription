@@ -1,7 +1,24 @@
 .registerSection {
-  margin: 10vh 30vw 10vh 30vw;
+  margin: 10vh 10vw 10vh 10vw;
 }
 
+.formClass > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+  width: 100%;
+}
+
+.formFieldGroup > div {
+  flex-basis: 70%;
+}
+.formFieldGroup > svg {
+  flex-basis: 5%;
+}
+.formFieldGroup > p {
+  flex-basis: 25%;
+}
 /* .label {
   transition: 0.2s;
   color: #9b9b9b;

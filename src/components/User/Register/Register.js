@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 import styles from "./Register.module.css";
 
 import FormField from "../../UI/FormField.js";
@@ -22,55 +26,80 @@ function Register({ history }) {
       <div className="info">
         <h2>To have one less care</h2>
       </div>
-      <form onSubmit={submitHandler}>
-        <FormField
-          label="Username"
-          id="userName"
-          name="userName"
-          type="text"
-          placeholder="username"
-          value={userName}
-          onChange={setUserName}
-          onBlur={() => {
-            console.log("Blurred -- time to validate");
-          }}
-        />
-        <FormField
-          label="Email"
-          id="email"
-          name="email"
-          type="email"
-          placeholder="email_12@domain.com"
-          value={email}
-          onChange={setEmail}
-          onBlur={() => {
-            console.log("Blurred -- time to validate");
-          }}
-        />
-        <FormField
-          label="Password"
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={setPassword}
-          onBlur={() => {
-            console.log("Blurred -- time to validate");
-          }}
-        />
-        <FormField
-          label="Repeat password"
-          id="repeatPassword"
-          name="repeatPassword"
-          type="password"
-          value={repeatPassword}
-          placeholder="repeat password"
-          onChange={setRepeatPassword}
-          onBlur={() => {
-            console.log("Blurred -- time to validate");
-          }}
-        />
+      <form onSubmit={submitHandler} className={styles.formClass}>
+        <div className={styles.formFieldGroup}>
+          <FormField
+            label="Username"
+            id="userName"
+            name="userName"
+            type="text"
+            placeholder="username"
+            value={userName}
+            onChange={setUserName}
+            onBlur={() => {
+              console.log("Blurred -- time to validate");
+            }}
+          />
+          <FontAwesomeIcon icon={faTimes} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          <FontAwesomeIcon icon={faCheck} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+        </div>
+        <div className={styles.formFieldGroup}>
+          <FormField
+            label="Email"
+            id="email"
+            name="email"
+            type="email"
+            placeholder="email_12@domain.com"
+            value={email}
+            onChange={setEmail}
+            onBlur={() => {
+              console.log("Blurred -- time to validate");
+            }}
+          />
+          <FontAwesomeIcon icon={faTimes} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          <FontAwesomeIcon icon={faCheck} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+        </div>
+        <div className={styles.formFieldGroup}>
+          {" "}
+          <FormField
+            label="Password"
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            placeholder="password"
+            onChange={setPassword}
+            onBlur={() => {
+              console.log("Blurred -- time to validate");
+            }}
+          />
+          <FontAwesomeIcon icon={faTimes} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          <FontAwesomeIcon icon={faCheck} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+        </div>
+        <div className={styles.formFieldGroup}>
+          <FormField
+            label="Repeat password"
+            id="repeatPassword"
+            name="repeatPassword"
+            type="password"
+            value={repeatPassword}
+            placeholder="repeat password"
+            onChange={setRepeatPassword}
+            onBlur={() => {
+              console.log("Blurred -- time to validate");
+            }}
+          />
+          <FontAwesomeIcon icon={faTimes} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          <FontAwesomeIcon icon={faCheck} />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+        </div>
         <RadioBtn
           label="Business account"
           id="Business"
