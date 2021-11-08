@@ -1,6 +1,21 @@
-.loginSection {
+.registerSection {
   margin: 10vh 30vw 10vh 30vw;
 }
+
+/* .label {
+  transition: 0.2s;
+  color: #9b9b9b;
+  font-family: inherit;
+  outline: 0;
+  font-size: 1.3rem;
+  background: transparent;
+  position: relative;
+  padding: 0px 3px 0;
+  margin-top: 25px;
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid red;
+} */
 /*
 .loginForm {
   display: flex;

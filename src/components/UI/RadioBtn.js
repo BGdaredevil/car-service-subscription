@@ -11,7 +11,7 @@ function RadioBtn({ label, name, value, id, onChange }) {
           name={name}
           value={value}
         />
-        <i></i>
+        {/* <i></i> */}
         <span>{label}</span>
       </label>
     </div>

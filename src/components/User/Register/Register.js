@@ -1,4 +1,7 @@
 import { useState } from "react";
+
+import styles from "./Register.module.css";
+
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 
@@ -14,7 +17,7 @@ function Register({ history }) {
     console.log("submited", accType);
   };
   return (
-    <>
+    <section className={styles.registerSection}>
       <div className="info">
         <h2>To have one less care</h2>
       </div>
@@ -68,7 +71,7 @@ function Register({ history }) {
           }}
         />
         <RadioBtn
-          label="Business"
+          label="Business account"
           id="Business"
           name="accountType"
           type="radio"
@@ -77,7 +80,7 @@ function Register({ history }) {
           onChange={setAccType}
         />
         <RadioBtn
-          label="Personal"
+          label="Personal account"
           id="Personal"
           name="accountType"
           type="radio"
@@ -85,10 +88,9 @@ function Register({ history }) {
           checked={accType === "person"}
           onChange={setAccType}
         />
-
         <button>Register</button>
       </form>
-    </>
+    </section>
   );
 }
 

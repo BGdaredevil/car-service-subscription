@@ -22,7 +22,7 @@ function Login({ history }) {
       <form className={styles.loginForm} onSubmit={submitHandler}>
         <FormField
           id="email"
-          label="Email:"
+          label="Email"
           type="email"
           placeholder="email_12@domain.com"
           value={email}
@@ -33,7 +33,7 @@ function Login({ history }) {
         />
         <FormField
           id="password"
-          label="Password:"
+          label="Password"
           type="password"
           placeholder="password"
           value={password}
