@@ -59,7 +59,7 @@ function Login({ history }) {
           />
         </div>
         <div className={styles.formFieldGroup}>
-          <ClickButton label="Login" />
+          <ClickButton label="Login" disabled={!(isValidEmail && isValidPassword)} />
         </div>
       </form>
     </section>

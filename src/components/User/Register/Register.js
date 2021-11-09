@@ -9,7 +9,7 @@ import { validateField } from "../../../utils/validator.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 
 function Register({ history }) {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [isValidName, setValidName] = useState(undefined);
 
   const [email, setEmail] = useState("");
@@ -25,7 +25,18 @@ function Register({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("submited", accType);
+    const cleanData = {
+      username: username.trim(),
+      email: email.trim(),
+      password: password.trim(),
+      accountType: accType.trim(),
+      isPassMatch: isValidPassMatch,
+    };
+    console.log(
+      "submited",
+      cleanData,
+      isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType
+    );
   };
   return (
     <section className={styles.registerSection}>
@@ -36,11 +47,11 @@ function Register({ history }) {
         <div className={styles.formFieldGroup}>
           <FormField
             label="Username"
-            id="userName"
-            name="userName"
+            id="username"
+            name="username"
             type="text"
             placeholder="username"
-            value={userName}
+            value={username}
             onChange={setUserName}
             onBlur={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
           />
@@ -115,7 +126,12 @@ function Register({ history }) {
           onChange={setAccType}
         />
         <div className={styles.formFieldGroup}>
-          <ClickButton label="Register" />
+          <ClickButton
+            label="Register"
+            disabled={
+              !(isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType)
+            }
+          />
         </div>
       </form>
     </section>

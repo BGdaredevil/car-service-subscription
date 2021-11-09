@@ -1,8 +1,9 @@
 import styles from "./ClickButton.module.css";
 
-function ClickButton({ label, onClick }) {
+function ClickButton({ label, onClick, disabled = false }) {
+  console.log(disabled);
   return (
-    <button onClick={onClick} className={styles.btn}>
+    <button onClick={onClick} disabled={disabled} className={styles.btn}>
       {label}
     </button>
   );
