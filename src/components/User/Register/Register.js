@@ -1,15 +1,12 @@
 import { useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
 import styles from "./Register.module.css";
 
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
+import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 
 function Register({ history }) {
   const [userName, setUserName] = useState("");
@@ -47,20 +44,10 @@ function Register({ history }) {
             onChange={setUserName}
             onBlur={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
           />
-          {isValidName !== undefined ? (
-            isValidName ? (
-              <>
-                <FontAwesomeIcon icon={faCheck} />
-              </>
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faTimes} />
-                <p>Username must be at least 3 long. No special characters allowed.</p>
-              </>
-            )
-          ) : (
-            ""
-          )}
+          <FieldValidCheckMark
+            isValid={isValidName}
+            text="Username must be at least 3 long. No special characters allowed."
+          />
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
@@ -75,20 +62,10 @@ function Register({ history }) {
               setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
             }
           />
-          {isValidEmail !== undefined ? (
-            isValidEmail ? (
-              <>
-                <FontAwesomeIcon icon={faCheck} />
-              </>
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faTimes} />
-                <p>Email must be valid to mailbox@d omain.bg/com</p>
-              </>
-            )
-          ) : (
-            ""
-          )}
+          <FieldValidCheckMark
+            isValid={isValidEmail}
+            text="Email must be valid to mailbox@domain.bg/com"
+          />
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
@@ -101,20 +78,10 @@ function Register({ history }) {
             onChange={setPassword}
             onBlur={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
           />
-          {isValidPassword !== undefined ? (
-            isValidPassword ? (
-              <>
-                <FontAwesomeIcon icon={faCheck} />
-              </>
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faTimes} />
-                <p>Password must be at least 4 chars long</p>
-              </>
-            )
-          ) : (
-            ""
-          )}
+          <FieldValidCheckMark
+            isValid={isValidPassword}
+            text="Password must be at least 4 chars long"
+          />
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
@@ -127,20 +94,7 @@ function Register({ history }) {
             onChange={setRepeatPassword}
             onBlur={() => setValidPassMatch(repeatPassword === password)}
           />
-          {isValidPassMatch !== undefined ? (
-            isValidPassMatch ? (
-              <>
-                <FontAwesomeIcon icon={faCheck} />
-              </>
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faTimes} />
-                <p>Passwords do not match</p>
-              </>
-            )
-          ) : (
-            ""
-          )}
+          <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
         </div>
         <RadioBtn
           label="Business account"
@@ -160,7 +114,9 @@ function Register({ history }) {
           checked={accType === "personal"}
           onChange={setAccType}
         />
-        <ClickButton label="Register" />
+        <div className={styles.formFieldGroup}>
+          <ClickButton label="Register" />
+        </div>
       </form>
     </section>
   );

@@ -1,32 +1,25 @@
 .loginSection {
-  margin: 10vh 30vw 10vh 30vw;
+  margin: 10vh 10vw 10vh 10vw;
 }
-/*
-.loginForm {
+
+.formClass > div {
   display: flex;
-  flex-direction: column;
-  margin: 0 20% 0 20%;
-} */
-
-/* .loginForm div { */
-/* display: flex;
   flex-direction: row;
-  justify-content: space-between; */
-/* } */
-
-/* .loginForm label {
-  display: inline-block;
-  font-size: 20px;
-  margin-right: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
-.loginForm input {
-  display: inline-block;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0);
+.formFieldGroup > div {
+  flex-basis: 60%;
+}
+.formFieldGroup > svg {
+  flex-basis: 5%;
+}
+.formFieldGroup > p {
+  flex-basis: 35%;
 }
 
-.loginForm input::placeholder {
-  color: #fff; */
-/* opacity: 1; */
-/* } */
+.formFieldGroup > button {
+  flex-basis: 60%;
+}
