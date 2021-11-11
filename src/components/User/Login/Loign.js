@@ -1,12 +1,16 @@
 import styles from "./Login.module.css";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FormField from "../../UI/FormField.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
+import { AuthContext } from "../../../contexts/AuthContext.js";
+import { Redirect } from "react-router";
 
 function Login({ history }) {
+  const { user, login } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [isValidEmail, setValidEmail] = useState(undefined);
 
@@ -17,8 +21,17 @@ function Login({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("submited");
+    const cleanData = {
+      email: email.trim(),
+      password: password.trim(),
+    };
+    console.log("submited", cleanData, isValidEmail && isValidPassword);
+    login(cleanData).then(() => history.push("/"));
   };
+
+  if (user) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <section className={styles.loginSection}>

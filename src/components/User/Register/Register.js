@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import styles from "./Register.module.css";
 
@@ -7,8 +7,12 @@ import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
+import { AuthContext } from "../../../contexts/AuthContext.js";
+import { Redirect } from "react-router";
 
 function Register({ history }) {
+  const { user, register } = useContext(AuthContext);
+
   const [username, setUserName] = useState("");
   const [isValidName, setValidName] = useState(undefined);
 
@@ -37,7 +41,16 @@ function Register({ history }) {
       cleanData,
       isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType
     );
+    register(cleanData).then(() => {
+      console.log(user);
+      history.push("/");
+    });
   };
+
+  if (user) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <section className={styles.registerSection}>
       <div className="info">

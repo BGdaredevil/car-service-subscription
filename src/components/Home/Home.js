@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.js";
+
 function Home() {
+  const { user } = useContext(AuthContext);
+  console.log(`email: ${user.email}\ndisplayName ${user.displayName}`);
   return (
     <>
       <div className="ad">
@@ -13,7 +18,7 @@ function Home() {
       </div>
       <div className="best-shops">
         <div className="card">
-          <div class="">
+          <div className="">
             <h1 className="Hheading">Heading</h1>
             <p className="description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, quis laborum inventore

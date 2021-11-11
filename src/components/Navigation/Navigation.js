@@ -1,9 +1,13 @@
 import classes from "./Navigation.module.css";
 
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.js";
 // import { Nav } from "react-bootstrap";
 
 function Navigation() {
+  const { user, logout } = useContext(AuthContext);
+
   return (
     <nav>
       <NavLink activeClassName={classes.active} exact to="/">
@@ -14,7 +18,7 @@ function Navigation() {
           Home
         </NavLink>
         <NavLink activeClassName={classes.active} exact to="/users/profile">
-          Wellcome back username
+          Wellcome back {user && user.displayName}
         </NavLink>
         <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
           Mechanic Shops
@@ -31,7 +35,7 @@ function Navigation() {
         <NavLink activeClassName={classes.active} exact to="/user/register">
           Register
         </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/user/logout">
+        <NavLink activeClassName={classes.active} exact to="/user/logout" onClick={logout}>
           Logout
         </NavLink>
       </div>
