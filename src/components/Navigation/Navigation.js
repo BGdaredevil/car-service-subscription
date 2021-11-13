@@ -17,27 +17,36 @@ function Navigation() {
         <NavLink activeClassName={classes.active} exact to="/">
           Home
         </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/users/profile">
-          Wellcome back {user && user.displayName}
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
-          Mechanic Shops
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/shops/body">
-          Body Shops
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/shops/performance">
-          Performance Shops
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/user/login">
-          Login
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/user/register">
-          Register
-        </NavLink>
-        <NavLink activeClassName={classes.active} exact to="/user/logout" onClick={logout}>
-          Logout
-        </NavLink>
+
+        {user ? (
+          <>
+            <NavLink activeClassName={classes.active} exact to="/users/profile">
+              Wellcome back {user && user.displayName}
+            </NavLink>
+            <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
+              Mechanic Shops
+            </NavLink>
+            <NavLink activeClassName={classes.active} exact to="/shops/body">
+              Body Shops
+            </NavLink>
+            <NavLink activeClassName={classes.active} exact to="/shops/performance">
+              Performance Shops
+            </NavLink>
+            <NavLink activeClassName={classes.active} exact to="/user/logout" onClick={logout}>
+              Logout
+            </NavLink>
+          </>
+        ) : (
+          <>
+            {" "}
+            <NavLink activeClassName={classes.active} exact to="/user/login">
+              Login
+            </NavLink>
+            <NavLink activeClassName={classes.active} exact to="/user/register">
+              Register
+            </NavLink>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext.js";
+import ClickButton from "../UI/ClickButton.js";
 
 function Home() {
   const { user } = useContext(AuthContext);
@@ -9,11 +10,11 @@ function Home() {
       <div className="ad">
         <div className="left">
           <h1> Ned some work to be done ?</h1>
-          <button> we offer the best options </button>
+          <ClickButton label="we offer the best options" />
         </div>
         <div className="right">
           <h1>Looking for good business?</h1>
-          <button>We can hook you up with clients</button>
+          <ClickButton label="We can hook you up with clients" />
         </div>
       </div>
       <div className="best-shops">
@@ -25,7 +26,7 @@ function Home() {
               repudiandae culpa nisi totam perspiciatis, vitae, quibusdam necessitatibus maiores
               vero iste unde ex asperiores distinctio tempora ipsam consequuntur.
             </p>
-            <button>Book a Visit</button>
+            <ClickButton label="Book a Visit" />
           </div>
         </div>
       </div>
