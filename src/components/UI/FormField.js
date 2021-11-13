@@ -7,7 +7,7 @@ function FormField({
   placeholder,
   value,
   onChange,
-  onBlur,
+  onInput,
   label,
   name,
   checked,
@@ -23,7 +23,7 @@ function FormField({
         className={styles.formField}
         disabled={isDisabled}
         onChange={onChange && ((e) => onChange(e.target.value))}
-        onBlur={onBlur && ((e) => onBlur(e))}
+        onInput={onInput && ((e) => onInput(e))}
         checked={checked}
         required
       ></input>

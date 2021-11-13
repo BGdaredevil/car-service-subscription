@@ -36,15 +36,13 @@ function Register({ history }) {
       accountType: accType.trim(),
       isPassMatch: isValidPassMatch,
     };
-    console.log(
-      "submited",
-      cleanData,
-      isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType
-    );
-    register(cleanData).then(() => {
-      console.log(user);
-      history.push("/");
-    });
+
+    register(cleanData)
+      .then(() => {
+        console.log(user);
+        history.push("/");
+      })
+      .catch((err) => alert(err));
   };
 
   if (user) {
@@ -66,7 +64,7 @@ function Register({ history }) {
             placeholder="username"
             value={username}
             onChange={setUserName}
-            onBlur={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
+            onInput={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
           />
           <FieldValidCheckMark
             isValid={isValidName}
@@ -82,7 +80,7 @@ function Register({ history }) {
             placeholder="email_12@domain.com"
             value={email}
             onChange={setEmail}
-            onBlur={(e) =>
+            onInput={(e) =>
               setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
             }
           />
@@ -100,11 +98,11 @@ function Register({ history }) {
             value={password}
             placeholder="password"
             onChange={setPassword}
-            onBlur={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
+            onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
           />
           <FieldValidCheckMark
             isValid={isValidPassword}
-            text="Password must be at least 4 chars long"
+            text="Password must be at least 6 chars long"
           />
         </div>
         <div className={styles.formFieldGroup}>
@@ -116,7 +114,7 @@ function Register({ history }) {
             value={repeatPassword}
             placeholder="repeat password"
             onChange={setRepeatPassword}
-            onBlur={() => setValidPassMatch(repeatPassword === password)}
+            onInput={(e) => setValidPassMatch(e.target.value === password)}
           />
           <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
         </div>

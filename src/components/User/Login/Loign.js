@@ -26,7 +26,9 @@ function Login({ history }) {
       password: password.trim(),
     };
     console.log("submited", cleanData, isValidEmail && isValidPassword);
-    login(cleanData).then(() => history.push("/"));
+    login(cleanData)
+      .then(() => history.push("/"))
+      .catch((err) => alert(err));
   };
 
   if (user) {
@@ -47,7 +49,7 @@ function Login({ history }) {
             placeholder="email_12@domain.com"
             value={email}
             onChange={setEmail}
-            onBlur={(e) =>
+            onInput={(e) =>
               setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
             }
           />
@@ -64,7 +66,7 @@ function Login({ history }) {
             placeholder="password"
             value={password}
             onChange={setPassword}
-            onBlur={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
+            onInput={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
           />
           <FieldValidCheckMark
             isValid={isValidPassword}
