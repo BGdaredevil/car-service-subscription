@@ -5,31 +5,52 @@ import {
 } from "@firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/base.js";
+import { post } from "../services/apiService.js";
+import { endpoints } from "../config/apiConfig.js";
 
 export const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [user, setUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged(setUser);
   }, []);
 
-  const register = async (userData) => {
-    let response = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-    return updateProfile(auth.currentUser, {
-      displayName: userData.username,
-    });
+  const register = async ({ email, password, username, accountType }) => {
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+      await post(endpoints.regUser, {
+        username: username,
+        accountType: accountType,
+        uid: user.uid,
+      });
+    } catch (err) {
+      alert(err);
+    }
   };
-  const login = async (userData) => {
-    const response = await signInWithEmailAndPassword(auth, userData.email, userData.password);
+  const login = async ({ email, password }) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+    } catch (err) {
+      alert(err);
+    }
   };
   const logout = async () => {
-    await auth.signOut();
+    try {
+      await auth.signOut();
+      localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
+    } catch (err) {
+      alert(err);
+    }
   };
 
-  const contextData = { user, isLoggedIn, login, register, logout };
+  const contextData = { user, login, register, logout };
 
   return <AuthContext.Provider value={contextData}>{props.children}</AuthContext.Provider>;
 }

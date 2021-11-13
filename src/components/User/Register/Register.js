@@ -38,10 +38,7 @@ function Register({ history }) {
     };
 
     register(cleanData)
-      .then(() => {
-        console.log(user);
-        history.push("/");
-      })
+      .then(() => history.push("/"))
       .catch((err) => alert(err));
   };
 
