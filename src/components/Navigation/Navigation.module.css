@@ -34,6 +34,10 @@ nav a:hover {
   color: white;
 }
 
+nav a:active {
+  background-color: green;
+}
+
 .active {
   background-color: black;
   color: white;

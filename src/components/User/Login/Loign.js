@@ -17,7 +17,7 @@ function Login({ history }) {
   const [password, setPassword] = useState("");
   const [isValidPassword, setValidPassword] = useState(undefined);
 
-  console.log(email, password);
+  // console.log(email, password);
 
   const submitHandler = (e) => {
     e.preventDefault();

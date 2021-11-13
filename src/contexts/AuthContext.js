@@ -24,7 +24,7 @@ function AuthContextProvider(props) {
         displayName: username,
       });
       localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
-      await post(endpoints.regUser, {
+      await post(endpoints.userApi, {
         username: username,
         accountType: accountType,
         uid: user.uid,

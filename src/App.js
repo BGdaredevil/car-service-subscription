@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation/Navigation.js";
 import Register from "./components/User/Register/Register.js";
 import AuthContextProvider from "./contexts/AuthContext.js";
 import RouteGuard from "./contexts/RouteGuard.js";
+import Profile from "./components/User/Profile/Profile.js";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         {/* <ErrorComp /> */}
         <Navigation />
         <Switch>
-          <RouteGuard exact path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <RouteGuard exact path="/user/profile" component={Profile} />
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
           <Route exact path="/user/logout" component={() => <Redirect to="/user/login" />} />

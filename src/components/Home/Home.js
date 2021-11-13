@@ -4,7 +4,7 @@ import ClickButton from "../UI/ClickButton.js";
 
 function Home() {
   const { user } = useContext(AuthContext);
-  console.log(`email: ${user.email}\ndisplayName ${user.displayName}`);
+  // console.log(`email: ${user.email}\ndisplayName ${user.displayName}`);
   return (
     <>
       <div className="ad">

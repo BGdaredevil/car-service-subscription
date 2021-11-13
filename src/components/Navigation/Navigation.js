@@ -20,8 +20,8 @@ function Navigation() {
 
         {user ? (
           <>
-            <NavLink activeClassName={classes.active} exact to="/users/profile">
-              Wellcome back {user && user.displayName}
+            <NavLink activeClassName={classes.active} exact to="/user/profile">
+              Wellcome back {user.displayName}
             </NavLink>
             <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
               Mechanic Shops
