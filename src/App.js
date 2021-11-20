@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,6 +11,10 @@ import Register from "./components/User/Register/Register.js";
 import AuthContextProvider from "./contexts/AuthContext.js";
 import RouteGuard from "./contexts/RouteGuard.js";
 import Profile from "./components/User/Profile/Profile.js";
+import CreateCar from "./components/Car/Create/Create.js";
+import CreateShop from "./components/Shops/Create/Create.js";
+import DetailsCar from "./components/Car/Details/Details.js";
+import DetailsShop from "./components/Shops/Details/Details.js";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <RouteGuard exact path="/user/profile" component={Profile} />
+          <RouteGuard exact path="/car/create" component={CreateCar} />
+          <RouteGuard exact path="/car/:id" component={DetailsCar} />
+          <RouteGuard exact path="/shop/create" component={CreateShop} />
+          <RouteGuard exact path="/shop/:id" component={DetailsShop} />
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
           <Route exact path="/user/logout" component={() => <Redirect to="/user/login" />} />

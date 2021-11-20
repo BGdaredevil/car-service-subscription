@@ -55,7 +55,6 @@ function Register({ history }) {
         <div className={styles.formFieldGroup}>
           <FormField
             label="Username"
-            id="username"
             name="username"
             type="text"
             placeholder="username"
@@ -71,7 +70,6 @@ function Register({ history }) {
         <div className={styles.formFieldGroup}>
           <FormField
             label="Email"
-            id="email"
             name="email"
             type="email"
             placeholder="email_12@domain.com"
@@ -89,7 +87,6 @@ function Register({ history }) {
         <div className={styles.formFieldGroup}>
           <FormField
             label="Password"
-            id="password"
             name="password"
             type="password"
             value={password}
@@ -105,7 +102,6 @@ function Register({ history }) {
         <div className={styles.formFieldGroup}>
           <FormField
             label="Repeat password"
-            id="repeatPassword"
             name="repeatPassword"
             type="password"
             value={repeatPassword}
@@ -117,7 +113,6 @@ function Register({ history }) {
         </div>
         <RadioBtn
           label="Business account"
-          id="Business"
           name="accountType"
           type="radio"
           value="business"
@@ -126,7 +121,6 @@ function Register({ history }) {
         />
         <RadioBtn
           label="Personal account"
-          id="Personal"
           name="accountType"
           type="radio"
           value="personal"

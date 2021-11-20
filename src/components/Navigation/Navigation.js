@@ -1,9 +1,8 @@
 import classes from "./Navigation.module.css";
 
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext.js";
-// import { Nav } from "react-bootstrap";
 
 function Navigation() {
   const { user, logout } = useContext(AuthContext);

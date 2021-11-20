@@ -43,7 +43,6 @@ function Login({ history }) {
       <form className={styles.formClass} onSubmit={submitHandler}>
         <div className={styles.formFieldGroup}>
           <FormField
-            id="email"
             label="Email"
             type="email"
             placeholder="email_12@domain.com"
@@ -60,7 +59,6 @@ function Login({ history }) {
         </div>
         <div className={styles.formFieldGroup}>
           <FormField
-            id="password"
             label="Password"
             type="password"
             placeholder="password"

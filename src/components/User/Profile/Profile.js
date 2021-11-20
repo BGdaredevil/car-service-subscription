@@ -1,36 +1,35 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 
-import { get } from "../../../services/apiService.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
-import { endpoints } from "../../../config/apiConfig.js";
+import BusinessProfile from "./BusinessProfile.js";
+import PersonalProfile from "./PersonalProfile.js";
 import styles from "./Profile.module.css";
 
 function Profile() {
   const { user } = useContext(AuthContext);
 
-  const [allUserData, setAllUserData] = useState(null);
+  // const [allUserData, setAllUserData] = useState(null);
 
-  useEffect(() => {
-    get(`${endpoints.userApi}/${user.uid}`)
-      .then((res) => setAllUserData(res))
-      .catch((e) => alert(e));
-  }, []);
+  // useEffect(() => {
+  //   get(`${endpoints.userApi}/${user.uid}`)
+  //     .then((res) => setAllUserData(res))
+  //     .catch((e) => alert(e));
+  // }, []);
 
-  console.log(allUserData);
+  // console.log(allUserData);
 
-  if (!allUserData) {
-    return <div>LOADING</div>;
-  }
+  // if (!user) {
+  //   return <div>LOADING</div>;
+  // }
 
   return (
     <section className={styles.profile}>
       <div className={styles.userCard}></div>
       <div className={styles.controls}>
-        {allUserData.accountType === "business" ? (
-          <Link to="/shop/create">create shop</Link>
+        {user.accountType === "business" ? (
+          <BusinessProfile user={user} />
         ) : (
-          <Link to="/car/create">create car</Link>
+          <PersonalProfile user={user} />
         )}
       </div>
     </section>
