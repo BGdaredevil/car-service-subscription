@@ -11,6 +11,7 @@ function FormField({
   label,
   name,
   checked,
+  required = true,
 }) {
   return (
     <div className={styles.formGroup}>
@@ -25,7 +26,7 @@ function FormField({
         onChange={onChange && ((e) => onChange(e.target.value))}
         onInput={onInput && ((e) => onInput(e))}
         checked={checked}
-        required
+        required={required && true}
       ></input>
       <label className={styles.formLabel} htmlFor={id}>
         {label}
