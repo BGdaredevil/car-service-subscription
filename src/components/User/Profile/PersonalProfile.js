@@ -14,14 +14,14 @@ function PersonalProfile({ user }) {
         setUserCars(r);
       })
       .catch((e) => alert(e));
-  }, []);
+  }, [user.uid]);
 
   return (
     <section>
       <h1>Personal</h1>
       <Link to="/car/create">create car</Link>
       <section>
-        {userCars.length == 0 ? (
+        {userCars.length === 0 ? (
           <h3>No cars yet</h3>
         ) : (
           <>
@@ -42,7 +42,7 @@ function PersonalProfile({ user }) {
                     <td>{c.model}</td>
                     <td>{c.year}</td>
                     <td>
-                      <Link to={`/car/details/${c._id}`}> Details</Link>
+                      <Link to={`/car/${c._id}`}> Details</Link>
                     </td>
                   </tr>
                 ))}

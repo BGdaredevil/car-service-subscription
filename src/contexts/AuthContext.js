@@ -23,8 +23,8 @@ function AuthContextProvider(props) {
           })
           .catch((e) => alert(e));
       } else {
-        setUser(user);
-        localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
+        // setUser(user);
+        // localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
       }
     });
   }, []);
@@ -48,7 +48,7 @@ function AuthContextProvider(props) {
   const login = async ({ email, password }) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+      // localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
     } catch (err) {
       alert(err);
     }
