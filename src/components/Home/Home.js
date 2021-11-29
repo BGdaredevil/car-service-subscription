@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext.js";
+// import { useContext } from "react";
+// import { AuthContext } from "../../contexts/AuthContext.js";
 import ClickButton from "../UI/ClickButton.js";
 
 function Home() {
-  const { user } = useContext(AuthContext);
-  // console.log(`email: ${user.email}\ndisplayName ${user.displayName}`);
+  // const { user } = useContext(AuthContext);
   return (
     <>
       <div className="ad">

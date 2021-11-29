@@ -10,7 +10,7 @@ function Profile() {
 
   useEffect(() => {
     decorateUser();
-  }, []);
+  }, [decorateUser]);
 
   // const [allUserData, setAllUserData] = useState(null);
 
