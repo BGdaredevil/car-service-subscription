@@ -12,8 +12,6 @@ function Profile() {
     decorateUser();
   }, []);
 
-  console.log(user.accountType);
-
   // const [allUserData, setAllUserData] = useState(null);
 
   // useEffect(() => {

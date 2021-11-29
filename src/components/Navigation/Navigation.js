@@ -6,7 +6,6 @@ import { AuthContext } from "../../contexts/AuthContext.js";
 
 function Navigation() {
   const { user, logout } = useContext(AuthContext);
-  console.log(user);
   return (
     <nav>
       <NavLink activeClassName={classes.active} exact to="/">
