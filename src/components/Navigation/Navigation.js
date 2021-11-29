@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext.js";
 
 function Navigation() {
   const { user, logout } = useContext(AuthContext);
-
+  console.log(user);
   return (
     <nav>
       <NavLink activeClassName={classes.active} exact to="/">
@@ -20,7 +20,9 @@ function Navigation() {
         {user ? (
           <>
             <NavLink activeClassName={classes.active} exact to="/user/profile">
-              Wellcome back {user.displayName}
+              {user.displayName === null
+                ? `Nice to meet you ${user.email}`
+                : `Wellcome back ${user.displayName}`}
             </NavLink>
             <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
               Mechanic Shops

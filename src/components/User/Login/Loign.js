@@ -11,21 +11,18 @@ import { Redirect } from "react-router";
 function Login({ history }) {
   const { user, login } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("");
   const [isValidEmail, setValidEmail] = useState(undefined);
 
-  const [password, setPassword] = useState("");
   const [isValidPassword, setValidPassword] = useState(undefined);
-
-  // console.log(email, password);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
     const cleanData = {
-      email: email.trim(),
-      password: password.trim(),
+      email: data.email.trim(),
+      password: data.password.trim(),
     };
-    console.log("submited", cleanData, isValidEmail && isValidPassword);
+    // console.log("submited", cleanData, isValidEmail && isValidPassword);
     login(cleanData)
       .then(() => history.push("/"))
       .catch((err) => alert(err));
@@ -46,8 +43,7 @@ function Login({ history }) {
             label="Email"
             type="email"
             placeholder="email_12@domain.com"
-            value={email}
-            onChange={setEmail}
+            name="email"
             onInput={(e) =>
               setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
             }
@@ -62,8 +58,7 @@ function Login({ history }) {
             label="Password"
             type="password"
             placeholder="password"
-            value={password}
-            onChange={setPassword}
+            name="password"
             onInput={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
           />
           <FieldValidCheckMark

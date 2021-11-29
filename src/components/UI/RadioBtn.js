@@ -12,7 +12,6 @@ function RadioBtn({ label, name, value, id, onChange, checked }) {
           value={value}
           checked={checked}
         />
-        {/* <i></i> */}
         <span>{label}</span>
       </label>
     </div>

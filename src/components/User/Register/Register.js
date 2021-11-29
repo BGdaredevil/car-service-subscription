@@ -13,28 +13,27 @@ import { Redirect } from "react-router";
 function Register({ history }) {
   const { user, register } = useContext(AuthContext);
 
-  const [username, setUserName] = useState("");
   const [isValidName, setValidName] = useState(undefined);
 
-  const [email, setEmail] = useState("");
   const [isValidEmail, setValidEmail] = useState(undefined);
 
   const [password, setPassword] = useState("");
   const [isValidPassword, setValidPassword] = useState(undefined);
 
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [isValidPassMatch, setValidPassMatch] = useState(undefined);
 
   const [accType, setAccType] = useState("personal");
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+
     const cleanData = {
-      username: username.trim(),
-      email: email.trim(),
-      password: password.trim(),
-      accountType: accType.trim(),
-      isPassMatch: isValidPassMatch,
+      username: data.username.trim(),
+      email: data.email.trim(),
+      password: data.password.trim(),
+      accountType: data.accountType.trim(),
+      isPassMatch: data.isValidPassMatch,
     };
 
     register(cleanData)
@@ -58,8 +57,6 @@ function Register({ history }) {
             name="username"
             type="text"
             placeholder="username"
-            value={username}
-            onChange={setUserName}
             onInput={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
           />
           <FieldValidCheckMark
@@ -73,8 +70,6 @@ function Register({ history }) {
             name="email"
             type="email"
             placeholder="email_12@domain.com"
-            value={email}
-            onChange={setEmail}
             onInput={(e) =>
               setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
             }
@@ -89,8 +84,8 @@ function Register({ history }) {
             label="Password"
             name="password"
             type="password"
-            value={password}
             placeholder="password"
+            value={password}
             onChange={setPassword}
             onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
           />
@@ -104,9 +99,7 @@ function Register({ history }) {
             label="Repeat password"
             name="repeatPassword"
             type="password"
-            value={repeatPassword}
             placeholder="repeat password"
-            onChange={setRepeatPassword}
             onInput={(e) => setValidPassMatch(e.target.value === password)}
           />
           <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
