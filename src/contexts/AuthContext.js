@@ -53,7 +53,7 @@ function AuthContextProvider(props) {
     });
   };
   const login = async ({ email, password }) => {
-    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
     // localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
   };
   const logout = async () => {
