@@ -24,7 +24,7 @@ function DetailsCar({ history }) {
         console.log(r);
         history.push("/user/profile");
       })
-      .catch((e) => alert(e));
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -47,7 +47,7 @@ function DetailsCar({ history }) {
           </div>
         </div>
         <div className="card-footer">
-          <Link to="">
+          <Link to={`/car/edit/${carData._id}`}>
             <ClickButton label="edit" />
           </Link>
           <ClickButton label="delete" onClick={deleteHandler} />

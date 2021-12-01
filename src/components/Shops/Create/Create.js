@@ -10,8 +10,7 @@ import ClickButton from "../../UI/ClickButton.js";
 import { useHistory } from "react-router";
 
 function CreateShop() {
-  const [name, setName] = useState("");
-  const [isValidName, setIsValidName] = useState(false);
+  const [isValidName, setIsValidName] = useState(undefined);
 
   const [specification, setSpecification] = useState("bodyShop");
 
@@ -22,10 +21,11 @@ function CreateShop() {
   const addHandler = (e) => {
     e.preventDefault();
     setServices((old) => [...old, tempService]);
-    setTempService(() => "");
+    setTempService("");
   };
 
-  const remHandler = (item) => {
+  const remHandler = (e, item) => {
+    e.preventDefault();
     setServices((old) => old.filter((s) => s !== item));
   };
 
@@ -40,8 +40,7 @@ function CreateShop() {
             label="Name"
             type="text"
             placeholder="Name"
-            value={name}
-            onChange={setName}
+            name="name"
             onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
           />
           <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
@@ -75,24 +74,23 @@ function CreateShop() {
         </div>
         <div className={styles.formFieldGroup}>
           <h4>Offered services:</h4>
-          {services.length > 0 ? (
-            services.map((s, i) => (
-              <div key={i}>
-                <h4>{s}</h4>
-                <ClickButton label="Remove" type="button" onClick={() => remHandler(s)} />
-              </div>
-            ))
-          ) : (
-            <></>
-          )}
+          {services.length > 0
+            ? services.map((s, i) => (
+                <div key={i}>
+                  <h4 onClick={(e) => remHandler(e, s)}>
+                    {s}
+                    <button>Remove</button>
+                  </h4>
+                </div>
+              ))
+            : ""}
           <FormField
             label="Service"
             type="text"
             placeholder="Service"
             required={false}
             value={tempService}
-            onChange={setTempService}
-            // onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
+            onInput={(e) => setTempService(e.target.value)}
           />
           <ClickButton label="Add" onClick={addHandler} />
         </div>

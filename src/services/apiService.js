@@ -19,7 +19,7 @@ const fetchWrap = async (url, options) => {
 };
 
 const getOptions = (method = "get", payload) => {
-  const options = { method: method.toLowerCase(), headers: {}, credentials: "include" };
+  const options = { method: method.toUpperCase(), headers: {}, credentials: "include" };
   if (user) {
     // console.log(user);
     options.headers["X-Authorization"] = user;

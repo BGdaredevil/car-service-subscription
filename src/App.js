@@ -14,6 +14,7 @@ import Profile from "./components/User/Profile/Profile.js";
 import CreateCar from "./components/Car/Create/Create.js";
 import CreateShop from "./components/Shops/Create/Create.js";
 import DetailsCar from "./components/Car/Details/Details.js";
+import EditCar from "./components/Car/Edit/Edit.js";
 import DetailsShop from "./components/Shops/Details/Details.js";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <RouteGuard exact path="/user/profile" component={Profile} />
           <RouteGuard exact path="/car/create" component={CreateCar} />
+          <RouteGuard exact path="/car/edit/:id" component={EditCar} />
           <RouteGuard exact path="/car/:id" component={DetailsCar} />
           <RouteGuard exact path="/shop/create" component={CreateShop} />
           <RouteGuard exact path="/shop/:id" component={DetailsShop} />

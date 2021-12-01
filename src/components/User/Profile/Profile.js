@@ -6,25 +6,7 @@ import PersonalProfile from "./PersonalProfile.js";
 import styles from "./Profile.module.css";
 
 function Profile() {
-  const { user, decorateUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    decorateUser();
-  }, [decorateUser]);
-
-  // const [allUserData, setAllUserData] = useState(null);
-
-  // useEffect(() => {
-  //   get(`${endpoints.userApi}/${user.uid}`)
-  //     .then((res) => setAllUserData(res))
-  //     .catch((e) => alert(e));
-  // }, []);
-
-  // console.log(allUserData);
-
-  // if (!user) {
-  //   return <div>LOADING</div>;
-  // }
+  const { user } = useContext(AuthContext);
 
   return (
     <section className={styles.profile}>
