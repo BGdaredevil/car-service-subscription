@@ -16,6 +16,7 @@ import CreateShop from "./components/Shops/Create/Create.js";
 import DetailsCar from "./components/Car/Details/Details.js";
 import EditCar from "./components/Car/Edit/Edit.js";
 import DetailsShop from "./components/Shops/Details/Details.js";
+import EditShop from "./components/Shops/Edit/Edit.js";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <RouteGuard exact path="/car/:id" component={DetailsCar} />
           <RouteGuard exact path="/shop/create" component={CreateShop} />
           <RouteGuard exact path="/shop/:id" component={DetailsShop} />
+          <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
           <Route exact path="/user/logout" component={() => <Redirect to="/user/login" />} />

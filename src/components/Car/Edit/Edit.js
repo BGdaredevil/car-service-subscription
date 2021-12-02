@@ -1,7 +1,6 @@
-import { useContext, useState, useEffect } from "react";
-import { Redirect, useParams } from "react-router";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { endpoints } from "../../../config/apiConfig.js";
-import { AuthContext } from "../../../contexts/AuthContext.js";
 import { get, patch } from "../../../services/apiService.js";
 import { validateField } from "../../../utils/validator.js";
 import ClickButton from "../../UI/ClickButton.js";
@@ -13,7 +12,6 @@ import styles from "./Edit.module.css";
 function EditCar({ history }) {
   const { id } = useParams();
   const [car, setCar] = useState({});
-  const { user } = useContext(AuthContext);
 
   const [isValidMake, setIsValidMake] = useState(true);
   const [isValidModel, setIsValidModel] = useState(true);
@@ -27,7 +25,7 @@ function EditCar({ history }) {
         console.log(e);
         alert(e);
       });
-  }, []);
+  }, [id]);
 
   const onSubmit = (e) => {
     e.preventDefault();

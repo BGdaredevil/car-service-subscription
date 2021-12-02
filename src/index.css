@@ -6,6 +6,10 @@
   border: none;
 }
 
+/* *:focus {
+  border: 3px solid red;
+} */
+
 body {
   margin: 0;
   font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
