@@ -30,6 +30,7 @@ function Login({ history }) {
 
   if (user) {
     history.goBack();
+    return null;
   }
 
   return (

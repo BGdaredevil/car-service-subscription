@@ -13,6 +13,13 @@ export const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE)) {
+      setUser(localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE));
+    }
+  }, []);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
