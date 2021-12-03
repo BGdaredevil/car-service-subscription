@@ -38,6 +38,9 @@ function DetailsCar({ history }) {
           <h3>Year: {carData.year}</h3>
           <h3>Odometer: {carData.odometer}</h3>
           <h3>Image: TODO: Implement file upload </h3>
+          <div>
+            <img src={carData.imageUrl} alt="a car" />
+          </div>
           <div className="history">
             {carData.workHistory?.length === 0 ? (
               <h3>no service history yet</h3>

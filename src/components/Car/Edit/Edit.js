@@ -17,6 +17,7 @@ function EditCar({ history }) {
   const [isValidModel, setIsValidModel] = useState(true);
   const [isValidYear, setIsValidYear] = useState(true);
   const [isValidometer, setIsValidometer] = useState(true);
+  const [isValidUrl, setIsValidUrl] = useState(undefined);
 
   useEffect(() => {
     get(`${endpoints.carApi}/details/${id}`)
@@ -36,6 +37,7 @@ function EditCar({ history }) {
       model: data.model.trim(),
       year: data.year.trim(),
       odometer: data.odometer.trim(),
+      imageUrl: data.imageUrl.trim(),
     };
 
     console.log(cleanData);
@@ -94,9 +96,22 @@ function EditCar({ history }) {
             <FieldValidCheckMark isValid={isValidometer} text="please input the current odometer" />
           </div>
           <div className={styles.formFieldGroup}>
+            <FormField
+              label="photo"
+              type="url"
+              placeholder="imageUrl"
+              name="imageUrl"
+              defaultValue={car?.imageUrl}
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidometer} text="please input the current odometer" />
+          </div>
+          <div className={styles.formFieldGroup}>
             <ClickButton
               label="Edit"
-              disabled={!(isValidMake && isValidModel && isValidYear && isValidometer)}
+              disabled={
+                !(isValidMake && isValidModel && isValidYear && isValidometer && isValidUrl)
+              }
             />
           </div>
         </form>

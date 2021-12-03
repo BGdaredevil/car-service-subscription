@@ -17,6 +17,7 @@ function CreateCar({ history }) {
   const [isValidModel, setIsValidModel] = useState(undefined);
   const [isValidYear, setIsValidYear] = useState(undefined);
   const [isValidometer, setIsValidometer] = useState(undefined);
+  const [isValidUrl, setIsValidUrl] = useState(undefined);
 
   const owner = user.uid;
 
@@ -28,6 +29,7 @@ function CreateCar({ history }) {
       model: data.model.trim(),
       year: data.year.trim(),
       odometer: data.odometer.trim(),
+      imageUrl: data.imageUrl.trim(),
       owner,
     };
     console.log("submited", cleanData);
@@ -86,9 +88,19 @@ function CreateCar({ history }) {
           <FieldValidCheckMark isValid={isValidometer} text="please input the current odometer" />
         </div>
         <div className={styles.formFieldGroup}>
+          <FormField
+            label="photo"
+            type="url"
+            placeholder="imageUrl"
+            name="imageUrl"
+            onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+          />
+          <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
+        </div>
+        <div className={styles.formFieldGroup}>
           <ClickButton
             label="Create"
-            disabled={!(isValidMake && isValidModel && isValidYear && isValidometer)}
+            disabled={!(isValidMake && isValidModel && isValidYear && isValidometer && isValidUrl)}
           />
         </div>
       </form>

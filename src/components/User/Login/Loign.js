@@ -29,7 +29,7 @@ function Login({ history }) {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    history.goBack();
   }
 
   return (

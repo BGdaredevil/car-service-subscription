@@ -5,7 +5,7 @@ import BusinessProfile from "./BusinessProfile.js";
 import PersonalProfile from "./PersonalProfile.js";
 import styles from "./Profile.module.css";
 
-function Profile() {
+function Profile({ history }) {
   const { user } = useContext(AuthContext);
 
   return (

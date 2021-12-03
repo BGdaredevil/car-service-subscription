@@ -10,6 +10,7 @@ function DetailsShop({ history }) {
   const [shop, setShop] = useState("");
 
   useEffect(() => {
+    console.log("asdasd", history);
     get(`${endpoints.shopApi}/details/${id}`)
       .then((r) => {
         console.log(r);

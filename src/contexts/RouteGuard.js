@@ -6,9 +6,10 @@ function RouteGuard({ component: RouteComponent, ...rest }) {
   const { user } = useContext(AuthContext);
   return (
     <Route
+      exact
       {...rest}
       render={(routeProps) =>
-        user ? <RouteComponent {...routeProps} /> : <Redirect to={"/user/login"} />
+        user ? <RouteComponent {...routeProps} /> : <Redirect push to={"/user/login"} />
       }
     />
   );

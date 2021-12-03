@@ -15,16 +15,25 @@ function AuthContextProvider(props) {
   const [user, setUser] = useState("");
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        get(`${endpoints.userApi}/${user.uid}`)
-          .then((res) => {
-            localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
-            setUser(() => ({ ...user, ...res }));
-          })
-          .catch((e) => alert(e));
-      }
+      setUser(user);
+      // if (user) {
+      //   get(`${endpoints.userApi}/${user.uid}`)
+      //     .then((res) => {
+      //       localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+      //       setUser(() => ({ ...user, ...res }));
+      //     })
+      //     .catch((e) => alert(e));
+      // }
     });
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+    } else {
+      localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
+    }
+  }, [user]);
 
   const register = async ({ email, password, username, accountType }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
