@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { endpoints } from "../../../config/apiConfig.js";
@@ -38,6 +38,9 @@ function DetailsShop({ history }) {
           <h3>Specialization: {shop.specification}</h3>
           <h3>Location: TODO: Implement pins on map</h3>
           <h3>Image: TODO: Implement file upload </h3>
+          <div>
+            <img src={shop.imageUrl} alt="a car" />
+          </div>
           <h3>Rating: {shop.rating}</h3>
           <div className="history">
             {shop.offeredServices?.length === 0 ? (

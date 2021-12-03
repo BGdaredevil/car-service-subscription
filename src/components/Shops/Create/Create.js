@@ -18,6 +18,7 @@ function CreateShop({ history }) {
   const [isValidName, setIsValidName] = useState(undefined);
   const [specification, setSpecification] = useState("bodyShop");
   const [services, setServices] = useState([]);
+  const [isValidUrl, setIsValidUrl] = useState(undefined);
 
   const addHandler = (e) => {
     e.preventDefault();
@@ -45,6 +46,7 @@ function CreateShop({ history }) {
       name: data.name.trim(),
       specification: data.specification.trim(),
       services: services,
+      imageUrl: data.imageUrl.trim(),
       owner: user.uid,
     };
     console.log(cleanData);
@@ -69,6 +71,16 @@ function CreateShop({ history }) {
             onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
           />
           <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
+        </div>
+        <div className={styles.formFieldGroup}>
+          <FormField
+            label="photo"
+            type="url"
+            placeholder="imageUrl"
+            name="imageUrl"
+            onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+          />
+          <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
         </div>
         <h3>TODO: add on click map location</h3>
         <div className={styles.formFieldGroup}>

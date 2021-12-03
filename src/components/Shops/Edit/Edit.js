@@ -22,6 +22,7 @@ function EditShop({ history }) {
   const [isValidName, setIsValidName] = useState(true);
   const [specification, setSpecification] = useState();
   const [services, setServices] = useState([]);
+  const [isValidUrl, setIsValidUrl] = useState(undefined);
 
   useEffect(() => {
     get(`${endpoints.shopApi}/details/${id}`)
@@ -60,6 +61,7 @@ function EditShop({ history }) {
       name: data.name.trim(),
       specification: data.specification.trim(),
       offeredServices: services,
+      imageUrl: data.imageUrl.trim(),
       owner: user.uid,
     };
     console.log(cleanData);
@@ -87,6 +89,17 @@ function EditShop({ history }) {
               onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
             />
             <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="photo"
+              type="url"
+              placeholder="imageUrl"
+              name="imageUrl"
+              defaultValue={shop?.imageUrl}
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
           </div>
           <h3>TODO: add on click map location</h3>
           <div className={styles.formFieldGroup}>
