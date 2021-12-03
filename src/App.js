@@ -36,7 +36,7 @@ function App() {
           <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
-          <Route exact path="/user/logout" component={() => <Redirect to="/user/login" />} />
+          <RouteGuard exact path="/user/logout" component={() => <Redirect to="/user/login" />} />
           {/* <Route path="*" component={Error404} /> */}
         </Switch>
         <Footer />

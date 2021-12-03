@@ -15,25 +15,18 @@ function AuthContextProvider(props) {
   const [user, setUser] = useState("");
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      // if (user) {
-      //   get(`${endpoints.userApi}/${user.uid}`)
-      //     .then((res) => {
-      //       localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
-      //       setUser(() => ({ ...user, ...res }));
-      //     })
-      //     .catch((e) => alert(e));
-      // }
+      if (user) {
+        get(`${endpoints.userApi}/${user.uid}`)
+          .then((res) => {
+            localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
+            setUser(() => ({ ...user, ...res }));
+          })
+          .catch((e) => alert(e));
+      } else {
+        localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
+      }
     });
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
-    } else {
-      localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
-    }
-  }, [user]);
 
   const register = async ({ email, password, username, accountType }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
@@ -49,10 +42,10 @@ function AuthContextProvider(props) {
   const login = async ({ email, password }) => {
     await signInWithEmailAndPassword(auth, email, password);
   };
-  const logout = async () => {
-    await auth.signOut();
-    setUser("");
-    localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
+  const logout = () => {
+    auth.signOut().then(() => {
+      setUser("");
+    });
   };
 
   const contextData = { user, login, register, logout };

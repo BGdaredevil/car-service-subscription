@@ -40,7 +40,7 @@ function CreateCar({ history }) {
   };
 
   if (user.accountType !== "personal") {
-    return <Redirect to="/" />;
+    return <Redirect push to="/" />;
   }
 
   return (

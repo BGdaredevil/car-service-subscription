@@ -42,7 +42,7 @@ function Register({ history }) {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect push to="/" />;
   }
 
   return (
