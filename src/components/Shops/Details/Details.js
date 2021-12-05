@@ -66,9 +66,9 @@ function DetailsShop({ history }) {
         </div>
         <div className="card-footer">
           <Link to={`/shop/edit/${shop._id}`}>
-            <ClickButton label="edit" />
+            <ClickButton label="edit shop" />
           </Link>
-          <ClickButton label="delete" onClick={deleteHandler} />
+          <ClickButton label="delete shop" onClick={deleteHandler} />
           {/* <Link to="/pesho">
             <ClickButton label="service the car" />
           </Link> */}

@@ -15,7 +15,7 @@ function Service({ item }) {
     <div>
       <h3>{service.name}</h3>
       {!isRegistered ? (
-        <Link to="/service/register">
+        <Link to={`/service/register?name=${service.name}`}>
           <ClickButton label="register" />
         </Link>
       ) : (

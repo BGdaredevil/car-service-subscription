@@ -30,7 +30,7 @@ function EditShop({ history }) {
         console.log(r);
         setShop(r);
         setSpecification(r.specification);
-        setServices(r.offeredServices);
+        setServices(r.offeredServices.notRegistered || []);
       })
       .catch((e) => console.log(e));
   }, [id]);
@@ -60,7 +60,7 @@ function EditShop({ history }) {
     const cleanData = {
       name: data.name.trim(),
       specification: data.specification.trim(),
-      offeredServices: services,
+      offeredServices: { notRegistered: services },
       imageUrl: data.imageUrl.trim(),
       owner: user.uid,
     };
@@ -69,7 +69,7 @@ function EditShop({ history }) {
     patch(`${endpoints.shopApi}/details/${id}`, cleanData)
       .then((r) => {
         console.log(r);
-        history.push("/user/profile");
+        history.push(`/shop/${id}`);
       })
       .catch((e) => console.log(e));
   };
