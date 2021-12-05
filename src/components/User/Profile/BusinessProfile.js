@@ -38,7 +38,7 @@ function BusinessProfile({ user }) {
                   <tr key={c._id}>
                     <td>{c.name}</td>
                     <td>{c.specification}</td>
-                    <td>{c.offeredServices.join(", ")}</td>
+                    <td>{c.offeredServices.registered?.join(", ")}</td>
                     <td>
                       <Link to={`/shop/${c._id}`}> Details</Link>
                     </td>

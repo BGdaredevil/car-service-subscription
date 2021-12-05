@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
+import Service from "../RegisteredServices/Service.js";
 
 function DetailsShop({ history }) {
   const { id } = useParams();
   const [shop, setShop] = useState("");
 
   useEffect(() => {
-    console.log("asdasd", history);
     get(`${endpoints.shopApi}/details/${id}`)
       .then((r) => {
         console.log(r);
@@ -42,11 +42,25 @@ function DetailsShop({ history }) {
             <img src={shop.imageUrl} alt="a car" />
           </div>
           <h3>Rating: {shop.rating}</h3>
-          <div className="history">
-            {shop.offeredServices?.length === 0 ? (
+          <div className="services">
+            {shop.offeredServices?.notRegistered?.length > 0 ? (
+              <h3>
+                Please register the folowing services:
+                {shop.offeredServices?.notRegistered.map((s) => (
+                  <Service item={s} />
+                ))}
+              </h3>
+            ) : (
+              ""
+            )}
+            {shop.offeredServices?.registered?.length > 0
+              ? shop.offeredServices?.registered.map((s) => <Service item={s} />)
+              : ""}
+            {shop.offeredServices?.registered?.length === 0 &&
+            shop.offeredServices?.notRegistered?.length === 0 ? (
               <h3>This shop doesn not offer public services</h3>
             ) : (
-              <h3>{shop.offeredServices?.join(", ")}</h3>
+              ""
             )}
           </div>
         </div>
@@ -55,9 +69,9 @@ function DetailsShop({ history }) {
             <ClickButton label="edit" />
           </Link>
           <ClickButton label="delete" onClick={deleteHandler} />
-          <Link to="">
+          {/* <Link to="/pesho">
             <ClickButton label="service the car" />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
