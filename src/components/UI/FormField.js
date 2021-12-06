@@ -13,6 +13,7 @@ function FormField({
   checked,
   required = true,
   defaultValue,
+  readonly,
 }) {
   return (
     <div className={styles.formGroup}>
@@ -29,6 +30,7 @@ function FormField({
         onInput={onInput && ((e) => onInput(e))}
         checked={checked}
         required={required && true}
+        readOnly={readonly}
       />
       <label className={styles.formLabel} htmlFor={id}>
         {label}

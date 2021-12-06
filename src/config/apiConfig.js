@@ -6,4 +6,5 @@ export const endpoints = {
   userApi: `${baseUrl}/user`,
   carApi: `${baseUrl}/car`,
   shopApi: `${baseUrl}/shop`,
+  serviceApi: `${baseUrl}/service`,
 };

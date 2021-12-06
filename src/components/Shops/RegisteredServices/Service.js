@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ClickButton from "../../UI/ClickButton.js";
+import RegisterService from "./Register.js";
 
-function Service({ item }) {
+function Service({ item, shopId }) {
   let service;
   let isRegistered = typeof item !== "string";
 
@@ -11,25 +13,29 @@ function Service({ item }) {
     service = { name: item };
   }
 
-  return (
-    <div>
-      <h3>{service.name}</h3>
-      {!isRegistered ? (
-        <Link to={`/service/register?name=${service.name}`}>
-          <ClickButton label="register" />
+  const [regMode, setRegMode] = useState(false);
+
+  if (!isRegistered) {
+    return (
+      <div>
+        <h3>{service.name}</h3>
+        <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
+        {regMode ? <RegisterService name={service.name} shopId={shopId} /> : ""}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h3>{service.name}</h3>
+        <Link to="/service/edit">
+          <ClickButton label="edit" />
         </Link>
-      ) : (
-        <>
-          <Link to="/service/edit">
-            <ClickButton label="edit" />
-          </Link>
-          <Link to="/service/delete">
-            <ClickButton label="delete" />
-          </Link>
-        </>
-      )}
-    </div>
-  );
+        <Link to="/service/delete">
+          <ClickButton label="delete" />
+        </Link>
+      </div>
+    );
+  }
 }
 
 export default Service;

@@ -37,7 +37,7 @@ function App() {
           <RouteGuard exact path="/shop/:id" component={DetailsShop} />
           <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
           <RouteGuard exact path="/shops/:type" component={ShopsByType} />
-          <RouteGuard path="/service/register" component={RegisterService} />
+          {/* <RouteGuard path="/service/register" component={RegisterService} /> */}
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
           <RouteGuard exact path="/user/logout" component={() => <Redirect to="/user/login" />} />
