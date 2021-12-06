@@ -47,7 +47,7 @@ function DetailsShop({ history }) {
               <h3>
                 Please register the folowing services:
                 {shop.offeredServices?.notRegistered.map((s, i) => (
-                  <Service key={i} item={s} shopId={shop._id} />
+                  <Service key={i} item={s} shopId={shop._id} setShop={setShop} />
                 ))}
               </h3>
             ) : (

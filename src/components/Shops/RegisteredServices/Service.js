@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ClickButton from "../../UI/ClickButton.js";
 import RegisterService from "./Register.js";
 
-function Service({ item, shopId }) {
+function Service({ item, shopId, setShop }) {
   let service;
   let isRegistered = typeof item !== "string";
 
@@ -20,7 +20,7 @@ function Service({ item, shopId }) {
       <div>
         <h3>{service.name}</h3>
         <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
-        {regMode ? <RegisterService name={service.name} shopId={shopId} tt={useState} /> : ""}
+        {regMode ? <RegisterService name={service.name} shopId={shopId} setShop={setShop} /> : ""}
       </div>
     );
   } else {
