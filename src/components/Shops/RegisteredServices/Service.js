@@ -20,7 +20,7 @@ function Service({ item, shopId }) {
       <div>
         <h3>{service.name}</h3>
         <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
-        {regMode ? <RegisterService name={service.name} shopId={shopId} /> : ""}
+        {regMode ? <RegisterService name={service.name} shopId={shopId} tt={useState} /> : ""}
       </div>
     );
   } else {

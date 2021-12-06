@@ -6,7 +6,7 @@ import ClickButton from "../../UI/ClickButton.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import FormField from "../../UI/FormField.js";
 
-function RegisterService({ name, shopId }) {
+function RegisterService({ name, shopId, tt }) {
   const [isValidPrice, setValidPrice] = useState(undefined);
   const [isValidDescription, setValidDescriptopn] = useState(undefined);
 
@@ -20,7 +20,10 @@ function RegisterService({ name, shopId }) {
       price: es.price.trim(),
       description: es.description.trim(),
     })
-      .then((r) => console.log(r))
+      .then((r) => {
+        console.log(r);
+        tt(false);
+      })
       .catch((e) => console.log(e));
   };
 
