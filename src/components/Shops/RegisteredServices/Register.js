@@ -6,7 +6,7 @@ import ClickButton from "../../UI/ClickButton.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import FormField from "../../UI/FormField.js";
 
-function RegisterService({ name, shopId, setShop }) {
+function RegisterService({ name, shopId, setShop, setRegMode }) {
   const [isValidPrice, setValidPrice] = useState(undefined);
   const [isValidDescription, setValidDescriptopn] = useState(undefined);
 
@@ -22,8 +22,8 @@ function RegisterService({ name, shopId, setShop }) {
     })
       .then((r) => {
         console.log(r);
+        setRegMode(false);
         setShop(r);
-        // history.push(`/shop/${shopId}`);
       })
       .catch((e) => console.log(e));
   };

@@ -54,7 +54,7 @@ function DetailsShop({ history }) {
               ""
             )}
             {shop.offeredServices?.registered?.length > 0
-              ? shop.offeredServices?.registered.map((s) => <Service item={s} />)
+              ? shop.offeredServices?.registered.map((s) => <Service key={s._id} item={s} />)
               : ""}
             {shop.offeredServices?.registered?.length === 0 &&
             shop.offeredServices?.notRegistered?.length === 0 ? (
