@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
-import Service from "../RegisteredServices/Service.js";
+import Services from "../RegisteredServices/Services.js";
 
 function DetailsShop({ history }) {
   const { id } = useParams();
@@ -42,27 +42,7 @@ function DetailsShop({ history }) {
             <img src={shop.imageUrl} alt="a car" />
           </div>
           <h3>Rating: {shop.rating}</h3>
-          <div className="services">
-            {shop.offeredServices?.notRegistered?.length > 0 ? (
-              <h3>
-                Please register the folowing services:
-                {shop.offeredServices?.notRegistered.map((s, i) => (
-                  <Service key={i} item={s} shopId={shop._id} setShop={setShop} />
-                ))}
-              </h3>
-            ) : (
-              ""
-            )}
-            {shop.offeredServices?.registered?.length > 0
-              ? shop.offeredServices?.registered.map((s) => <Service key={s._id} item={s} />)
-              : ""}
-            {shop.offeredServices?.registered?.length === 0 &&
-            shop.offeredServices?.notRegistered?.length === 0 ? (
-              <h3>This shop doesn not offer public services</h3>
-            ) : (
-              ""
-            )}
-          </div>
+          <Services setShop={setShop} shop={shop} />
         </div>
         <div className="card-footer">
           <Link to={`/shop/edit/${shop._id}`}>
