@@ -1,5 +1,3 @@
-import styles from "./FormField.module.css";
-
 function FormField({
   type = "text",
   isDisabled = false,
@@ -16,7 +14,7 @@ function FormField({
   readonly,
 }) {
   return (
-    <div className={styles.formGroup}>
+    <div className="inputGroup">
       <input
         id={id}
         type={type}
@@ -24,7 +22,7 @@ function FormField({
         defaultValue={defaultValue}
         // value={value ? value : ""}
         placeholder={placeholder}
-        className={styles.formField}
+        className="inputField"
         disabled={isDisabled}
         onChange={onChange && ((e) => onChange(e.target.value))}
         onInput={onInput && ((e) => onInput(e))}
@@ -32,7 +30,7 @@ function FormField({
         required={required && true}
         readOnly={readonly}
       />
-      <label className={styles.formLabel} htmlFor={id}>
+      <label className="inputLabel" htmlFor={id}>
         {label}
       </label>
     </div>

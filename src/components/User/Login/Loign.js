@@ -1,4 +1,4 @@
-import styles from "./Login.module.css";
+// import styles from "./Login.module.css";
 
 import { useContext, useState } from "react";
 import FormField from "../../UI/FormField.js";
@@ -34,12 +34,12 @@ function Login({ history }) {
   }
 
   return (
-    <section className={styles.loginSection}>
+    <section className="loginSection">
       <div className="info">
         <h2>Wellcome back</h2>
       </div>
-      <form className={styles.formClass} onSubmit={submitHandler}>
-        <div className={styles.formFieldGroup}>
+      <form className="formClass" onSubmit={submitHandler}>
+        <div className="formFieldGroup">
           <FormField
             label="Email"
             type="email"
@@ -54,7 +54,7 @@ function Login({ history }) {
             text="Email must be valid to mailbox@domain.bg/com"
           />
         </div>
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <FormField
             label="Password"
             type="password"
@@ -67,7 +67,7 @@ function Login({ history }) {
             text="Password must be at least 4 chars long"
           />
         </div>
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <ClickButton label="Login" disabled={!(isValidEmail && isValidPassword)} />
         </div>
       </form>

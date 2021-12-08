@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import styles from "./Register.module.css";
+// import styles from "./Register.module.css";
 
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
@@ -46,12 +46,12 @@ function Register({ history }) {
   }
 
   return (
-    <section className={styles.registerSection}>
+    <section className="registerSection">
       <div className="info">
         <h2>To have one less care</h2>
       </div>
-      <form onSubmit={submitHandler} className={styles.formClass}>
-        <div className={styles.formFieldGroup}>
+      <form onSubmit={submitHandler} className="formClass">
+        <div className="formFieldGroup">
           <FormField
             label="Username"
             name="username"
@@ -64,7 +64,7 @@ function Register({ history }) {
             text="Username must be at least 3 long. No special characters allowed."
           />
         </div>
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <FormField
             label="Email"
             name="email"
@@ -79,7 +79,7 @@ function Register({ history }) {
             text="Email must be valid to mailbox@domain.bg/com"
           />
         </div>
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <FormField
             label="Password"
             name="password"
@@ -94,7 +94,7 @@ function Register({ history }) {
             text="Password must be at least 6 chars long"
           />
         </div>
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <FormField
             label="Repeat password"
             name="repeatPassword"
@@ -120,7 +120,7 @@ function Register({ history }) {
           checked={accType === "personal"}
           onChange={setAccType}
         />
-        <div className={styles.formFieldGroup}>
+        <div className="formFieldGroup">
           <ClickButton
             label="Register"
             disabled={

@@ -1,10 +1,10 @@
-.formGroup {
+.inputGroup {
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
   /* width: 50%; */
 }
-.formField {
+.inputField {
   font-family: inherit;
   width: 100%;
   border: 0;
@@ -16,15 +16,15 @@
   background: transparent;
   transition: border-color 0.2s;
 }
-.formField::placeholder {
+.inputField::placeholder {
   color: transparent;
 }
-.formField:placeholder-shown ~ .formLabel {
+.inputField:placeholder-shown ~ .inputLabel {
   font-size: 1.3rem;
   cursor: text;
   top: 20px;
 }
-.formLabel {
+.inputLabel {
   position: absolute;
   top: 0;
   display: block;
@@ -33,14 +33,14 @@
   font-size: 1rem;
   color: #9b9b9b;
 }
-.formField:focus {
+.inputField:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
   border-image: linear-gradient(to right, #11998e, #38ef7d);
   border-image-slice: 1;
 }
-.formField:focus ~ .formLabel {
+.inputField:focus ~ .inputLabel {
   position: absolute;
   top: 0;
   display: block;
@@ -50,11 +50,11 @@
   font-weight: 700;
 }
 /* reset input */
-.formField:required,
-.formField:invalid {
+.inputField:required,
+.inputField:invalid {
   box-shadow: none;
 }
 
-.formField:invalid {
+.inputField:invalid {
   color: red;
 }

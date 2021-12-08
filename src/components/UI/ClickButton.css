@@ -11,9 +11,6 @@
   cursor: pointer;
 }
 
-.btn:disabled {
-  cursor: not-allowed;
-}
 .btn:hover {
   /* background-color: white; */
   color: #11998e;
