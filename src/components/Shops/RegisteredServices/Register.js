@@ -6,14 +6,15 @@ import ClickButton from "../../UI/ClickButton.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import FormField from "../../UI/FormField.js";
 
-function RegisterService({ name, shopId, setShop, setRegMode }) {
+function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
   const [isValidPrice, setValidPrice] = useState(undefined);
   const [isValidDescription, setValidDescriptopn] = useState(undefined);
+
+  console.log(item);
 
   const submitHandler = (e) => {
     e.preventDefault();
     const es = Object.fromEntries(new FormData(e.target));
-    console.log(es);
     post(`${endpoints.serviceApi}`, {
       shopId,
       name: es.name.trim(),
@@ -22,7 +23,7 @@ function RegisterService({ name, shopId, setShop, setRegMode }) {
     })
       .then((r) => {
         console.log(r);
-        setRegMode(false);
+        close();
         setShop(r);
       })
       .catch((e) => console.log(e));
@@ -31,7 +32,7 @@ function RegisterService({ name, shopId, setShop, setRegMode }) {
   return (
     <section>
       <div>
-        <h1>Register</h1>
+        <h1>{isEditMode ? "Edit" : "Register"}</h1>
         <form action="/services" method="post" onSubmit={submitHandler}>
           <div className="">
             <FormField
@@ -50,6 +51,7 @@ function RegisterService({ name, shopId, setShop, setRegMode }) {
               placeholder="Price"
               name="price"
               onInput={(e) => setValidPrice(validateField(e.target.value, /^[0-9]+$/i))}
+              defaultValue={isEditMode ? item.price : ""}
             />
             <FieldValidCheckMark
               isValid={isValidPrice}
@@ -64,13 +66,14 @@ function RegisterService({ name, shopId, setShop, setRegMode }) {
               rows="10"
               placeholder="Please describe your service"
               onInput={(e) => setValidDescriptopn(validateField(e.target.value, /.+/i))}
+              defaultValue={isEditMode ? item.description : ""}
             ></textarea>
             <FieldValidCheckMark
               isValid={isValidDescription}
               text="Please input a description for your service"
             />
           </div>
-          <ClickButton label="Register" type="submit" />
+          <ClickButton label={isEditMode ? "Edit" : "Register"} type="submit" />
         </form>
       </div>
     </section>
