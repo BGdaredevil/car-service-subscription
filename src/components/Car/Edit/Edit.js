@@ -49,7 +49,7 @@ function EditCar({ history }) {
 
   return (
     <section className="edit view">
-      <div>
+      <div className="container">
         <form method="post" onSubmit={onSubmit}>
           <div className={styles.formFieldGroup}>
             <FormField

@@ -6,23 +6,41 @@
   margin: 10vh 10vw 10vh 10vw;
 }
 
-.formClass > div {
+.formClass {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
+  flex-direction: column;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  /* align-items: stretch; */
+  /* flex-direction: row; */
 }
 
-.formFieldGroup > div {
+.formFieldGroup {
+}
+
+.formFieldGroup > .inputGroup {
   flex-basis: 60%;
+  /* border: 5px solid black; */
 }
-.formFieldGroup > svg {
-  flex-basis: 5%;
+
+.formClass > .radio-base {
+  width: 60%;
 }
-.formFieldGroup > p {
-  flex-basis: 35%;
+
+.formFieldGroup > .icon-container {
+  flex-basis: 40%;
 }
+
+/* .formFieldGroup svg { */
+/* flex-basis: 50%; */
+/* border: 5px solid black; */
+/* background-color: teal; */
+/* } */
+/* .formFieldGroup p { */
+/* flex-basis: 35%; */
+/* color: red; */
+/* text-transform: uppercase; */
+/* } */
 
 .formFieldGroup > button {
   flex-basis: 60%;

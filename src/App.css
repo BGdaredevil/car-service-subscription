@@ -17,10 +17,11 @@ section.view {
   background-color: var(--main-t20);
   margin: 0 auto;
   padding-top: 4%;
+  height: 100vh;
 }
 
 body {
-  background-position: 20% 50%;
+  /* background-position: 20% 50%; */
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

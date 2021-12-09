@@ -45,65 +45,69 @@ function CreateCar({ history }) {
 
   return (
     <section className="view">
-      <h1>Creating</h1>
-      <form onSubmit={submitHandler}>
-        <div className={styles.formFieldGroup}>
-          <FormField
-            label="Make"
-            type="text"
-            placeholder="Make"
-            name="make"
-            onInput={(e) => setIsValidMake(validateField(e.target.value, /^[a-z]+$/i))}
-          />
-          <FieldValidCheckMark isValid={isValidMake} text="Please input a car maker" />
-        </div>
-        <div className={styles.formFieldGroup}>
-          <FormField
-            label="Model"
-            type="text"
-            placeholder="Model"
-            name="model"
-            onInput={(e) => setIsValidModel(validateField(e.target.value, /^[a-z0-9]+$/i))}
-          />
-          <FieldValidCheckMark isValid={isValidModel} text="please input a car model" />
-        </div>
-        <div className={styles.formFieldGroup}>
-          <FormField
-            label="Year"
-            type="number"
-            placeholder="Year"
-            name="year"
-            onInput={(e) => setIsValidYear(validateField(e.target.value, /^[1-2]{1}[0-9]{3}$/i))}
-          />
-          <FieldValidCheckMark isValid={isValidYear} text="please input a manufacturing date" />
-        </div>
-        <div className={styles.formFieldGroup}>
-          <FormField
-            label="odometer"
-            type="number"
-            placeholder="odometer"
-            name="odometer"
-            onInput={(e) => setIsValidometer(validateField(e.target.value, /^[0-9]+$/i))}
-          />
-          <FieldValidCheckMark isValid={isValidometer} text="please input the current odometer" />
-        </div>
-        <div className={styles.formFieldGroup}>
-          <FormField
-            label="photo"
-            type="url"
-            placeholder="imageUrl"
-            name="imageUrl"
-            onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
-          />
-          <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
-        </div>
-        <div className={styles.formFieldGroup}>
-          <ClickButton
-            label="Create"
-            disabled={!(isValidMake && isValidModel && isValidYear && isValidometer && isValidUrl)}
-          />
-        </div>
-      </form>
+      <div className="container">
+        <h1>Creating</h1>
+        <form onSubmit={submitHandler}>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="Make"
+              type="text"
+              placeholder="Make"
+              name="make"
+              onInput={(e) => setIsValidMake(validateField(e.target.value, /^[a-z]+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidMake} text="Please input a car maker" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="Model"
+              type="text"
+              placeholder="Model"
+              name="model"
+              onInput={(e) => setIsValidModel(validateField(e.target.value, /^[a-z0-9]+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidModel} text="please input a car model" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="Year"
+              type="number"
+              placeholder="Year"
+              name="year"
+              onInput={(e) => setIsValidYear(validateField(e.target.value, /^[1-2]{1}[0-9]{3}$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidYear} text="please input a manufacturing date" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="odometer"
+              type="number"
+              placeholder="odometer"
+              name="odometer"
+              onInput={(e) => setIsValidometer(validateField(e.target.value, /^[0-9]+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidometer} text="please input the current odometer" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <FormField
+              label="photo"
+              type="url"
+              placeholder="imageUrl"
+              name="imageUrl"
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
+          </div>
+          <div className={styles.formFieldGroup}>
+            <ClickButton
+              label="Create"
+              disabled={
+                !(isValidMake && isValidModel && isValidYear && isValidometer && isValidUrl)
+              }
+            />
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

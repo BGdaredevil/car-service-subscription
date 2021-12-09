@@ -30,28 +30,30 @@ function DetailsShop({ history }) {
 
   return (
     <section className="view">
-      <h1>Shop Details</h1>
-      <div className="card">
-        <div className="card-header"></div>
-        <div className="card-body">
-          <h3>Name: {shop.name}</h3>
-          <h3>Specialization: {shop.specification}</h3>
-          <h3>Location: TODO: Implement pins on map</h3>
-          <h3>Image: TODO: Implement file upload </h3>
-          <div>
-            <img src={shop.imageUrl} alt="a car" />
+      <div className="container">
+        <h1>Shop Details</h1>
+        <div className="card">
+          <div className="card-header"></div>
+          <div className="card-body">
+            <h3>Name: {shop.name}</h3>
+            <h3>Specialization: {shop.specification}</h3>
+            <h3>Location: TODO: Implement pins on map</h3>
+            <h3>Image: TODO: Implement file upload </h3>
+            <div>
+              <img src={shop.imageUrl} alt="a car" />
+            </div>
+            <h3>Rating: {shop.rating}</h3>
+            <Services setShop={setShop} shop={shop} />
           </div>
-          <h3>Rating: {shop.rating}</h3>
-          <Services setShop={setShop} shop={shop} />
-        </div>
-        <div className="card-footer">
-          <Link to={`/shop/edit/${shop._id}`}>
-            <ClickButton label="edit shop" />
-          </Link>
-          <ClickButton label="delete shop" onClick={deleteHandler} />
-          {/* <Link to="/pesho">
+          <div className="card-footer">
+            <Link to={`/shop/edit/${shop._id}`}>
+              <ClickButton label="edit shop" />
+            </Link>
+            <ClickButton label="delete shop" onClick={deleteHandler} />
+            {/* <Link to="/pesho">
             <ClickButton label="service the car" />
           </Link> */}
+          </div>
         </div>
       </div>
     </section>

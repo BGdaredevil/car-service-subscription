@@ -7,11 +7,11 @@
 .inputField {
   font-family: inherit;
   width: 100%;
-  border: 0;
-  border-bottom: 2px solid #9b9b9b;
-  outline: 0;
+  /* border: 0; */
+  border-bottom: 2px solid var(--main-D1);
+  /* outline: 0; */
   font-size: 1.3rem;
-  color: #fff;
+  color: var(--main-D1);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -31,7 +31,7 @@
   transition: 0.2s;
   text-transform: uppercase;
   font-size: 1rem;
-  color: #9b9b9b;
+  color: var(--main-D1);
 }
 .inputField:focus {
   padding-bottom: 6px;
@@ -56,5 +56,5 @@
 }
 
 .inputField:invalid {
-  color: red;
+  color: var(--main-D4);
 }

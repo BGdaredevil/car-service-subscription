@@ -1,0 +1,28 @@
+.icon-container {
+  /* background-color: tomato; */
+  /* padding: 15px 0 0; */
+  /* margin-top: 10px; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  /* width: 10%; */
+  /* flex-basis: 40%; */
+}
+
+.icon-container > svg {
+  /* flex-basis: 10%; */
+  /* background-color: teal; */
+}
+.icon-container > p {
+  /* flex-basis: 90%; */
+}
+.invalid {
+  color: var(--main-D4);
+  background-color: var(--main-D4-L);
+  font-size: 1.5em;
+}
+.valid {
+  color: var(--main-D2);
+  background-color: var(--main-D2-L);
+  font-size: 1.5em;
+}

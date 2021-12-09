@@ -30,22 +30,22 @@ nav a {
   margin: 2px;
   padding: 1%;
   border-radius: 5px;
-  color: black;
+  color: var(--main-D1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 nav a:hover {
-  background-color: black;
+  background-color: var(--main-D1);
   color: var(--main-w);
 }
 
 nav a:active {
-  background-color: green;
+  background-color: var(--main-D6);
 }
 
 .active {
-  background-color: black;
+  background-color: var(--main-D1);
   color: var(--main-w);
 }

@@ -76,88 +76,90 @@ function EditShop({ history }) {
 
   return (
     <section className="view">
-      <h1>EDIT SHOP</h1>
-      <div>
-        <form onSubmit={onSubmit}>
-          <div className={styles.formFieldGroup}>
-            <FormField
-              label="Name"
-              type="text"
-              placeholder="Name"
-              name="name"
-              defaultValue={shop?.name}
-              onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
-            />
-            <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
-          </div>
-          <div className={styles.formFieldGroup}>
-            <FormField
-              label="photo"
-              type="url"
-              placeholder="imageUrl"
-              name="imageUrl"
-              defaultValue={shop?.imageUrl}
-              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
-            />
-            <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
-          </div>
-          <h3>TODO: add on click map location</h3>
-          <div className={styles.formFieldGroup}>
-            <RadioBtn
-              label="Body Shop"
-              name="specification"
-              type="radio"
-              value="bodyShop"
-              checked={specification === "bodyShop"}
-              onChange={setSpecification}
-            />
-            <RadioBtn
-              label="Mechanic Shop"
-              name="specification"
-              type="radio"
-              value="mechanicShop"
-              checked={specification === "mechanicShop"}
-              onChange={setSpecification}
-            />
-            <RadioBtn
-              label="Performance Shop"
-              name="specification"
-              type="radio"
-              value="performanceShop"
-              checked={specification === "performanceShop"}
-              onChange={setSpecification}
-            />
-          </div>
-          <div className={styles.formFieldGroup}>
-            <h4>Offered services:</h4>
-            {services.length > 0 ? (
-              services.map((s, i) => (
-                // <div key={i}>
-                <h4 key={i} onClick={(e) => remHandler(e, s)}>
-                  {s}
-                  <FontAwesomeIcon icon={faTimes} />
-                </h4>
-                // </div>
-              ))
-            ) : (
-              <FieldValidCheckMark
-                text={"Please add your services"}
-                isValid={services.length > 0}
-              />
-            )}
-            <div>
+      <div className="container">
+        <h1>EDIT SHOP</h1>
+        <div>
+          <form onSubmit={onSubmit}>
+            <div className={styles.formFieldGroup}>
               <FormField
-                label="Service"
+                label="Name"
                 type="text"
-                placeholder="Service"
-                required={false}
-                onKeyPress={addHandler}
+                placeholder="Name"
+                name="name"
+                defaultValue={shop?.name}
+                onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
               />
-              <ClickButton label="Add" onClick={addHandler} />
+              <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
             </div>
-          </div>
-          <ClickButton label="Edit" type="submit" />
-        </form>
+            <div className={styles.formFieldGroup}>
+              <FormField
+                label="photo"
+                type="url"
+                placeholder="imageUrl"
+                name="imageUrl"
+                defaultValue={shop?.imageUrl}
+                onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+              />
+              <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
+            </div>
+            <h3>TODO: add on click map location</h3>
+            <div className={styles.formFieldGroup}>
+              <RadioBtn
+                label="Body Shop"
+                name="specification"
+                type="radio"
+                value="bodyShop"
+                checked={specification === "bodyShop"}
+                onChange={setSpecification}
+              />
+              <RadioBtn
+                label="Mechanic Shop"
+                name="specification"
+                type="radio"
+                value="mechanicShop"
+                checked={specification === "mechanicShop"}
+                onChange={setSpecification}
+              />
+              <RadioBtn
+                label="Performance Shop"
+                name="specification"
+                type="radio"
+                value="performanceShop"
+                checked={specification === "performanceShop"}
+                onChange={setSpecification}
+              />
+            </div>
+            <div className={styles.formFieldGroup}>
+              <h4>Offered services:</h4>
+              {services.length > 0 ? (
+                services.map((s, i) => (
+                  // <div key={i}>
+                  <h4 key={i} onClick={(e) => remHandler(e, s)}>
+                    {s}
+                    <FontAwesomeIcon icon={faTimes} />
+                  </h4>
+                  // </div>
+                ))
+              ) : (
+                <FieldValidCheckMark
+                  text={"Please add your services"}
+                  isValid={services.length > 0}
+                />
+              )}
+              <div>
+                <FormField
+                  label="Service"
+                  type="text"
+                  placeholder="Service"
+                  required={false}
+                  onKeyPress={addHandler}
+                />
+                <ClickButton label="Add" onClick={addHandler} />
+              </div>
+            </div>
+            <ClickButton label="Edit" type="submit" />
+          </form>
+        </div>
       </div>
     </section>
   );

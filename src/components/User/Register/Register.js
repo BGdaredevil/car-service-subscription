@@ -52,59 +52,60 @@ function Register({ history }) {
           <h2>To have one less care</h2>
         </div>
         <form onSubmit={submitHandler} className="formClass">
-          <div className="formFieldGroup">
-            <FormField
-              label="Username"
-              name="username"
-              type="text"
-              placeholder="username"
-              onInput={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
-            />
-            <FieldValidCheckMark
-              isValid={isValidName}
-              text="Username must be at least 3 long. No special characters allowed."
-            />
-          </div>
-          <div className="formFieldGroup">
-            <FormField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="email_12@domain.com"
-              onInput={(e) =>
-                setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
-              }
-            />
-            <FieldValidCheckMark
-              isValid={isValidEmail}
-              text="Email must be valid to mailbox@domain.bg/com"
-            />
-          </div>
-          <div className="formFieldGroup">
-            <FormField
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={setPassword}
-              onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
-            />
-            <FieldValidCheckMark
-              isValid={isValidPassword}
-              text="Password must be at least 6 chars long"
-            />
-          </div>
-          <div className="formFieldGroup">
-            <FormField
-              label="Repeat password"
-              name="repeatPassword"
-              type="password"
-              placeholder="repeat password"
-              onInput={(e) => setValidPassMatch(e.target.value === password)}
-            />
-            <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
-          </div>
+          {/* <div className="formFieldGroup"> */}
+          <FormField
+            label="Username"
+            name="username"
+            type="text"
+            placeholder="username"
+            onInput={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
+            className={isValidName ? "valid" : "invalid"}
+          />
+          <FieldValidCheckMark
+            isValid={isValidName}
+            text="Username must be at least 3 long. No special characters allowed."
+          />
+          {/* </div> */}
+          {/* <div className="formFieldGroup"> */}
+          <FormField
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="email_12@domain.com"
+            onInput={(e) =>
+              setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
+            }
+          />
+          <FieldValidCheckMark
+            isValid={isValidEmail}
+            text="Email must be valid to mailbox@domain.bg/com"
+          />
+          {/* </div> */}
+          {/* <div className="formFieldGroup"> */}
+          <FormField
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={setPassword}
+            onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
+          />
+          <FieldValidCheckMark
+            isValid={isValidPassword}
+            text="Password must be at least 6 chars long"
+          />
+          {/* </div> */}
+          {/* <div className="formFieldGroup"> */}
+          <FormField
+            label="Repeat password"
+            name="repeatPassword"
+            type="password"
+            placeholder="repeat password"
+            onInput={(e) => setValidPassMatch(e.target.value === password)}
+          />
+          <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
+          {/* </div> */}
           <RadioBtn
             label="Business account"
             name="accountType"
@@ -121,14 +122,14 @@ function Register({ history }) {
             checked={accType === "personal"}
             onChange={setAccType}
           />
-          <div className="formFieldGroup">
-            <ClickButton
-              label="Register"
-              disabled={
-                !(isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType)
-              }
-            />
-          </div>
+          {/* <div className="formFieldGroup"> */}
+          <ClickButton
+            label="Register"
+            disabled={
+              !(isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType)
+            }
+          />
+          {/* </div> */}
         </form>
       </div>
     </section>

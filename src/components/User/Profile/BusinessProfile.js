@@ -16,39 +16,41 @@ function BusinessProfile({ user }) {
   }, [user.uid]);
   return (
     <section className="view">
-      <h1>Business</h1>
-      <Link to="/shop/create">create shop</Link>
-      <section>
-        {userShops.length === 0 ? (
-          <h3>No shops yet</h3>
-        ) : (
-          <>
-            <h3>Your shops:</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Specification</th>
-                  <th>Services</th>
-                  <th>details</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userShops.map((c) => (
-                  <tr key={c._id}>
-                    <td>{c.name}</td>
-                    <td>{c.specification}</td>
-                    <td>{c.offeredServices.registered?.map((x) => x.name).join(", ")}</td>
-                    <td>
-                      <Link to={`/shop/${c._id}`}> Details</Link>
-                    </td>
+      <div className="container">
+        <h1>Business</h1>
+        <Link to="/shop/create">create shop</Link>
+        <section>
+          {userShops.length === 0 ? (
+            <h3>No shops yet</h3>
+          ) : (
+            <>
+              <h3>Your shops:</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Specification</th>
+                    <th>Services</th>
+                    <th>details</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
-      </section>
+                </thead>
+                <tbody>
+                  {userShops.map((c) => (
+                    <tr key={c._id}>
+                      <td>{c.name}</td>
+                      <td>{c.specification}</td>
+                      <td>{c.offeredServices.registered?.map((x) => x.name).join(", ")}</td>
+                      <td>
+                        <Link to={`/shop/${c._id}`}> Details</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </section>
+      </div>
     </section>
   );
 }

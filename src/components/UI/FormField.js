@@ -12,9 +12,10 @@ function FormField({
   required = true,
   defaultValue,
   readonly,
+  className,
 }) {
   return (
-    <div className="inputGroup">
+    <div className={["inputGroup", className].join(" ")}>
       <input
         id={id}
         type={type}

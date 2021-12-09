@@ -17,7 +17,7 @@ function ShopsByType() {
   console.log(shops);
   return (
     <section className="view">
-      <div>
+      <div className="container">
         <h1>Shops:</h1>
         <div className="card">listings</div>
         {shops.length > 0 ? (

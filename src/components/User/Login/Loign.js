@@ -35,42 +35,44 @@ function Login({ history }) {
 
   return (
     <section className="loginSection view">
-      <div className="info">
-        <h2>Wellcome back</h2>
+      <div className="container">
+        <div className="info">
+          <h2>Wellcome back</h2>
+        </div>
+        <form className="formClass" onSubmit={submitHandler}>
+          <div className="formFieldGroup">
+            <FormField
+              label="Email"
+              type="email"
+              placeholder="email_12@domain.com"
+              name="email"
+              onInput={(e) =>
+                setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
+              }
+            />
+            <FieldValidCheckMark
+              isValid={isValidEmail}
+              text="Email must be valid to mailbox@domain.bg/com"
+            />
+          </div>
+          <div className="formFieldGroup">
+            <FormField
+              label="Password"
+              type="password"
+              placeholder="password"
+              name="password"
+              onInput={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
+            />
+            <FieldValidCheckMark
+              isValid={isValidPassword}
+              text="Password must be at least 4 chars long"
+            />
+          </div>
+          <div className="formFieldGroup">
+            <ClickButton label="Login" disabled={!(isValidEmail && isValidPassword)} />
+          </div>
+        </form>
       </div>
-      <form className="formClass" onSubmit={submitHandler}>
-        <div className="formFieldGroup">
-          <FormField
-            label="Email"
-            type="email"
-            placeholder="email_12@domain.com"
-            name="email"
-            onInput={(e) =>
-              setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
-            }
-          />
-          <FieldValidCheckMark
-            isValid={isValidEmail}
-            text="Email must be valid to mailbox@domain.bg/com"
-          />
-        </div>
-        <div className="formFieldGroup">
-          <FormField
-            label="Password"
-            type="password"
-            placeholder="password"
-            name="password"
-            onInput={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
-          />
-          <FieldValidCheckMark
-            isValid={isValidPassword}
-            text="Password must be at least 4 chars long"
-          />
-        </div>
-        <div className="formFieldGroup">
-          <ClickButton label="Login" disabled={!(isValidEmail && isValidPassword)} />
-        </div>
-      </form>
     </section>
   );
 }

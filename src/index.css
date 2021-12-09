@@ -6,10 +6,16 @@
 :root {
   /* Main Color Scheme */
   --main-t20: rgba(255, 255, 255, 0.3);
-  --main-w: wheat;
-  --main-C1: red;
-  --main-C2: green;
-  --main-C3: blue;
+  --main-w: #f5deb3;
+  --main-D1: #230c0f;
+  --main-D1-L: #3b2d2b;
+  --main-D2: #226f54;
+  --main-D2-L: rgba(34, 111, 84, 0.3);
+  --main-D3: #084887;
+  --main-D4: #d00000;
+  --main-D4-L: rgba(208, 0, 0, 0.2);
+  --main-D5: #084887;
+  --main-D6: #3d2f00;
 }
 
 *,

@@ -18,39 +18,41 @@ function PersonalProfile({ user }) {
 
   return (
     <section className="view">
-      <h1>Personal</h1>
-      <Link to="/car/create">create car</Link>
-      <section>
-        {userCars.length === 0 ? (
-          <h3>No cars yet</h3>
-        ) : (
-          <>
-            <h3>Your cars:</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>make</th>
-                  <th>model</th>
-                  <th>year</th>
-                  <th>details</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userCars.map((c) => (
-                  <tr key={c._id}>
-                    <td>{c.make}</td>
-                    <td>{c.model}</td>
-                    <td>{c.year}</td>
-                    <td>
-                      <Link to={`/car/${c._id}`}> Details</Link>
-                    </td>
+      <div className="container">
+        <h1>Personal</h1>
+        <Link to="/car/create">create car</Link>
+        <section>
+          {userCars.length === 0 ? (
+            <h3>No cars yet</h3>
+          ) : (
+            <>
+              <h3>Your cars:</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>make</th>
+                    <th>model</th>
+                    <th>year</th>
+                    <th>details</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
-      </section>
+                </thead>
+                <tbody>
+                  {userCars.map((c) => (
+                    <tr key={c._id}>
+                      <td>{c.make}</td>
+                      <td>{c.model}</td>
+                      <td>{c.year}</td>
+                      <td>
+                        <Link to={`/car/${c._id}`}> Details</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </section>
+      </div>
     </section>
   );
 }
