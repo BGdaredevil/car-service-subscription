@@ -17,7 +17,7 @@ function PersonalProfile({ user }) {
   }, [user.uid]);
 
   return (
-    <section>
+    <section className="view">
       <h1>Personal</h1>
       <Link to="/car/create">create car</Link>
       <section>

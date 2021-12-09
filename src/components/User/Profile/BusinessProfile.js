@@ -15,7 +15,7 @@ function BusinessProfile({ user }) {
       .catch((e) => alert(e));
   }, [user.uid]);
   return (
-    <section>
+    <section className="view">
       <h1>Business</h1>
       <Link to="/shop/create">create shop</Link>
       <section>

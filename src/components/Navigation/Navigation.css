@@ -1,9 +1,16 @@
 nav {
+  background-color: var(--main-w);
+  width: 100%;
+  position: fixed;
+}
+
+nav > section {
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  /* width: 100vw; */
-  /* overflow: hidden; */
-  background-color: white;
+  background-color: var(--main-w);
+  width: 1200px;
+  overflow: hidden;
   /* padding: 1vw; */
   /* min-width: 0; */
 }
@@ -31,7 +38,7 @@ nav a {
 
 nav a:hover {
   background-color: black;
-  color: white;
+  color: var(--main-w);
 }
 
 nav a:active {
@@ -40,5 +47,5 @@ nav a:active {
 
 .active {
   background-color: black;
-  color: white;
+  color: var(--main-w);
 }

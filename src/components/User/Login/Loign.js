@@ -34,7 +34,7 @@ function Login({ history }) {
   }
 
   return (
-    <section className="loginSection">
+    <section className="loginSection view">
       <div className="info">
         <h2>Wellcome back</h2>
       </div>

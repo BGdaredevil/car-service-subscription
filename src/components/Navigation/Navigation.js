@@ -1,4 +1,4 @@
-import classes from "./Navigation.module.css";
+import "./Navigation.css";
 
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -8,46 +8,48 @@ function Navigation() {
   const { user, logout } = useContext(AuthContext);
   return (
     <nav>
-      <NavLink activeClassName={classes.active} exact to="/">
-        WIP: LOGO
-      </NavLink>
-      <div>
-        <NavLink activeClassName={classes.active} exact to="/">
-          Home
+      <section>
+        <NavLink activeClassName="active" exact to="/">
+          WIP: LOGO
         </NavLink>
+        <div>
+          <NavLink activeClassName="active" exact to="/">
+            Home
+          </NavLink>
 
-        {user ? (
-          <>
-            <NavLink activeClassName={classes.active} exact to="/user/profile">
-              {user.displayName === null
-                ? `Nice to meet you ${user.email}`
-                : `Wellcome back ${user.displayName}`}
-            </NavLink>
-            <NavLink activeClassName={classes.active} exact to="/shops/mechanics">
-              Mechanic Shops
-            </NavLink>
-            <NavLink activeClassName={classes.active} exact to="/shops/body">
-              Body Shops
-            </NavLink>
-            <NavLink activeClassName={classes.active} exact to="/shops/performance">
-              Performance Shops
-            </NavLink>
-            <NavLink activeClassName={classes.active} exact to="/user/logout" onClick={logout}>
-              Logout
-            </NavLink>
-          </>
-        ) : (
-          <>
-            {" "}
-            <NavLink activeClassName={classes.active} exact to="/user/login">
-              Login
-            </NavLink>
-            <NavLink activeClassName={classes.active} exact to="/user/register">
-              Register
-            </NavLink>
-          </>
-        )}
-      </div>
+          {user ? (
+            <>
+              <NavLink activeClassName="active" exact to="/user/profile">
+                {user.displayName === null
+                  ? `Nice to meet you ${user.email}`
+                  : `Wellcome back ${user.displayName}`}
+              </NavLink>
+              <NavLink activeClassName="active" exact to="/shops/mechanics">
+                Mechanic Shops
+              </NavLink>
+              <NavLink activeClassName="active" exact to="/shops/body">
+                Body Shops
+              </NavLink>
+              <NavLink activeClassName="active" exact to="/shops/performance">
+                Performance Shops
+              </NavLink>
+              <NavLink activeClassName="active" exact to="/user/logout" onClick={logout}>
+                Logout
+              </NavLink>
+            </>
+          ) : (
+            <>
+              {" "}
+              <NavLink activeClassName="active" exact to="/user/login">
+                Login
+              </NavLink>
+              <NavLink activeClassName="active" exact to="/user/register">
+                Register
+              </NavLink>
+            </>
+          )}
+        </div>
+      </section>
     </nav>
   );
 }

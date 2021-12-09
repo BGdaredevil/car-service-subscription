@@ -57,11 +57,11 @@ function CreateShop({ history }) {
   };
 
   return (
-    <section className="create-shop">
+    <section className="create-shop view">
       <div>
         <h1>Creating Shop</h1>
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="formClass">
         <div className={styles.formFieldGroup}>
           <FormField
             label="Name"

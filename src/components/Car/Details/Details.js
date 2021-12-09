@@ -28,7 +28,7 @@ function DetailsCar({ history }) {
   };
 
   return (
-    <section>
+    <section className="view">
       <h1>Car Details</h1>
       <div className="card">
         <div className="card-header"></div>

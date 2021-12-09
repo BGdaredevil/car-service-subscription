@@ -29,7 +29,7 @@ function DetailsShop({ history }) {
   };
 
   return (
-    <section>
+    <section className="view">
       <h1>Shop Details</h1>
       <div className="card">
         <div className="card-header"></div>

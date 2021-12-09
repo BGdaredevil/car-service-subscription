@@ -16,7 +16,7 @@ function ShopsByType() {
 
   console.log(shops);
   return (
-    <section>
+    <section className="view">
       <div>
         <h1>Shops:</h1>
         <div className="card">listings</div>

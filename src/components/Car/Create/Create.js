@@ -44,7 +44,7 @@ function CreateCar({ history }) {
   }
 
   return (
-    <section>
+    <section className="view">
       <h1>Creating</h1>
       <form onSubmit={submitHandler}>
         <div className={styles.formFieldGroup}>

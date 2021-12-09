@@ -2,7 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import "./App.module.css";
+import "./App.css";
 import Home from "./components/Home/Home.js";
 import Login from "./components/User/Login/Loign.js";
 import Footer from "./components/Footer/Footer.js";
@@ -18,7 +18,6 @@ import EditCar from "./components/Car/Edit/Edit.js";
 import DetailsShop from "./components/Shops/Details/Details.js";
 import EditShop from "./components/Shops/Edit/Edit.js";
 import ShopsByType from "./components/Shops/ByType/ShopsByType.js";
-import RegisterService from "./components/Shops/RegisteredServices/Register.js";
 
 function App() {
   return (
@@ -37,7 +36,6 @@ function App() {
           <RouteGuard exact path="/shop/:id" component={DetailsShop} />
           <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
           <RouteGuard exact path="/shops/:type" component={ShopsByType} />
-          {/* <RouteGuard path="/service/register" component={RegisterService} /> */}
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/register" component={Register} />
           <RouteGuard exact path="/user/logout" component={() => <Redirect to="/user/login" />} />

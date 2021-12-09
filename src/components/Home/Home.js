@@ -6,7 +6,7 @@ import ClickButton from "../UI/ClickButton.js";
 function Home() {
   // const { user } = useContext(AuthContext);
   return (
-    <>
+    <section className="view">
       <div className="ad">
         <div className="left">
           <h1> Ned some work to be done ?</h1>
@@ -33,7 +33,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

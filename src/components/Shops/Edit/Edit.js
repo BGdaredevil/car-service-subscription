@@ -75,7 +75,7 @@ function EditShop({ history }) {
   };
 
   return (
-    <section>
+    <section className="view">
       <h1>EDIT SHOP</h1>
       <div>
         <form onSubmit={onSubmit}>
