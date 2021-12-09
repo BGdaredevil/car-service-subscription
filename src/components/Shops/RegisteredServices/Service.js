@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { endpoints } from "../../../config/apiConfig.js";
+import { del } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import RegisterService from "./Register.js";
 
@@ -8,6 +10,15 @@ function Service({ item, shopId, setShop, isRegistered }) {
   const [editMode, setEditMode] = useState(false);
 
   const closeForm = (setter) => setter(false);
+
+  const delHandler = (e) => {
+    del(`${endpoints.serviceApi}/${item._id}`)
+      .then((r) => {
+        console.log(r);
+        setShop(r);
+      })
+      .catch((e) => console.log(e));
+  };
 
   if (!isRegistered) {
     return (
@@ -43,7 +54,7 @@ function Service({ item, shopId, setShop, isRegistered }) {
         ) : (
           ""
         )}
-        <ClickButton label="delete" />
+        <ClickButton label="delete" onClick={delHandler} />
       </div>
     );
   }

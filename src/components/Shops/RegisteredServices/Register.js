@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { endpoints } from "../../../config/apiConfig.js";
-import { post } from "../../../services/apiService.js";
+import { patch, post } from "../../../services/apiService.js";
 import { validateField } from "../../../utils/validator.js";
 import ClickButton from "../../UI/ClickButton.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
@@ -10,23 +10,34 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
   const [isValidPrice, setValidPrice] = useState(undefined);
   const [isValidDescription, setValidDescriptopn] = useState(undefined);
 
-  console.log(item);
-
   const submitHandler = (e) => {
     e.preventDefault();
     const es = Object.fromEntries(new FormData(e.target));
-    post(`${endpoints.serviceApi}`, {
-      shopId,
-      name: es.name.trim(),
-      price: es.price.trim(),
-      description: es.description.trim(),
-    })
-      .then((r) => {
+
+    if (isEditMode) {
+      console.log(es);
+      patch(`${endpoints.serviceApi}/details/${item._id}`, {
+        price: es.price.trim(),
+        description: es.description.trim(),
+      }).then((r) => {
         console.log(r);
         close();
-        setShop(r);
+        setShop((o) => ({ ...o }));
+      });
+    } else {
+      post(`${endpoints.serviceApi}`, {
+        shopId,
+        name: es.name.trim(),
+        price: es.price.trim(),
+        description: es.description.trim(),
       })
-      .catch((e) => console.log(e));
+        .then((r) => {
+          console.log(r);
+          close();
+          setShop(r);
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   return (
