@@ -6,6 +6,16 @@
   margin: 10vh 10vw 10vh 10vw;
 }
 
+.form-container {
+  width: 60%;
+  margin: 10%;
+  margin-left: 40%;
+  padding: 5%;
+  box-shadow: 0px 0px 15px 15px var(--main-t20);
+  border-radius: 40px;
+  background-color: var(--main-t20);
+}
+
 .formClass {
   display: flex;
   flex-direction: column;
@@ -24,7 +34,7 @@
 }
 
 .formClass > .radio-base {
-  width: 60%;
+  /* width: 60%; */
 }
 
 .formFieldGroup > .icon-container {

@@ -20,6 +20,11 @@ section.view {
   height: 100vh;
 }
 
+section.loginSection,
+section.registerSection {
+  background-color: transparent;
+}
+
 body {
   /* background-position: 20% 50%; */
   background-repeat: no-repeat;

@@ -4,8 +4,8 @@
   font-family: inherit;
   font-size: 1.3rem;
   width: 100%;
-  color: #9b9b9b;
-  border-bottom: 2px solid #9b9b9b;
+  color: var(--main-D1);
+  border-bottom: 2px solid var(--main-D1);
   text-transform: uppercase;
   background-color: transparent;
   cursor: pointer;
