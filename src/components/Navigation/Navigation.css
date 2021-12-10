@@ -2,6 +2,7 @@ nav {
   background-color: var(--main-w);
   width: 100%;
   position: fixed;
+  z-index: 1;
 }
 
 nav > section {

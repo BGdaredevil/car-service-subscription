@@ -25,17 +25,17 @@
   /* flex-direction: row; */
 }
 
-.formFieldGroup {
-}
+/* .formFieldGroup { */
+/* } */
 
 .formFieldGroup > .inputGroup {
   flex-basis: 60%;
   /* border: 5px solid black; */
 }
 
-.formClass > .radio-base {
-  /* width: 60%; */
-}
+/* .formClass > .radio-base { */
+/* width: 60%; */
+/* } */
 
 .formFieldGroup > .icon-container {
   flex-basis: 40%;

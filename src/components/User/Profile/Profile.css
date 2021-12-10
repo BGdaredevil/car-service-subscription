@@ -1,17 +1,17 @@
 .controls a {
   display: inline-block;
   text-decoration: none;
-  color: white;
+  color: var(--main-w);
   border-radius: 5px;
-  background-color: black;
+  background-color: var(--main-D1);
   padding: 1%;
 }
 
 .controls a:hover {
-  background-color: white;
+  background-color: var(--main-w);
   color: black;
 }
 
 .controls a:active {
-  background-color: red;
+  background-color: var(--main-D6);
 }
