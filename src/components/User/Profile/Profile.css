@@ -15,3 +15,8 @@
 .controls a:active {
   background-color: var(--main-D6);
 }
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+}

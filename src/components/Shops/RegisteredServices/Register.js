@@ -41,7 +41,7 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
   };
 
   return (
-    <section>
+    <section className="register">
       <div>
         <h1>{isEditMode ? "Edit" : "Register"}</h1>
         <form action="/services" method="post" onSubmit={submitHandler}>
@@ -73,8 +73,8 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
             <textarea
               name="description"
               id="description"
-              cols="30"
-              rows="10"
+              cols="40"
+              rows="3"
               placeholder="Please describe your service"
               onInput={(e) => setValidDescriptopn(validateField(e.target.value, /.+/i))}
               defaultValue={isEditMode ? item.description : ""}
@@ -84,7 +84,7 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
               text="Please input a description for your service"
             />
           </div>
-          <ClickButton label={isEditMode ? "Edit" : "Register"} type="submit" />
+          <ClickButton label="confirm" type="submit" />
         </form>
       </div>
     </section>

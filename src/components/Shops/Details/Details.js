@@ -5,6 +5,7 @@ import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import Services from "../RegisteredServices/Services.js";
+import "./Details.css";
 
 function DetailsShop({ history }) {
   const { id } = useParams();
@@ -32,27 +33,27 @@ function DetailsShop({ history }) {
     <section className="view">
       <div className="container">
         <h1>Shop Details</h1>
-        <div className="card">
-          <div className="card-header"></div>
-          <div className="card-body">
+        <div className="details-card">
+          <div className="details-header">
             <h3>Name: {shop.name}</h3>
             <h3>Specialization: {shop.specification}</h3>
-            <h3>Location: TODO: Implement pins on map</h3>
-            <h3>Image: TODO: Implement file upload </h3>
-            <div>
+            <h3>Rating: {shop.rating}</h3>
+          </div>
+          <div className="details-body">
+            <div className="shop-image left">
               <img src={shop.imageUrl} alt="a car" />
             </div>
-            <h3>Rating: {shop.rating}</h3>
-            <Services setShop={setShop} shop={shop} />
+            <div className="right">
+              <h3>Location: TODO: Implement pins on map</h3>
+              <h3>Image: TODO: Implement file upload </h3>
+              <Services setShop={setShop} shop={shop} />
+            </div>
           </div>
-          <div className="card-footer">
+          <div className="details-footer">
             <Link to={`/shop/edit/${shop._id}`}>
               <ClickButton label="edit shop" />
             </Link>
             <ClickButton label="delete shop" onClick={deleteHandler} />
-            {/* <Link to="/pesho">
-            <ClickButton label="service the car" />
-          </Link> */}
           </div>
         </div>
       </div>

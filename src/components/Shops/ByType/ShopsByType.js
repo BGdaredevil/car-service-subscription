@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { endpoints } from "../../../config/apiConfig.js";
 import { get } from "../../../services/apiService.js";
+import InfoCard from "../../UI/InfoCard.js";
 
 function ShopsByType() {
   const { type } = useParams();
@@ -21,7 +22,7 @@ function ShopsByType() {
         <h1>Shops:</h1>
         <div className="card">listings</div>
         {shops.length > 0 ? (
-          shops.map((s) => <h1 key={s._id}>{s.name}</h1>)
+          shops.map((s) => <InfoCard key={s._id} item={s} />)
         ) : (
           <div>No such here</div>
         )}

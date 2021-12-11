@@ -1,0 +1,9 @@
+.services {
+  display: flex;
+  flex-direction: column;
+}
+
+.service {
+  display: flex;
+  flex-direction: row;
+}

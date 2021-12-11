@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ClickButton from "../../UI/ClickButton.js";
 import RegisterService from "./Register.js";
 import Service from "./Service.js";
+import "./Services.css";
 
 function Services({ shop, setShop }) {
   return (

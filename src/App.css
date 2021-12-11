@@ -17,7 +17,7 @@ section.view {
   background-color: var(--main-t20);
   margin: 0 auto;
   padding-top: 4%;
-  margin-bottom: 4%;
+  padding-bottom: 4%;
   min-height: 100vh;
 }
 

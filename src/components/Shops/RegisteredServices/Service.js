@@ -22,7 +22,7 @@ function Service({ item, shopId, setShop, isRegistered }) {
 
   if (!isRegistered) {
     return (
-      <div>
+      <div className="service">
         <h3>{item}</h3>
         <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
         {regMode ? (
@@ -39,9 +39,10 @@ function Service({ item, shopId, setShop, isRegistered }) {
     );
   } else {
     return (
-      <div>
+      <div className="service">
         <h3>{item.name}</h3>
         <ClickButton label="edit" onClick={(e) => setEditMode((o) => (o ? false : true))} />
+        <ClickButton label="delete" onClick={delHandler} />
         {editMode ? (
           <RegisterService
             name={item.name}
@@ -54,7 +55,6 @@ function Service({ item, shopId, setShop, isRegistered }) {
         ) : (
           ""
         )}
-        <ClickButton label="delete" onClick={delHandler} />
       </div>
     );
   }
