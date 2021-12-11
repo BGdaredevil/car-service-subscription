@@ -32,9 +32,9 @@ function DetailsShop({ history }) {
   return (
     <section className="view">
       <div className="container">
-        <h1>Shop Details</h1>
         <div className="details-card">
           <div className="details-header">
+            <h1>Shop Details</h1>
             <h3>Name: {shop.name}</h3>
             <h3>Specialization: {shop.specification}</h3>
             <h3>Rating: {shop.rating}</h3>

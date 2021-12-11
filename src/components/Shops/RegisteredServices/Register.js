@@ -74,7 +74,7 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
               name="description"
               id="description"
               cols="40"
-              rows="3"
+              rows="1"
               placeholder="Please describe your service"
               onInput={(e) => setValidDescriptopn(validateField(e.target.value, /.+/i))}
               defaultValue={isEditMode ? item.description : ""}

@@ -6,4 +6,52 @@
 .service {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  min-height: 100px;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: var(--main-t20);
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 5px var(--main-t20);
+}
+/* .red {
+  background-color: var(--main-D4-L);
+  box-shadow: 0px 0px 5px 5px var(--main-D4-L);
+} */
+
+.service-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex-basis: 30%;
+}
+
+.service button {
+  margin: 0;
+  padding: 0;
+  /* font-size: 25px; */
+  flex-basis: 15%;
+}
+
+.register {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: var(--main-t20);
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 5px var(--main-t20);
+}
+
+.register textarea {
+  background-color: transparent;
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border-bottom: 2px solid var(--main-D1);
+  resize: vertical;
+  min-height: 40px;
 }
