@@ -22,7 +22,8 @@ section.view {
 }
 
 section.loginSection,
-section.registerSection {
+section.registerSection,
+section.editSection {
   background-color: transparent;
 }
 

@@ -9,15 +9,15 @@ function Services({ shop, setShop }) {
   return (
     <div className="services">
       {shop.offeredServices?.notRegistered?.length > 0 ? (
-        <h3>
-          Please register the folowing services:
-          {shop.offeredServices?.notRegistered.map((s, i) => (
-            <Service key={i} item={s} shopId={shop._id} setShop={setShop} isRegistered={false} />
-          ))}
-        </h3>
+        <h3>Please register the folowing services:</h3>
       ) : (
         ""
       )}
+      {shop.offeredServices?.notRegistered?.length > 0
+        ? shop.offeredServices?.notRegistered.map((s, i) => (
+            <Service key={i} item={s} shopId={shop._id} setShop={setShop} isRegistered={false} />
+          ))
+        : ""}
       {shop.offeredServices?.registered?.length > 0
         ? shop.offeredServices?.registered.map((s) => (
             <Service key={s._id} item={s} isRegistered={true} setShop={setShop} />

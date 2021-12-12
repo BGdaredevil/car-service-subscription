@@ -15,7 +15,7 @@
   width: 45%;
 }
 
-.left > img {
+.shop-image {
   width: 450px;
   height: 450px;
   object-fit: cover;
@@ -39,4 +39,17 @@
 .details-footer > *,
 .details-header > * {
   flex-basis: 40%;
+}
+
+.details-footer {
+  min-height: 75px;
+}
+
+.details-header {
+  padding: 18px;
+}
+
+.details-header > * {
+  text-align: center;
+  line-height: 0;
 }

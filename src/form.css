@@ -2,7 +2,8 @@
 @import "../src/components/UI/FormField.css";
 
 .loginSection,
-.registerSection {
+.registerSection,
+.editSection {
   margin: 10vh 10vw 10vh 10vw;
 }
 

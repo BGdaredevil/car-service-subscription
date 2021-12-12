@@ -1,4 +1,4 @@
-import styles from "./Edit.module.css";
+import "./Edit.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
@@ -75,12 +75,14 @@ function EditShop({ history }) {
   };
 
   return (
-    <section className="view">
+    <section className="editSection view">
       <div className="container">
-        <h1>EDIT SHOP</h1>
-        <div>
+        <div className="form-container">
+          <div className="info">
+            <h1>EDIT SHOP</h1>
+          </div>
           <form onSubmit={onSubmit}>
-            <div className={styles.formFieldGroup}>
+            <div className="formFieldGroup">
               <FormField
                 label="Name"
                 type="text"
@@ -91,7 +93,7 @@ function EditShop({ history }) {
               />
               <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="formFieldGroup">
               <FormField
                 label="photo"
                 type="url"
@@ -103,7 +105,7 @@ function EditShop({ history }) {
               <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
             </div>
             <h3>TODO: add on click map location</h3>
-            <div className={styles.formFieldGroup}>
+            <div className="formFieldGroup">
               <RadioBtn
                 label="Body Shop"
                 name="specification"
@@ -129,7 +131,7 @@ function EditShop({ history }) {
                 onChange={setSpecification}
               />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="formFieldGroup">
               <h4>Offered services:</h4>
               {services.length > 0 ? (
                 services.map((s, i) => (

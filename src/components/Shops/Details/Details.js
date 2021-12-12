@@ -40,8 +40,8 @@ function DetailsShop({ history }) {
             <h3>Rating: {shop.rating}</h3>
           </div>
           <div className="details-body">
-            <div className="shop-image left">
-              <img src={shop.imageUrl} alt="a car" />
+            <div className="left">
+              <img className="shop-image" src={shop.imageUrl} alt="a car" />
             </div>
             <div className="right">
               <h3>Location: TODO: Implement pins on map</h3>

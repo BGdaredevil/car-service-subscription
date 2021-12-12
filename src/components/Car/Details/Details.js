@@ -5,6 +5,8 @@ import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 
+import "./Details.css";
+
 function DetailsCar({ history }) {
   const { id } = useParams();
   const [carData, setCarData] = useState("null");
@@ -30,31 +32,36 @@ function DetailsCar({ history }) {
   return (
     <section className="view">
       <div className="container">
-        <h1>Car Details</h1>
-        <div className="card">
-          <div className="card-header"></div>
-          <div className="card-body">
+        <div className="details-card">
+          <div className="details-header">
+            <h1>Car Details</h1>
             <h3>Make: {carData.make}</h3>
             <h3>Model: {carData.model}</h3>
             <h3>Year: {carData.year}</h3>
             <h3>Odometer: {carData.odometer}</h3>
-            <h3>Image: TODO: Implement file upload </h3>
-            <div>
-              <img src={carData.imageUrl} alt="a car" />
+          </div>
+          <div className="car-details-body">
+            <div className="">
+              <img className="car-image" src={carData.imageUrl} alt="a car" />
             </div>
-            <div className="history">
-              {carData.workHistory?.length === 0 ? (
-                <h3>no service history yet</h3>
-              ) : (
-                <h3>{carData.workHistory}</h3>
-              )}
+            <div className="">
+              <h3>Image: TODO: Implement file upload </h3>
+              <div className="history">
+                {carData.workHistory?.length === 0 ? (
+                  <h3 className="history-item">no service history yet</h3>
+                ) : (
+                  <h3 className="history-item">{carData.workHistory}</h3>
+                )}
+              </div>
             </div>
           </div>
-          <div className="card-footer">
+          <div className="car-details-footer details-footer">
             <Link to={`/car/edit/${carData._id}`}>
               <ClickButton label="edit" />
             </Link>
-            <ClickButton label="delete" onClick={deleteHandler} />
+            <Link to="">
+              <ClickButton label="delete" onClick={deleteHandler} />
+            </Link>
             <Link to="">
               <ClickButton label="service the car" />
             </Link>
