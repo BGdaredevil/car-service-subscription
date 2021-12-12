@@ -35,7 +35,7 @@ function DetailsCar({ history }) {
         <div className="details-card">
           <div className="details-header">
             <h1>Car Details</h1>
-            <h3>Make: {carData.make}</h3>
+            <div>Make: {carData.make}</div>
             <h3>Model: {carData.model}</h3>
             <h3>Year: {carData.year}</h3>
             <h3>Odometer: {carData.odometer}</h3>

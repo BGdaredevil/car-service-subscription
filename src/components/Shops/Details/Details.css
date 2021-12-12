@@ -50,6 +50,9 @@
 }
 
 .details-header > * {
-  text-align: center;
-  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-basis: auto;
 }
