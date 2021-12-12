@@ -12,18 +12,18 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
 
   const closeForm = useCallback((setter) => setter(false));
 
-  const delHandler = (e) => {
+  const delHandler = useCallback((e) => {
     del(`${endpoints.serviceApi}/${item._id}`)
       .then((r) => {
         console.log(r);
         setShop(r);
       })
       .catch((e) => console.log(e));
-  };
+  });
 
-  const visitHandler = (e) => {
+  const visitHandler = useCallback((e) => {
     setShowVisit((o) => (o ? false : true));
-  };
+  });
 
   const ownerView = !isRegistered ? (
     <>
@@ -67,7 +67,6 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
       )}
     </>
   );
-
   const visitorVIew = (
     <div className="service">
       <div>
@@ -82,7 +81,8 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
             {showVisit ? (
               <Visit
                 shopId={shopId}
-                serviceId={item._id}
+                setShop={setShop}
+                service={item}
                 hide={(e) => {
                   e.preventDefault();
                   setShowVisit(false);

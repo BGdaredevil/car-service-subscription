@@ -5,6 +5,7 @@ import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
+import Bookings from "../Bookings/Bookings.js";
 import Services from "../RegisteredServices/Services.js";
 import "./Details.css";
 
@@ -34,6 +35,8 @@ function DetailsShop({ history }) {
       .catch((e) => console.log(e));
   };
 
+  const bookedServices = "";
+
   return (
     <section className="view">
       <div className="container">
@@ -60,12 +63,15 @@ function DetailsShop({ history }) {
             </div>
           </div>
           {shop.owner === user.uid ? (
-            <div className="details-footer">
-              <Link to={`/shop/edit/${shop._id}`}>
-                <ClickButton label="edit shop" />
-              </Link>
-              <ClickButton label="delete shop" onClick={deleteHandler} />
-            </div>
+            <>
+              <Bookings />
+              <div className="details-footer">
+                <Link to={`/shop/edit/${shop._id}`}>
+                  <ClickButton label="edit shop" />
+                </Link>
+                <ClickButton label="delete shop" onClick={deleteHandler} />
+              </div>
+            </>
           ) : (
             ""
           )}

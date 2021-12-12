@@ -6,15 +6,21 @@ import { AuthContext } from "../../contexts/AuthContext.js";
 import { get, patch } from "../../services/apiService.js";
 import ClickButton from "../UI/ClickButton.js";
 
-function Visit({ shopId, serviceId, hide }) {
+function Visit({ shopId, hide, setShop, service }) {
   const { user } = useContext(AuthContext);
   const [userCars, setUserCars] = useState([]);
 
   useEffect(() => {
     get(`${endpoints.carApi}/${user.uid}`)
       .then((r) => {
-        console.log(r);
-        setUserCars(r);
+        const temp = r.reduce((a, e) => {
+          if (!service.bookings.includes(e._id)) {
+            a.push(e);
+          }
+          return a;
+        }, []);
+
+        setUserCars(temp);
       })
       .catch((e) => alert(e));
   }, [user.uid]);
@@ -24,16 +30,20 @@ function Visit({ shopId, serviceId, hide }) {
     const data = Object.fromEntries(new FormData(e.target));
     data.shop = shopId;
 
-    patch(`${endpoints.serviceApi}/${serviceId}`, data)
-      .then((r) => console.log(r))
+    patch(`${endpoints.serviceApi}/${service._id}`, data)
+      .then((r) => {
+        console.log(r);
+        setShop(r);
+        hide(e);
+      })
       .catch((e) => console.log(e));
   };
 
-  return (
+  return userCars.length > 0 ? (
     <form onSubmit={confirmHandler}>
       <select id="car" name="car">
         {userCars.map((c) => (
-          <option value={c._id}>
+          <option key={c._id} value={c._id}>
             {c.make} {c.model}
           </option>
         ))}
@@ -41,6 +51,8 @@ function Visit({ shopId, serviceId, hide }) {
       <ClickButton label="confirm" />
       <ClickButton label="cancel" onClick={hide} />
     </form>
+  ) : (
+    <ClickButton label="booked all cars" disabled />
   );
 }
 
