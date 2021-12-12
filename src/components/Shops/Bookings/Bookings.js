@@ -7,7 +7,8 @@ function Bookings({ services }) {
   if (!services) {
     return (
       <div className="bookings">
-        <h1>No appointments yet</h1>
+        <h1>Service Backlog:</h1>
+        <h3 className="item">No appointments yet</h3>
       </div>
     );
   }
@@ -27,8 +28,10 @@ function Bookings({ services }) {
                   <h3>
                     {car.make} {car.model} {car.year}
                   </h3>
+                  {/* <div className="booking-controls"> */}
                   <ClickButton label="accept" />
                   <ClickButton label="reject" />
+                  {/* </div> */}
                 </div>
               ))}
             </div>
