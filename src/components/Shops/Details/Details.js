@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { endpoints } from "../../../config/apiConfig.js";
+import { AuthContext } from "../../../contexts/AuthContext.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import Services from "../RegisteredServices/Services.js";
@@ -10,6 +11,10 @@ import "./Details.css";
 function DetailsShop({ history }) {
   const { id } = useParams();
   const [shop, setShop] = useState("");
+
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
 
   useEffect(() => {
     get(`${endpoints.shopApi}/details/${id}`)
@@ -46,15 +51,24 @@ function DetailsShop({ history }) {
             <div className="right">
               <h3>Location: TODO: Implement pins on map</h3>
               <h3>Image: TODO: Implement file upload </h3>
-              <Services setShop={setShop} shop={shop} />
+              <Services
+                setShop={setShop}
+                shop={shop}
+                isOwner={shop.owner === user.uid}
+                isPersonal={user.accountType === "personal"}
+              />
             </div>
           </div>
-          <div className="details-footer">
-            <Link to={`/shop/edit/${shop._id}`}>
-              <ClickButton label="edit shop" />
-            </Link>
-            <ClickButton label="delete shop" onClick={deleteHandler} />
-          </div>
+          {shop.owner === user.uid ? (
+            <div className="details-footer">
+              <Link to={`/shop/edit/${shop._id}`}>
+                <ClickButton label="edit shop" />
+              </Link>
+              <ClickButton label="delete shop" onClick={deleteHandler} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </section>

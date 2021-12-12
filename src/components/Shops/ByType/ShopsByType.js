@@ -15,7 +15,6 @@ function ShopsByType() {
       .catch((e) => console.log(e));
   }, [type]);
 
-  console.log(shops);
   return (
     <section className="view">
       <div className="container">
