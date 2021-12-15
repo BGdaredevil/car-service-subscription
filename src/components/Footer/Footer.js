@@ -1,13 +1,13 @@
-import styles from "./Footer.module.css";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className={styles.footerContainer}>
-      <div className={styles.logoSection}>
+    <footer className="footerContainer">
+      <div className="logoSection">
         <section>WIP LOGO</section>
         <section>company details</section>
       </div>
-      <div className={styles.infoSection}>
+      <div className="infoSection">
         <section>
           <i>icon</i>
           <p>address</p>
@@ -21,7 +21,7 @@ function Footer() {
           <p>email</p>
         </section>
       </div>
-      <div className={styles.aboutSection}>
+      <div className="aboutSection">
         <section>
           <p>about</p>
           <p>

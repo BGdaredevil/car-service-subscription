@@ -1,4 +1,4 @@
-import ClickButton from "../../UI/ClickButton.js";
+import Booking from "./Booking.js";
 
 import "./Bookings.css";
 
@@ -24,15 +24,7 @@ function Bookings({ services }) {
             <h1>{service.name}</h1>
             <div className="cars-waiting-service">
               {service.bookings.map((car) => (
-                <div key={car._id} className="bookedCar">
-                  <h3>
-                    {car.make} {car.model} {car.year}
-                  </h3>
-                  {/* <div className="booking-controls"> */}
-                  <ClickButton label="accept" />
-                  <ClickButton label="reject" />
-                  {/* </div> */}
-                </div>
+                <Booking key={car._id} car={car} />
               ))}
             </div>
           </div>

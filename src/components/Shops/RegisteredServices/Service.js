@@ -12,6 +12,8 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
 
   const closeForm = useCallback((setter) => setter(false));
 
+  console.log(item);
+
   const delHandler = useCallback((e) => {
     del(`${endpoints.serviceApi}/${item._id}`)
       .then((r) => {

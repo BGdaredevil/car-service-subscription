@@ -7,7 +7,7 @@ import ClickButton from "../../UI/ClickButton.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import FormField from "../../UI/FormField.js";
 
-import styles from "./Edit.module.css";
+// import "./Edit.css";
 
 function EditCar({ history }) {
   const { id } = useParams();
@@ -52,7 +52,7 @@ function EditCar({ history }) {
       <div className="container">
         <div className="form-container">
           <form method="post" onSubmit={onSubmit}>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <FormField
                 label="Make"
                 type="text"
@@ -63,7 +63,7 @@ function EditCar({ history }) {
               />
               <FieldValidCheckMark isValid={isValidMake} text="Please input a car maker" />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <FormField
                 label="Model"
                 type="text"
@@ -74,7 +74,7 @@ function EditCar({ history }) {
               />
               <FieldValidCheckMark isValid={isValidModel} text="please input a car model" />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <FormField
                 label="Year"
                 type="number"
@@ -87,7 +87,7 @@ function EditCar({ history }) {
               />
               <FieldValidCheckMark isValid={isValidYear} text="please input a manufacturing date" />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <FormField
                 label="odometer"
                 type="number"
@@ -101,7 +101,7 @@ function EditCar({ history }) {
                 text="please input the current odometer"
               />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <FormField
                 label="photo"
                 type="url"
@@ -115,7 +115,7 @@ function EditCar({ history }) {
                 text="please input the current odometer"
               />
             </div>
-            <div className={styles.formFieldGroup}>
+            <div className="">
               <ClickButton
                 label="Edit"
                 disabled={

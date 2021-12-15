@@ -15,7 +15,14 @@ function Services({ shop, setShop, isOwner, isPersonal }) {
   const notRegistered =
     shop.offeredServices?.notRegistered?.length > 0
       ? shop.offeredServices?.notRegistered.map((s, i) => (
-          <Service key={i} item={s} shopId={shop._id} setShop={setShop} isRegistered={false} />
+          <Service
+            key={i}
+            item={s}
+            shopId={shop._id}
+            setShop={setShop}
+            isOwner={isOwner}
+            isRegistered={false}
+          />
         ))
       : "";
   const registered =

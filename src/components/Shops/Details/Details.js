@@ -35,8 +35,6 @@ function DetailsShop({ history }) {
       .catch((e) => console.log(e));
   };
 
-  const bookedServices = "";
-
   return (
     <section className="view">
       <div className="container">
