@@ -7,4 +7,5 @@ export const endpoints = {
   carApi: `${baseUrl}/car`,
   shopApi: `${baseUrl}/shop`,
   serviceApi: `${baseUrl}/service`,
+  bookingApi: `${baseUrl}/booking`,
 };

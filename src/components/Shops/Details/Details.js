@@ -62,7 +62,7 @@ function DetailsShop({ history }) {
           </div>
           {shop.owner === user.uid && shop.owner !== undefined ? (
             <>
-              <Bookings services={shop.offeredServices?.registered} />
+              <Bookings services={shop.offeredServices?.registered} shopId={shop._id} />
               <div className="details-footer">
                 <Link to={`/shop/edit/${shop._id}`}>
                   <ClickButton label="edit shop" />

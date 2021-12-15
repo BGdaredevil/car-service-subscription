@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { endpoints } from "../../../config/apiConfig.js";
-import { del } from "../../../services/apiService.js";
+import { del, put } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import Visit from "../../Visit/Visit.js";
 import RegisterService from "./Register.js";
@@ -27,12 +27,19 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
     setShowVisit((o) => (o ? false : true));
   });
 
+  const removeHandler = useCallback((e) => {
+    put(`${endpoints.shopApi}/details/${shopId}`, { item })
+      .then((r) => setShop(r))
+      .catch((e) => console.log(e));
+  });
+
   const ownerView = !isRegistered ? (
     <>
       <div className="service">
         <h3>{item}</h3>
         <div className="service-controls">
           <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
+          <ClickButton label="remove" onClick={removeHandler} />
         </div>
       </div>
       {regMode ? (

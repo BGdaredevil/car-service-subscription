@@ -2,7 +2,7 @@ import { useState } from "react";
 import ClickButton from "../../UI/ClickButton.js";
 import AcceptDialog from "./AcceptDialog.js";
 
-function Booking({ car }) {
+function Booking({ car, serviceId, shopId }) {
   const [dialog, setDialog] = useState(false);
 
   return (
@@ -11,16 +11,15 @@ function Booking({ car }) {
         {car.make} {car.model} {car.year}
       </h3>
       {dialog ? (
-        <AcceptDialog car={car} hide={setDialog.bind(null, false)} />
+        <AcceptDialog
+          car={car}
+          serviceId={serviceId}
+          shopId={shopId}
+          hide={setDialog.bind(null, false)}
+        />
       ) : (
         <>
-          <ClickButton
-            label="accept"
-            onClick={(e) => {
-              console.log(e.target);
-              setDialog(true);
-            }}
-          />
+          <ClickButton label="accept" onClick={() => setDialog(true)} />
           <ClickButton label="reject" />
         </>
       )}
