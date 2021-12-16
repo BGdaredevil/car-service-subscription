@@ -13,7 +13,7 @@ function Booking({ car, serviceId, shopId, bookigngModify }) {
     post(`${endpoints.bookingApi}/reject`, { carId: car._id, serviceId, shopId })
       .then((r) => bookigngModify(r))
       .catch((e) => console.log(e));
-  });
+  }, [bookigngModify, car._id, serviceId, shopId]);
 
   return (
     <div className="bookedCar">

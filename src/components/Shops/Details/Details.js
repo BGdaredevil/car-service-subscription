@@ -16,12 +16,9 @@ function DetailsShop({ history }) {
 
   const { user } = useContext(AuthContext);
 
-  console.log(user);
-
   useEffect(() => {
     get(`${endpoints.shopApi}/details/${id}`)
       .then((r) => {
-        console.log(r);
         setShop(r);
       })
       .catch((e) => console.log(e));
@@ -42,16 +39,19 @@ function DetailsShop({ history }) {
         });
       })
       .catch((e) => console.log(e));
-  });
+  }, []);
 
-  const deleteHandler = useCallback((e) => {
-    del(`${endpoints.shopApi}/${shop._id}`)
-      .then((r) => {
-        console.log(r);
-        history.push("/user/profile");
-      })
-      .catch((e) => console.log(e));
-  });
+  const deleteHandler = useCallback(
+    (e) => {
+      del(`${endpoints.shopApi}/${shop._id}`)
+        .then((r) => {
+          console.log(r);
+          history.push("/user/profile");
+        })
+        .catch((e) => console.log(e));
+    },
+    [shop._id, history]
+  );
 
   return (
     <section className="view">

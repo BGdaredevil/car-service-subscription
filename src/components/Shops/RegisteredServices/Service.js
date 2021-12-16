@@ -10,28 +10,32 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
   const [editMode, setEditMode] = useState(false);
   const [showVisit, setShowVisit] = useState(false);
 
-  const closeForm = useCallback((setter) => setter(false));
+  const closeForm = useCallback((setter) => setter(false), []);
 
-  console.log(item);
-
-  const delHandler = useCallback((e) => {
-    del(`${endpoints.serviceApi}/${item._id}`)
-      .then((r) => {
-        console.log(r);
-        setShop(r);
-      })
-      .catch((e) => console.log(e));
-  });
+  const delHandler = useCallback(
+    (e) => {
+      del(`${endpoints.serviceApi}/${item._id}`)
+        .then((r) => {
+          console.log(r);
+          setShop(r);
+        })
+        .catch((e) => console.log(e));
+    },
+    [item._id, setShop]
+  );
 
   const visitHandler = useCallback((e) => {
     setShowVisit((o) => (o ? false : true));
-  });
+  }, []);
 
-  const removeHandler = useCallback((e) => {
-    put(`${endpoints.shopApi}/details/${shopId}`, { item })
-      .then((r) => setShop(r))
-      .catch((e) => console.log(e));
-  });
+  const removeHandler = useCallback(
+    (e) => {
+      put(`${endpoints.shopApi}/details/${shopId}`, { item })
+        .then((r) => setShop(r))
+        .catch((e) => console.log(e));
+    },
+    [item, setShop, shopId]
+  );
 
   const ownerView = !isRegistered ? (
     <>

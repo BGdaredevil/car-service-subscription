@@ -5,22 +5,24 @@ import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 
 function AcceptDialog({ hide, car, serviceId, shopId, bookigngModify }) {
-  const submitHandler = useCallback((e) => {
-    e.preventDefault();
+  const submitHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
 
-    const data = Object.fromEntries(new FormData(e.target));
-
-    post(`${endpoints.bookingApi}/accept`, {
-      carId: car._id,
-      serviceId,
-      shopId,
-      comment: data.comments,
-      odometer: data.odometer,
-    })
-      .then((r) => bookigngModify(r))
-      .then(hide)
-      .catch((e) => console.log(e));
-  });
+      post(`${endpoints.bookingApi}/accept`, {
+        carId: car._id,
+        serviceId,
+        shopId,
+        comment: data.comments,
+        odometer: data.odometer,
+      })
+        .then((r) => bookigngModify(r))
+        .then(hide)
+        .catch((e) => console.log(e));
+    },
+    [car._id, hide, serviceId, shopId, bookigngModify]
+  );
 
   return (
     <div className="accept-dialog">

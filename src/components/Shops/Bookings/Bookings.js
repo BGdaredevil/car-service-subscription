@@ -3,7 +3,6 @@ import Booking from "./Booking.js";
 import "./Bookings.css";
 
 function Bookings({ services, shopId, bookigngModify }) {
-  console.log(services);
   if (!services) {
     return (
       <div className="bookings">

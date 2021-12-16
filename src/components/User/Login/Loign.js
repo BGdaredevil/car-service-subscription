@@ -6,7 +6,6 @@ import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
-import { Redirect } from "react-router";
 
 function Login({ history }) {
   const { user, login } = useContext(AuthContext);

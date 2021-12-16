@@ -24,7 +24,7 @@ function Visit({ shopId, hide, setShop, service }) {
         setUserCars(temp);
       })
       .catch((e) => alert(e));
-  }, [user.uid]);
+  }, [user.uid, service.bookings]);
 
   const confirmHandler = (e) => {
     e.preventDefault();

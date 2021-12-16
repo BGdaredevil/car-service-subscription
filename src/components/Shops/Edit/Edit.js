@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
-import { get, patch, post } from "../../../services/apiService.js";
+import { get, patch } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import { useParams } from "react-router";
