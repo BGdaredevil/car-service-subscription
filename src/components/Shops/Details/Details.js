@@ -1,9 +1,10 @@
+import { useCallback } from "react";
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
-import { del, get } from "../../../services/apiService.js";
+import { del, get, put } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import Bookings from "../Bookings/Bookings.js";
 import Services from "../RegisteredServices/Services.js";
@@ -26,14 +27,31 @@ function DetailsShop({ history }) {
       .catch((e) => console.log(e));
   }, [id]);
 
-  const deleteHandler = (e) => {
+  const bookigngModify = useCallback((booking) => {
+    put(`${endpoints.serviceApi}/${booking.service}`, booking)
+      .then((r) => {
+        setShop((oldShop) => {
+          const regedServices = oldShop.offeredServices.registered;
+          const service = regedServices.filter((s) => s._id === booking.service)[0];
+          const newServices = regedServices.filter((s) => s._id !== service._id);
+          const serviceBookingList = service.bookings.filter((b) => b._id !== booking.car);
+          service.bookings = serviceBookingList;
+          newServices.push(service);
+          oldShop.offeredServices.registered = newServices;
+          return { ...oldShop };
+        });
+      })
+      .catch((e) => console.log(e));
+  });
+
+  const deleteHandler = useCallback((e) => {
     del(`${endpoints.shopApi}/${shop._id}`)
       .then((r) => {
         console.log(r);
         history.push("/user/profile");
       })
       .catch((e) => console.log(e));
-  };
+  });
 
   return (
     <section className="view">
@@ -62,7 +80,11 @@ function DetailsShop({ history }) {
           </div>
           {shop.owner === user.uid && shop.owner !== undefined ? (
             <>
-              <Bookings services={shop.offeredServices?.registered} shopId={shop._id} />
+              <Bookings
+                services={shop.offeredServices?.registered}
+                shopId={shop._id}
+                bookigngModify={bookigngModify}
+              />
               <div className="details-footer">
                 <Link to={`/shop/edit/${shop._id}`}>
                   <ClickButton label="edit shop" />

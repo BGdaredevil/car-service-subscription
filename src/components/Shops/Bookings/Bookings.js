@@ -2,7 +2,7 @@ import Booking from "./Booking.js";
 
 import "./Bookings.css";
 
-function Bookings({ services, shopId }) {
+function Bookings({ services, shopId, bookigngModify }) {
   console.log(services);
   if (!services) {
     return (
@@ -24,7 +24,13 @@ function Bookings({ services, shopId }) {
             <h1>{service.name}</h1>
             <div className="cars-waiting-service">
               {service.bookings.map((car) => (
-                <Booking key={car._id} car={car} serviceId={service._id} shopId={shopId} />
+                <Booking
+                  key={car._id}
+                  car={car}
+                  serviceId={service._id}
+                  shopId={shopId}
+                  bookigngModify={bookigngModify}
+                />
               ))}
             </div>
           </div>

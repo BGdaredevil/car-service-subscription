@@ -4,7 +4,7 @@ import { post } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 
-function AcceptDialog({ hide, car, serviceId, shopId }) {
+function AcceptDialog({ hide, car, serviceId, shopId, bookigngModify }) {
   const submitHandler = useCallback((e) => {
     e.preventDefault();
 
@@ -15,8 +15,10 @@ function AcceptDialog({ hide, car, serviceId, shopId }) {
       serviceId,
       shopId,
       comment: data.comments,
+      odometer: data.odometer,
     })
-      .then((r) => console.log(r))
+      .then((r) => bookigngModify(r))
+      .then(hide)
       .catch((e) => console.log(e));
   });
 

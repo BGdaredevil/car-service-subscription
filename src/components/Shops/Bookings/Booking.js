@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+
+import { post } from "../../../services/apiService.js";
+import { endpoints } from "../../../config/apiConfig.js";
+
 import ClickButton from "../../UI/ClickButton.js";
 import AcceptDialog from "./AcceptDialog.js";
 
-function Booking({ car, serviceId, shopId }) {
+function Booking({ car, serviceId, shopId, bookigngModify }) {
   const [dialog, setDialog] = useState(false);
+
+  const handleReject = useCallback(() => {
+    post(`${endpoints.bookingApi}/reject`, { carId: car._id, serviceId, shopId })
+      .then((r) => bookigngModify(r))
+      .catch((e) => console.log(e));
+  });
 
   return (
     <div className="bookedCar">
@@ -16,11 +26,12 @@ function Booking({ car, serviceId, shopId }) {
           serviceId={serviceId}
           shopId={shopId}
           hide={setDialog.bind(null, false)}
+          bookigngModify={bookigngModify}
         />
       ) : (
         <>
           <ClickButton label="accept" onClick={() => setDialog(true)} />
-          <ClickButton label="reject" />
+          <ClickButton label="reject" onClick={() => handleReject()} />
         </>
       )}
     </div>
