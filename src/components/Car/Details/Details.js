@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
 import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";

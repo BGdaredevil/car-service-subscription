@@ -11,7 +11,7 @@ import { AuthContext } from "../../../contexts/AuthContext.js";
 import { Redirect } from "react-router";
 
 function Register({ history }) {
-  const { user, register } = useContext(AuthContext);
+  const { isAuth, register } = useContext(AuthContext);
 
   const [isValidName, setValidName] = useState(undefined);
 
@@ -40,8 +40,8 @@ function Register({ history }) {
       .then(() => history.push("/"))
       .catch((err) => alert(err));
   };
-
-  if (user) {
+  console.log(isAuth);
+  if (isAuth) {
     return <Redirect push to="/" />;
   }
 

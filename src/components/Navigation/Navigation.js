@@ -17,7 +17,7 @@ function Navigation() {
             Home
           </NavLink>
 
-          {user ? (
+          {user.uid !== "" && user.uid ? (
             <>
               <NavLink activeClassName="active" exact to="/user/profile">
                 {user.displayName === null

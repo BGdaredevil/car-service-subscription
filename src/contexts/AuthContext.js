@@ -11,28 +11,32 @@ import { endpoints } from "../config/apiConfig.js";
 
 export const AuthContext = createContext();
 
+const blankUser = {
+  uid: "",
+};
+
 function AuthContextProvider(props) {
-  const [user, setUser] = useState("");
+  const [user, setUserState] = useState(blankUser);
 
-  useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE)) {
-      setUser(localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE));
+  const setUser = (data) => {
+    if (data) {
+      get(`${endpoints.userApi}/${data?.uid}`)
+        .then((res) => {
+          localStorage.setItem(
+            process.env.REACT_APP_TOKEN_LOCAL_STORAGE,
+            JSON.stringify({ ...data, ...res })
+          );
+          setUserState({ ...data, ...res });
+        })
+        .catch((e) => alert(e));
+    } else {
+      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+      setUserState(blankUser);
     }
-  }, []);
+  };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        get(`${endpoints.userApi}/${user.uid}`)
-          .then((res) => {
-            localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, user.uid);
-            setUser(() => ({ ...user, ...res }));
-          })
-          .catch((e) => alert(e));
-      } else {
-        localStorage.removeItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE);
-      }
-    });
+    onAuthStateChanged(auth, setUser);
   }, []);
 
   const register = async ({ email, password, username, accountType }) => {
@@ -40,24 +44,32 @@ function AuthContextProvider(props) {
     await updateProfile(auth.currentUser, {
       displayName: username,
     });
-    await post(endpoints.userApi, {
+    const rest = await post(endpoints.userApi, {
       username: username,
       accountType: accountType,
       uid: user.uid,
     });
+    setUser({ ...user, ...rest });
   };
+
   const login = async ({ email, password }) => {
     await signInWithEmailAndPassword(auth, email, password);
   };
+
   const logout = () => {
-    auth.signOut().then(() => {
-      setUser("");
-    });
+    auth.signOut();
   };
 
-  const contextData = { user, login, register, logout };
+  const isAuth = Boolean(
+    localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE) !== "null"
+  );
+  console.log(isAuth);
 
-  return <AuthContext.Provider value={contextData}>{props.children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, isAuth, login, register, logout }}>
+      {props.children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthContextProvider;
