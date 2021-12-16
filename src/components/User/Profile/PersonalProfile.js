@@ -11,7 +11,6 @@ function PersonalProfile({ user }) {
   useEffect(() => {
     get(`${endpoints.carApi}/${user.uid}`)
       .then((r) => {
-        console.log(r);
         setUserCars(r);
       })
       .catch((e) => alert(e));

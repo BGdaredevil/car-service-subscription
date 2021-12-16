@@ -56,6 +56,10 @@
   flex-direction: column;
 }
 
+.no-item {
+  grid-area: noItem;
+}
+
 .item {
   display: flex;
   flex-direction: column;
@@ -73,8 +77,8 @@
   justify-items: stretch;
   grid-auto-flow: row;
   padding-bottom: 15px;
-  margin-bottom: 15px;
-  grid-template-areas: " heading heading ";
+  margin-bottom: 20px;
+  grid-template-areas: " heading heading " "noItem noItem";
 }
 
 .bookings > h1 {

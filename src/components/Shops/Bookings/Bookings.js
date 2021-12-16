@@ -35,7 +35,7 @@ function Bookings({ services, shopId, bookigngModify }) {
           </div>
         ))
       ) : (
-        <h3 className="item">No appointments yet</h3>
+        <h3 className="no-item item">No appointments yet</h3>
       )}
     </div>
   );

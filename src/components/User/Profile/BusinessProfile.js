@@ -10,11 +10,11 @@ function BusinessProfile({ user }) {
   useEffect(() => {
     get(`${endpoints.shopApi}/${user.uid}`)
       .then((r) => {
-        console.log(r);
         setUserShops(r);
       })
       .catch((e) => alert(e));
   }, [user.uid]);
+
   return (
     <section className="view">
       <div className="container">

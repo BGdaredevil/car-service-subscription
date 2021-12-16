@@ -9,7 +9,7 @@ function InfoCard({ item, isCar }) {
   ) : (
     <p>Services: {item.offeredServices.registered?.map((x) => x.name).join(", ")}</p>
   );
-  console.log(item);
+
   return (
     <div className="card-container">
       <div>
