@@ -11,6 +11,7 @@ const fetchWrap = async (url, options) => {
     try {
       return await res.json();
     } catch (error) {
+      console.log("fetchWrap error says: ", error);
       return res;
     }
   } catch (err) {

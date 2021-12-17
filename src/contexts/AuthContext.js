@@ -63,7 +63,7 @@ function AuthContextProvider(props) {
   const isAuth = Boolean(
     localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE) !== "null"
   );
-  console.log(isAuth);
+  console.log("isAuth -- ", isAuth);
 
   return (
     <AuthContext.Provider value={{ user, isAuth, login, register, logout }}>

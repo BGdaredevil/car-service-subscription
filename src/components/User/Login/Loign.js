@@ -8,7 +8,7 @@ import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 
 function Login({ history }) {
-  const { user, isAuth, login } = useContext(AuthContext);
+  const { isAuth, login } = useContext(AuthContext);
 
   const [isValidEmail, setValidEmail] = useState(undefined);
 
@@ -27,10 +27,11 @@ function Login({ history }) {
       .catch((err) => alert(err));
   };
 
-  // if (isAuth) {
-  //   history.goBack();
-  //   return null;
-  // }
+  if (isAuth) {
+    history.push("/");
+    // history.goBack();
+    return null;
+  }
 
   return (
     <section className="loginSection view">
