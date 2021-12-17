@@ -36,6 +36,20 @@ function DetailsCar({ history }) {
       .catch((e) => console.log(e));
   };
 
+  const cleanRejectedService = (booking) => {
+    setCarData((car) => ({
+      ...car,
+      workHistory: car.workHistory.filter((b) => b._id !== booking._id),
+    }));
+  };
+
+  const handleFeedback = (booking) => {
+    setCarData((car) => ({
+      ...car,
+      workHistory: car.workHistory.map((b) => (b._id === booking._id ? booking : b)),
+    }));
+  };
+
   return (
     <section className="view">
       <div className="container">
@@ -52,19 +66,11 @@ function DetailsCar({ history }) {
               <img className="car-image" src={carData.imageUrl} alt="a car" />
             </div>
             <div className="">
-              {/* <h3>Image: TODO: Implement file upload </h3> */}
-              {/* <div className="history"> */}
-              <HistoryList list={carData.workHistory} />
-              {/* {carData.workHistory?.length === 0 ? (
-                  <h3 className="history-item">no service history yet</h3>
-                ) : (
-                  <h3 className="history-item">
-                    {carData.workHistory?.map((h) => (
-                      <h4>pesho</h4>
-                    ))}
-                  </h3>
-                )} */}
-              {/* </div> */}
+              <HistoryList
+                list={carData.workHistory}
+                cleanRejectedService={cleanRejectedService}
+                handleFeedback={handleFeedback}
+              />
             </div>
           </div>
           <div className="car-details-footer details-footer">
