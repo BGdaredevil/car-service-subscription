@@ -20,7 +20,7 @@ nav div:last-child {
 
 nav div:last-child a {
   min-width: 0;
-  padding: 10px;
+  padding: 15px;
 }
 
 nav a {
@@ -45,4 +45,23 @@ nav a:active {
 .active {
   background-color: var(--main-D1);
   color: var(--main-w);
+}
+
+.logo {
+  color: var(--main-D1);
+  width: 100px !important;
+}
+
+.logo:hover {
+  color: var(--main-D4) !important;
+}
+
+.logo-container:hover {
+  background-color: var(--main-w) !important;
+}
+
+.logo-container {
+  background-color: transparent;
+  padding: 0;
+  line-height: 0;
 }

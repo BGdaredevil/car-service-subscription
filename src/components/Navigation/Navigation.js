@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHorse, faSleigh } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthContext } from "../../contexts/AuthContext.js";
 
@@ -10,8 +12,8 @@ function Navigation() {
   return (
     <nav>
       <section>
-        <NavLink activeClassName="active" exact to="/">
-          WIP: LOGO
+        <NavLink activeClassName="active" exact to="/" className="logo-container">
+          <FontAwesomeIcon icon={faSleigh} className="fa-2x logo" />
         </NavLink>
         <div>
           <NavLink activeClassName="active" exact to="/">
