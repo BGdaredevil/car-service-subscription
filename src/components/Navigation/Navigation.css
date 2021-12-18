@@ -12,14 +12,10 @@ nav > section {
   background-color: var(--main-w);
   width: 1200px;
   overflow: hidden;
-  /* padding: 1vw; */
-  /* min-width: 0; */
 }
 
 nav div:last-child {
   display: flex;
-  /* padding: 10px; */
-  /* margin: 0 0 0 auto; */
 }
 
 nav div:last-child a {

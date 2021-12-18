@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Redirect, Route } from "react-router";
+
 import { AuthContext } from "./AuthContext.js";
 
 function RouteGuard({ component: RouteComponent, ...rest }) {

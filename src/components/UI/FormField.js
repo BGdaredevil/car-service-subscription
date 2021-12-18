@@ -3,7 +3,6 @@ function FormField({
   isDisabled = false,
   id,
   placeholder,
-  value,
   onChange,
   onInput,
   label,
@@ -22,7 +21,6 @@ function FormField({
         type={type}
         name={name}
         defaultValue={defaultValue}
-        // value={value ? value : ""}
         placeholder={placeholder}
         className="inputField"
         disabled={isDisabled}

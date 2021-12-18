@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
+
 import "./InfoCard.css";
 
 function InfoCard({ item, isCar }) {
   const detailsLink = isCar ? `/car/${item._id}` : `/shop/${item._id}`;
-  const heading = isCar ? <p>{`${item.make} ${item.model}`}</p> : <p>{item.name}</p>;
+
+  const heading = isCar ? (
+    <p>{`${item.make} ${item.model}`}</p>
+  ) : (
+    <p>
+      {item.name} {item.rating?.toFixed(2)}
+    </p>
+  );
+
   const info = isCar ? (
     <p>Year: {item.year}</p>
   ) : (

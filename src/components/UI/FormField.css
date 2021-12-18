@@ -2,14 +2,11 @@
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
-  /* width: 50%; */
 }
 .inputField {
   font-family: inherit;
   width: 100%;
-  /* border: 0; */
   border-bottom: 2px solid var(--main-D1);
-  /* outline: 0; */
   font-size: 1.3rem;
   color: var(--main-D1);
   padding: 7px 0;
@@ -49,6 +46,7 @@
   color: #11998e;
   font-weight: 700;
 }
+
 /* reset input */
 .inputField:required,
 .inputField:invalid {

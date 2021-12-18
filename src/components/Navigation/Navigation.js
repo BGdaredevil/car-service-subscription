@@ -1,8 +1,9 @@
-import "./Navigation.css";
-
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
+
 import { AuthContext } from "../../contexts/AuthContext.js";
+
+import "./Navigation.css";
 
 function Navigation() {
   const { user, logout } = useContext(AuthContext);
@@ -53,23 +54,5 @@ function Navigation() {
     </nav>
   );
 }
-
-// function Navigation() {
-//   return (
-//     <Nav variant="pills" defaultActiveKey="/home">
-//       <Nav.Item>
-//         <Nav.Link href="/home">Active</Nav.Link>
-//       </Nav.Item>
-//       <Nav.Item>
-//         <Nav.Link eventKey="link-1">Option 2</Nav.Link>
-//       </Nav.Item>
-//       <Nav.Item>
-//         <Nav.Link eventKey="disabled" disabled>
-//           Disabled
-//         </Nav.Link>
-//       </Nav.Item>
-//     </Nav>
-//   );
-// }
 
 export default Navigation;

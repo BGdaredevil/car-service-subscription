@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+
 import { endpoints } from "../../config/apiConfig.js";
 import { AuthContext } from "../../contexts/AuthContext.js";
 import { get, patch } from "../../services/apiService.js";

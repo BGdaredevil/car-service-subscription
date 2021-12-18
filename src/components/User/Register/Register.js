@@ -1,13 +1,11 @@
 import { useContext, useState } from "react";
-
-// import styles from "./Register.module.css";
+import { Redirect } from "react-router";
 
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
-import { Redirect } from "react-router";
 
 function Register({ history }) {
   const { isAuth, register } = useContext(AuthContext);

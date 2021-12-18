@@ -43,7 +43,6 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: darkslategrey; */
 
   min-height: 100vh;
   text-rendering: optimizeSpeed;
@@ -86,17 +85,4 @@ input {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
-  /* appearance: none !important; */
-  /* margin: 0; */
-  /* opacity: 1 !important; */
-  /* background-color: violet !important; */
 }
-
-/* input[type="number"] {
-  background-color: violet !important;
-} */
-
-/* input {
-  -moz-appearance: textfield !important;
-  -webkit-appearance: textfield !important;
-} */

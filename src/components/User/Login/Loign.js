@@ -1,6 +1,5 @@
-// import styles from "./Login.module.css";
-
 import { useContext, useState } from "react";
+
 import FormField from "../../UI/FormField.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
@@ -31,7 +30,6 @@ function Login({ history }) {
 
   if (isAuth) {
     history.push("/");
-    // history.goBack();
     return null;
   }
 

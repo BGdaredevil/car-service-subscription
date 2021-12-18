@@ -1,4 +1,5 @@
 import Service from "./Service.js";
+
 import "./Services.css";
 
 function Services({ shop, setShop, isOwner, isPersonal }) {
@@ -10,6 +11,7 @@ function Services({ shop, setShop, isOwner, isPersonal }) {
     ) : (
       <h3 className="service-heading">We offer the folowing services</h3>
     );
+
   const notRegistered =
     shop.offeredServices?.notRegistered?.length > 0
       ? shop.offeredServices?.notRegistered.map((s, i) => (
@@ -23,6 +25,7 @@ function Services({ shop, setShop, isOwner, isPersonal }) {
           />
         ))
       : "";
+
   const registered =
     shop.offeredServices?.registered?.length > 0
       ? shop.offeredServices?.registered.map((s) => (
@@ -37,6 +40,7 @@ function Services({ shop, setShop, isOwner, isPersonal }) {
           />
         ))
       : "";
+
   const noServices =
     shop.offeredServices?.registered?.length === 0 &&
     shop.offeredServices?.notRegistered?.length === 0 ? (

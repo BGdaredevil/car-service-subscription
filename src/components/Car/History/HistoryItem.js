@@ -16,6 +16,7 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
       .then((r) => handleFeedback(r))
       .catch((e) => console.log(e));
   };
+
   const delHandler = () => {
     del(`${endpoints.bookingApi}/${item._id}`)
       .then((r) => cleanRejectedService(r))
@@ -30,6 +31,7 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
         </h4>
       </div>
     ),
+
     rejected: (
       <div className="history-item">
         <h4>
@@ -38,6 +40,7 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
         <ClickButton label="ok delete" onClick={delHandler} />
       </div>
     ),
+
     complete: (
       <div className="history-item">
         <h4>

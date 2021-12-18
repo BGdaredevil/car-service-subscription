@@ -1,13 +1,14 @@
-import { useCallback } from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+
 import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import { del, get, put } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import Bookings from "../Bookings/Bookings.js";
 import Services from "../RegisteredServices/Services.js";
+
 import "./Details.css";
 
 function DetailsShop({ history }) {

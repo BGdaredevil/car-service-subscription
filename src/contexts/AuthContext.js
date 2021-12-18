@@ -5,6 +5,7 @@ import {
   updateProfile,
 } from "@firebase/auth";
 import { createContext, useEffect, useState } from "react";
+
 import { auth } from "../firebase/base.js";
 import { get, post } from "../services/apiService.js";
 import { endpoints } from "../config/apiConfig.js";
@@ -63,6 +64,7 @@ function AuthContextProvider(props) {
   const isAuth = Boolean(
     localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE) !== "null"
   );
+
   console.log("isAuth -- ", isAuth);
 
   return (

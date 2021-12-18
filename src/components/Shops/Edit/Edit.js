@@ -1,17 +1,17 @@
 import "./Edit.css";
 
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
+
 import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import { get, patch } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
-import { useParams } from "react-router";
 import { validateField } from "../../../utils/validator.js";
-import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function EditShop({ history }) {
   const { id } = useParams();

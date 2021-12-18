@@ -9,7 +9,7 @@ const fetchWrap = async (url, options) => {
     }
 
     try {
-      return await res.json();
+      return res.json();
     } catch (error) {
       console.log("fetchWrap error says: ", error);
       return res;
@@ -22,7 +22,6 @@ const fetchWrap = async (url, options) => {
 const getOptions = (method = "get", payload) => {
   const options = { method: method.toUpperCase(), headers: {}, credentials: "include" };
   if (user) {
-    // console.log(user);
     options.headers["X-Authorization"] = user;
   }
 
@@ -39,5 +38,3 @@ export const post = async (url, data) => fetchWrap(url, getOptions("post", data)
 export const put = async (url, data) => fetchWrap(url, getOptions("put", data));
 export const del = async (url) => fetchWrap(url, getOptions("delete"));
 export const patch = async (url, data) => fetchWrap(url, getOptions("patch", data));
-
-// console.log(user);

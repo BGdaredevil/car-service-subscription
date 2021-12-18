@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { endpoints } from "../../../config/apiConfig.js";
 import { get } from "../../../services/apiService.js";
 import InfoCard from "../../UI/InfoCard.js";

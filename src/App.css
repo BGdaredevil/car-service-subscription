@@ -1,16 +1,7 @@
-/* .App {
-  margin: 0 auto;
-  width: 1200px;
-  background-color: var(--main-t20);
-} */
-
 .container {
   margin: 0 auto;
   width: 1000px;
 }
-
-/* section {
-} */
 
 section.view {
   width: 1200px;
@@ -29,23 +20,8 @@ section.create {
 }
 
 body {
-  /* background-position: 20% 50%; */
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  /* --------------------------------- */
-  /* ----best----------------------------- */
   background-image: url("./static/img/screw-4929711_1920.jpg");
-  /* --------------------------------- */
-  /* background-image: url("./static/img/pexels-photo-4480533.jpeg"); */
-  /* background-image: url("./static/img/pexels-photo-4480531.jpeg"); */
-  /* --------------------------------- */
-  /* background-image: url("./static/img/motorcycle-1149389_1920.jpg");
-  background-image: url("./static/img/motor-768750_1920.jpg");
-  background-image: url("./static/img/macro-1452987_1920.jpg");
-  background-image: url("./static/img/pexels-photo-253096.jpeg");
-  background-image: url("./static/img/pexels-photo-2396045.jpeg");
-  background-image: url("./static/img/pexels-photo-1715191.jpeg");
-  background-image: url("./static/img/pexels-photo-1534604.jpeg");
-  background-image: url("./static/img/moto-crop.jpg"); */
 }

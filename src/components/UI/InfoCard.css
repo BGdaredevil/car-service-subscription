@@ -4,7 +4,6 @@
 
   position: relative;
   width: 100%;
-  /* min-height: 10px; */
   height: 400px;
   padding-right: 15px;
   padding-left: 15px;
@@ -12,9 +11,6 @@
 
   margin-top: 3rem;
   margin-bottom: 3rem;
-  /* box-sizing: border-box; */
-  /* flex: 0 0 33.333333%; */
-  /* max-width: 33.333333%; */
 }
 
 .card-container > div {

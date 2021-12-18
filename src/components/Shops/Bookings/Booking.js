@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 
 import { post } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
-
 import ClickButton from "../../UI/ClickButton.js";
 import AcceptDialog from "./AcceptDialog.js";
 

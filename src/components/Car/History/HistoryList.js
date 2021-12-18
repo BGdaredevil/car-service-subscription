@@ -1,4 +1,5 @@
 import HistoryItem from "./HistoryItem.js";
+
 import "./History.css";
 
 function HistoryList({ list, cleanRejectedService, handleFeedback }) {
@@ -52,6 +53,7 @@ function HistoryList({ list, cleanRejectedService, handleFeedback }) {
       )}
     </div>
   );
+
   const rejected = (
     <div className="history-list">
       {rejectedList.length > 0 ? (
@@ -78,15 +80,6 @@ function HistoryList({ list, cleanRejectedService, handleFeedback }) {
       {pending}
       {rejected}
     </>
-
-    // <div className="history-list">
-    //   <h1>Service history:</h1>
-    //   {list
-    //     .sort((a, b) => a.odometer - b.odometer)
-    //     .map((item) => (
-    //       <HistoryItem key={item._id} item={item} />
-    //     ))}
-    // </div>
   );
 }
 

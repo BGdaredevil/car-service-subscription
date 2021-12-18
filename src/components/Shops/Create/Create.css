@@ -58,7 +58,6 @@
 }
 
 .service-item {
-  /* background-color: rosybrown; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;

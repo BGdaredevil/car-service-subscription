@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import BusinessProfile from "./BusinessProfile.js";
 import PersonalProfile from "./PersonalProfile.js";
+
 import "./Profile.css";
 
-function Profile({ history }) {
+function Profile() {
   const { user } = useContext(AuthContext);
 
   return (
