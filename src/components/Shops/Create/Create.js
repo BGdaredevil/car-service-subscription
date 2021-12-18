@@ -15,10 +15,12 @@ import { endpoints } from "../../../config/apiConfig.js";
 
 function CreateShop({ history }) {
   const { user } = useContext(AuthContext);
+
   const [isValidName, setIsValidName] = useState(undefined);
   const [specification, setSpecification] = useState("bodyShop");
   const [services, setServices] = useState([]);
   const [isValidUrl, setIsValidUrl] = useState(undefined);
+  const [isSending, setIsSending] = useState(false);
 
   const addHandler = (e) => {
     e.preventDefault();
@@ -50,9 +52,12 @@ function CreateShop({ history }) {
       owner: user.uid,
     };
     console.log(cleanData);
-
+    setIsSending(true);
     post(`${endpoints.shopApi}`, cleanData)
-      .then((r) => history.push("/user/profile"))
+      .then((r) => {
+        history.push("/user/profile");
+        setIsSending(false);
+      })
       .catch((e) => console.log(e));
   };
 
@@ -64,82 +69,78 @@ function CreateShop({ history }) {
             <h1>Creating Shop</h1>
           </div>
           <form onSubmit={onSubmit} className="formClass">
-            <div className="formFieldGroup">
-              <FormField
-                label="Name"
-                type="text"
-                placeholder="Name"
-                name="name"
-                onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
-              />
-              <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
-            </div>
-            <div className="formFieldGroup">
-              <FormField
-                label="photo"
-                type="url"
-                placeholder="imageUrl"
-                name="imageUrl"
-                onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
-              />
-              <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
-            </div>
+            <FormField
+              label="Name"
+              type="text"
+              placeholder="Name"
+              name="name"
+              onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
+            <FormField
+              label="photo"
+              type="url"
+              placeholder="imageUrl"
+              name="imageUrl"
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+            />
+            <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
             <h3>TODO: add on click map location</h3>
-            <div className="formFieldGroup">
-              <RadioBtn
-                label="Body Shop"
-                name="specification"
-                type="radio"
-                value="bodyShop"
-                checked={specification === "bodyShop"}
-                onChange={setSpecification}
+            <RadioBtn
+              label="Body Shop"
+              name="specification"
+              type="radio"
+              value="bodyShop"
+              checked={specification === "bodyShop"}
+              onChange={setSpecification}
+            />
+            <RadioBtn
+              label="Mechanic Shop"
+              name="specification"
+              type="radio"
+              value="mechanicShop"
+              checked={specification === "mechanicShop"}
+              onChange={setSpecification}
+            />
+            <RadioBtn
+              label="Performance Shop"
+              name="specification"
+              type="radio"
+              value="performanceShop"
+              checked={specification === "performanceShop"}
+              onChange={setSpecification}
+            />
+            <h4>Offered services:</h4>
+            {services.length > 0 ? (
+              services.map((s, i) => (
+                // <div key={i}>
+                <h4 key={i} onClick={(e) => remHandler(e, s)}>
+                  {s}
+                  <FontAwesomeIcon icon={faTimes} />
+                </h4>
+                // </div>
+              ))
+            ) : (
+              <FieldValidCheckMark
+                text={"Please add your services"}
+                isValid={services.length > 0}
               />
-              <RadioBtn
-                label="Mechanic Shop"
-                name="specification"
-                type="radio"
-                value="mechanicShop"
-                checked={specification === "mechanicShop"}
-                onChange={setSpecification}
+            )}
+            <div>
+              <FormField
+                label="Service"
+                type="text"
+                placeholder="Service"
+                required={false}
+                onKeyPress={addHandler}
               />
-              <RadioBtn
-                label="Performance Shop"
-                name="specification"
-                type="radio"
-                value="performanceShop"
-                checked={specification === "performanceShop"}
-                onChange={setSpecification}
-              />
+              <ClickButton label="Add" onClick={addHandler} />
             </div>
-            <div className="formFieldGroup">
-              <h4>Offered services:</h4>
-              {services.length > 0 ? (
-                services.map((s, i) => (
-                  // <div key={i}>
-                  <h4 key={i} onClick={(e) => remHandler(e, s)}>
-                    {s}
-                    <FontAwesomeIcon icon={faTimes} />
-                  </h4>
-                  // </div>
-                ))
-              ) : (
-                <FieldValidCheckMark
-                  text={"Please add your services"}
-                  isValid={services.length > 0}
-                />
-              )}
-              <div>
-                <FormField
-                  label="Service"
-                  type="text"
-                  placeholder="Service"
-                  required={false}
-                  onKeyPress={addHandler}
-                />
-                <ClickButton label="Add" onClick={addHandler} />
-              </div>
-            </div>
-            <ClickButton label="Create" type="submit" />
+            <ClickButton
+              label="Create"
+              type="submit"
+              disabled={!(isValidName && isValidUrl && !isSending)}
+            />
           </form>
         </div>
       </div>

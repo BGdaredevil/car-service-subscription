@@ -81,3 +81,22 @@ a {
 ::placeholder {
   opacity: 1;
 }
+
+input {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* appearance: none !important; */
+  /* margin: 0; */
+  /* opacity: 1 !important; */
+  /* background-color: violet !important; */
+}
+
+/* input[type="number"] {
+  background-color: violet !important;
+} */
+
+/* input {
+  -moz-appearance: textfield !important;
+  -webkit-appearance: textfield !important;
+} */

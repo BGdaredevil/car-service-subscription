@@ -18,7 +18,6 @@ function EditShop({ history }) {
   const { user } = useContext(AuthContext);
 
   const [shop, setShop] = useState();
-
   const [isValidName, setIsValidName] = useState(true);
   const [specification, setSpecification] = useState();
   const [services, setServices] = useState([]);
