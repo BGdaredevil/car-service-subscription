@@ -11,8 +11,8 @@ function Login({ history }) {
   const { isAuth, login } = useContext(AuthContext);
 
   const [isValidEmail, setValidEmail] = useState(undefined);
-
   const [isValidPassword, setValidPassword] = useState(undefined);
+  const [isSending, setIsSending] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -21,9 +21,12 @@ function Login({ history }) {
       email: data.email.trim(),
       password: data.password.trim(),
     };
-    // console.log("submited", cleanData, isValidEmail && isValidPassword);
+    setIsSending(true);
     login(cleanData)
-      .then(() => history.push("/"))
+      .then(() => {
+        setIsSending(false);
+        history.push("/");
+      })
       .catch((err) => alert(err));
   };
 
@@ -41,37 +44,44 @@ function Login({ history }) {
             <h2>Wellcome back</h2>
           </div>
           <form className="formClass" onSubmit={submitHandler}>
-            <div className="formFieldGroup">
-              <FormField
-                label="Email"
-                type="email"
-                placeholder="email_12@domain.com"
-                name="email"
-                onInput={(e) =>
-                  setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
-                }
-              />
-              <FieldValidCheckMark
-                isValid={isValidEmail}
-                text="Email must be valid to mailbox@domain.bg/com"
-              />
-            </div>
-            <div className="formFieldGroup">
-              <FormField
-                label="Password"
-                type="password"
-                placeholder="password"
-                name="password"
-                onInput={(e) => setValidPassword(validateField(e.target.value, /^.{4,}$/i))}
-              />
-              <FieldValidCheckMark
-                isValid={isValidPassword}
-                text="Password must be at least 4 chars long"
-              />
-            </div>
-            <div className="formFieldGroup">
-              <ClickButton label="Login" disabled={!(isValidEmail && isValidPassword)} />
-            </div>
+            <FormField
+              label="Email"
+              type="text"
+              placeholder="email_12@domain.com"
+              name="email"
+              onInput={(e) =>
+                setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
+              }
+              className={[
+                isValidEmail === false ? "invalid" : "",
+                isValidEmail ? "valid" : "",
+              ].join(" ")}
+            />
+            {isValidEmail === false ? (
+              <p className="alarm-text">Email must be valid to mailbox@domain.bg/com</p>
+            ) : (
+              ""
+            )}
+            <FormField
+              label="Password"
+              type="password"
+              placeholder="password"
+              name="password"
+              onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
+              className={[
+                isValidPassword === false ? "invalid" : "",
+                isValidPassword ? "valid" : "",
+              ].join(" ")}
+            />
+            {isValidPassword === false ? (
+              <p className="alarm-text">Password should be at least 6 chars long</p>
+            ) : (
+              ""
+            )}
+            <ClickButton
+              label="Login"
+              disabled={!(isValidEmail && isValidPassword && !isSending)}
+            />
           </form>
         </div>
       </div>

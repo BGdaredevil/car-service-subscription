@@ -31,10 +31,12 @@ function DetailsShop({ history }) {
           const regedServices = oldShop.offeredServices.registered;
           const service = regedServices.filter((s) => s._id === booking.service)[0];
           const newServices = regedServices.filter((s) => s._id !== service._id);
-          const serviceBookingList = service.bookings.filter((b) => b._id !== booking.car);
+          const serviceBookingList = service.bookings.filter((b) => b._id !== booking._id);
           service.bookings = serviceBookingList;
           newServices.push(service);
-          oldShop.offeredServices.registered = newServices;
+          oldShop.offeredServices.registered = newServices.sort((a, b) =>
+            a._id.localeCompare(b._id)
+          );
           return { ...oldShop };
         });
       })
@@ -61,7 +63,7 @@ function DetailsShop({ history }) {
             <h1>Shop Details</h1>
             <h3>Name: {shop.name}</h3>
             <h3>Specialization: {shop.specification}</h3>
-            <h3>Rating: {shop.rating}</h3>
+            <h3>Rating: {shop.rating?.toFixed(2)}</h3>
           </div>
           <div className="details-body">
             <div className="left">

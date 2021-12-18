@@ -6,7 +6,6 @@ import FormField from "../../UI/FormField.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
-import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import { Redirect } from "react-router";
 
@@ -14,15 +13,12 @@ function Register({ history }) {
   const { isAuth, register } = useContext(AuthContext);
 
   const [isValidName, setValidName] = useState(undefined);
-
   const [isValidEmail, setValidEmail] = useState(undefined);
-
   const [password, setPassword] = useState("");
   const [isValidPassword, setValidPassword] = useState(undefined);
-
   const [isValidPassMatch, setValidPassMatch] = useState(undefined);
-
   const [accType, setAccType] = useState("personal");
+  const [isSending, setIsSending] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,12 +31,15 @@ function Register({ history }) {
       accountType: data.accountType.trim(),
       isPassMatch: data.isValidPassMatch,
     };
-
+    setIsSending(true);
     register(cleanData)
-      .then(() => history.push("/"))
+      .then(() => {
+        setIsSending(false);
+        history.push("/");
+      })
       .catch((err) => alert(err));
   };
-  console.log(isAuth);
+
   if (isAuth) {
     return <Redirect push to="/" />;
   }
@@ -53,7 +52,6 @@ function Register({ history }) {
             <h2>To have one less care</h2>
           </div>
           <form onSubmit={submitHandler} className="formClass">
-            {/* <div className="formFieldGroup"> */}
             <FormField
               label="Username"
               name="username"
@@ -64,27 +62,31 @@ function Register({ history }) {
                 " "
               )}
             />
-            <FieldValidCheckMark
-              isValid={isValidName}
-              text="Username must be at least 3 long. No special characters allowed."
-            />
-            {/* </div> */}
-            {/* <div className="formFieldGroup"> */}
+            {isValidName === false ? (
+              <p className="alarm-text">
+                Username must be at least 3 long. No special characters allowed.
+              </p>
+            ) : (
+              ""
+            )}
             <FormField
               label="Email"
               name="email"
-              type="email"
+              type="text"
               placeholder="email_12@domain.com"
               onInput={(e) =>
                 setValidEmail(validateField(e.target.value, /^\w+@{1}\w+\.{1}[a-z]{2,3}$/i))
               }
+              className={[
+                isValidEmail === false ? "invalid" : "",
+                isValidEmail ? "valid" : "",
+              ].join(" ")}
             />
-            <FieldValidCheckMark
-              isValid={isValidEmail}
-              text="Email must be valid to mailbox@domain.bg/com"
-            />
-            {/* </div> */}
-            {/* <div className="formFieldGroup"> */}
+            {isValidEmail === false ? (
+              <p className="alarm-text">Email must be valid to mailbox@domain.bg/com</p>
+            ) : (
+              ""
+            )}
             <FormField
               label="Password"
               name="password"
@@ -93,22 +95,30 @@ function Register({ history }) {
               value={password}
               onChange={setPassword}
               onInput={(e) => setValidPassword(validateField(e.target.value, /^.{6,}$/i))}
+              className={[
+                isValidPassword === false ? "invalid" : "",
+                isValidPassword ? "valid" : "",
+              ].join(" ")}
             />
-            <FieldValidCheckMark
-              isValid={isValidPassword}
-              text="Password must be at least 6 chars long"
-            />
-            {/* </div> */}
-            {/* <div className="formFieldGroup"> */}
+            {isValidPassword === false ? (
+              <p className="alarm-text">Password must be at least 6 chars long</p>
+            ) : (
+              ""
+            )}
+
             <FormField
               label="Repeat password"
               name="repeatPassword"
               type="password"
               placeholder="repeat password"
               onInput={(e) => setValidPassMatch(e.target.value === password)}
+              className={[
+                isValidPassMatch === false ? "invalid" : "",
+                isValidPassMatch ? "valid" : "",
+              ].join(" ")}
             />
-            <FieldValidCheckMark isValid={isValidPassMatch} text="Passwords do not match" />
-            {/* </div> */}
+            {isValidPassMatch === false ? <p className="alarm-text">Passwords do not match</p> : ""}
+
             <RadioBtn
               label="Business account"
               name="accountType"
@@ -125,14 +135,19 @@ function Register({ history }) {
               checked={accType === "personal"}
               onChange={setAccType}
             />
-            {/* <div className="formFieldGroup"> */}
             <ClickButton
               label="Register"
               disabled={
-                !(isValidName && isValidEmail && isValidPassword && isValidPassMatch && accType)
+                !(
+                  isValidName &&
+                  isValidEmail &&
+                  isValidPassword &&
+                  isValidPassMatch &&
+                  accType &&
+                  !isSending
+                )
               }
             />
-            {/* </div> */}
           </form>
         </div>
       </div>

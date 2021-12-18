@@ -6,14 +6,14 @@ import { endpoints } from "../../../config/apiConfig.js";
 import ClickButton from "../../UI/ClickButton.js";
 import AcceptDialog from "./AcceptDialog.js";
 
-function Booking({ car, serviceId, shopId, bookigngModify }) {
+function Booking({ car, bookigngModify, bookingId }) {
   const [dialog, setDialog] = useState(false);
 
   const handleReject = useCallback(() => {
-    post(`${endpoints.bookingApi}/reject`, { carId: car._id, serviceId, shopId })
+    post(`${endpoints.bookingApi}/reject`, { carId: car._id, bookingId })
       .then((r) => bookigngModify(r))
       .catch((e) => console.log(e));
-  }, [bookigngModify, car._id, serviceId, shopId]);
+  }, [bookigngModify, car._id, bookingId]);
 
   return (
     <div className="bookedCar">
@@ -23,8 +23,7 @@ function Booking({ car, serviceId, shopId, bookigngModify }) {
       {dialog ? (
         <AcceptDialog
           car={car}
-          serviceId={serviceId}
-          shopId={shopId}
+          bookingId={bookingId}
           hide={setDialog.bind(null, false)}
           bookigngModify={bookigngModify}
         />

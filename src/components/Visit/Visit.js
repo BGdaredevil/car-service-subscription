@@ -13,14 +13,13 @@ function Visit({ shopId, hide, setShop, service }) {
   useEffect(() => {
     get(`${endpoints.carApi}/${user.uid}`)
       .then((r) => {
-        const bookingIds = service.bookings.map((e) => e._id);
+        const bookingIds = service.bookings.map((e) => e.car._id);
         const temp = r.reduce((a, e) => {
           if (!bookingIds.includes(e._id)) {
             a.push(e);
           }
           return a;
         }, []);
-        console.log("temop------", temp);
         setUserCars(temp);
       })
       .catch((e) => alert(e));

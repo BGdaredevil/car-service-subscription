@@ -12,8 +12,6 @@ function DetailsCar({ history }) {
   const { id } = useParams();
   const [carData, setCarData] = useState("null");
 
-  console.log(carData);
-
   useEffect(() => {
     get(`${endpoints.carApi}/details/${id}`)
       .then((r) => {

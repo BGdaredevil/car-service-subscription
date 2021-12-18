@@ -13,6 +13,7 @@ function FormField({
   defaultValue,
   readonly,
   className,
+  pattern,
 }) {
   return (
     <div className={["inputGroup", className].join(" ")}>
@@ -30,6 +31,7 @@ function FormField({
         checked={checked}
         required={required && true}
         readOnly={readonly}
+        pattern={pattern}
       />
       <label className="inputLabel" htmlFor={id}>
         {label}

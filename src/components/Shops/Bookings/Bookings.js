@@ -22,13 +22,12 @@ function Bookings({ services, shopId, bookigngModify }) {
           <div key={service._id} className="item">
             <h1>{service.name}</h1>
             <div className="cars-waiting-service">
-              {service.bookings.map((car) => (
+              {service.bookings.map((booking) => (
                 <Booking
-                  key={car._id}
-                  car={car}
-                  serviceId={service._id}
-                  shopId={shopId}
+                  key={booking._id}
+                  car={booking.car}
                   bookigngModify={bookigngModify}
+                  bookingId={booking._id}
                 />
               ))}
             </div>

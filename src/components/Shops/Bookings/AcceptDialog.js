@@ -4,7 +4,7 @@ import { post } from "../../../services/apiService.js";
 import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 
-function AcceptDialog({ hide, car, serviceId, shopId, bookigngModify }) {
+function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
   const submitHandler = useCallback(
     (e) => {
       e.preventDefault();
@@ -12,8 +12,7 @@ function AcceptDialog({ hide, car, serviceId, shopId, bookigngModify }) {
 
       post(`${endpoints.bookingApi}/accept`, {
         carId: car._id,
-        serviceId,
-        shopId,
+        bookingId,
         comment: data.comments,
         odometer: data.odometer,
       })
@@ -21,7 +20,7 @@ function AcceptDialog({ hide, car, serviceId, shopId, bookigngModify }) {
         .then(hide)
         .catch((e) => console.log(e));
     },
-    [car._id, hide, serviceId, shopId, bookigngModify]
+    [car._id, hide, bookingId, bookigngModify]
   );
 
   return (
