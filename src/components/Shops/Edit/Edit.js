@@ -169,7 +169,7 @@ function EditShop({ history }) {
             <ClickButton
               label="Edit"
               type="submit"
-              disabled={!(isValidName && isValidUrl && !isSending)}
+              disabled={!(isValidName && isValidUrl && services.length > 0 && !isSending)}
             />
           </form>
         </div>

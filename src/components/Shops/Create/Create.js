@@ -152,7 +152,7 @@ function CreateShop({ history }) {
             <ClickButton
               label="Create"
               type="submit"
-              disabled={!(isValidName && isValidUrl && !isSending)}
+              disabled={!(isValidName && isValidUrl && services.length > 0 && !isSending)}
             />
           </form>
         </div>
