@@ -70,8 +70,6 @@ function DetailsShop({ history }) {
               <img className="shop-image" src={shop.imageUrl} alt="a car" />
             </div>
             <div className="right">
-              <h3>Location: TODO: Implement pins on map</h3>
-              <h3>Image: TODO: Implement file upload </h3>
               <Services
                 setShop={setShop}
                 shop={shop}

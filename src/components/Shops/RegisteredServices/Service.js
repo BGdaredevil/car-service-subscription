@@ -41,10 +41,10 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
     <>
       <div className="service">
         <h3>{item}</h3>
-        <div className="service-controls">
-          <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
-          <ClickButton label="remove" onClick={removeHandler} />
-        </div>
+        {/* <div className="service-controls"> */}
+        <ClickButton label="register" onClick={(e) => setRegMode((o) => (o ? false : true))} />
+        <ClickButton label="remove" onClick={removeHandler} />
+        {/* </div> */}
       </div>
       {regMode ? (
         <RegisterService
@@ -61,10 +61,10 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
     <>
       <div className="service">
         <h3>{item.name}</h3>
-        <div className="service-controls">
-          <ClickButton label="edit" onClick={(e) => setEditMode((o) => (o ? false : true))} />
-          <ClickButton label="delete" onClick={delHandler} />
-        </div>
+        {/* <div className="service-controls"> */}
+        <ClickButton label="edit" onClick={(e) => setEditMode((o) => (o ? false : true))} />
+        <ClickButton label="delete" onClick={delHandler} />
+        {/* </div> */}
       </div>
       {editMode ? (
         <RegisterService
@@ -90,21 +90,21 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
       </div>
       {isPersonal ? (
         <>
-          <div className="service-controls">
-            {showVisit ? (
-              <Visit
-                shopId={shopId}
-                setShop={setShop}
-                service={item}
-                hide={(e) => {
-                  e.preventDefault();
-                  setShowVisit(false);
-                }}
-              />
-            ) : (
-              <ClickButton label="Book a visit" onClick={visitHandler} />
-            )}
-          </div>
+          {/* <div className="service-controls"> */}
+          {showVisit ? (
+            <Visit
+              shopId={shopId}
+              setShop={setShop}
+              service={item}
+              hide={(e) => {
+                e.preventDefault();
+                setShowVisit(false);
+              }}
+            />
+          ) : (
+            <ClickButton label="Book a visit" onClick={visitHandler} />
+          )}
+          {/* </div> */}
         </>
       ) : (
         ""

@@ -1,10 +1,36 @@
+.service-heading {
+  background-color: var(--main-t20);
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 5px var(--main-t20);
+  text-align: center;
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-transform: none;
+  color: var(--main-D1);
+}
+
 .services {
   display: flex;
   flex-direction: column;
 }
 
 .service {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: var(--main-t20);
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 5px var(--main-t20);
+
+  /* display: flex;
   flex-direction: row;
   justify-content: space-between;
   min-height: 100px;
@@ -13,26 +39,27 @@
   margin-bottom: 15px;
   background-color: var(--main-t20);
   border-radius: 15px;
-  box-shadow: 0px 0px 5px 5px var(--main-t20);
+  box-shadow: 0px 0px 5px 5px var(--main-t20); */
 }
-/* .red {
-  background-color: var(--main-D4-L);
-  box-shadow: 0px 0px 5px 5px var(--main-D4-L);
-} */
 
-.service-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  flex-basis: 30%;
+.service > h3 {
+  color: var(--main-D1);
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: bold;
+  vertical-align: middle;
+  display: table-cell;
 }
 
 .service button {
   margin: 0;
   padding: 0;
-  /* font-size: 25px; */
-  flex-basis: 15%;
+}
+
+.service button:last-of-type {
+  margin: 0;
+  padding: 0;
+  grid-column: 3;
 }
 
 .register {
