@@ -21,7 +21,8 @@ function EditShop({ history }) {
   const [isValidName, setIsValidName] = useState(true);
   const [specification, setSpecification] = useState();
   const [services, setServices] = useState([]);
-  const [isValidUrl, setIsValidUrl] = useState(undefined);
+  const [isValidUrl, setIsValidUrl] = useState(true);
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     get(`${endpoints.shopApi}/details/${id}`)
@@ -65,6 +66,8 @@ function EditShop({ history }) {
     };
     console.log(cleanData);
 
+    setIsSending(true);
+
     patch(`${endpoints.shopApi}/details/${id}`, cleanData)
       .then((r) => {
         console.log(r);
@@ -81,73 +84,78 @@ function EditShop({ history }) {
             <h1>EDIT SHOP</h1>
           </div>
           <form onSubmit={onSubmit}>
-            <div className="formFieldGroup">
-              <FormField
-                label="Name"
-                type="text"
-                placeholder="Name"
-                name="name"
-                defaultValue={shop?.name}
-                onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
-              />
-              <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
-            </div>
-            <div className="formFieldGroup">
-              <FormField
-                label="photo"
-                type="url"
-                placeholder="imageUrl"
-                name="imageUrl"
-                defaultValue={shop?.imageUrl}
-                onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
-              />
-              <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
-            </div>
-            <h3>TODO: add on click map location</h3>
-            <div className="formFieldGroup">
-              <RadioBtn
-                label="Body Shop"
-                name="specification"
-                type="radio"
-                value="bodyShop"
-                checked={specification === "bodyShop"}
-                onChange={setSpecification}
-              />
-              <RadioBtn
-                label="Mechanic Shop"
-                name="specification"
-                type="radio"
-                value="mechanicShop"
-                checked={specification === "mechanicShop"}
-                onChange={setSpecification}
-              />
-              <RadioBtn
-                label="Performance Shop"
-                name="specification"
-                type="radio"
-                value="performanceShop"
-                checked={specification === "performanceShop"}
-                onChange={setSpecification}
-              />
-            </div>
-            <div className="formFieldGroup">
-              <h4>Offered services:</h4>
-              {services.length > 0 ? (
-                services.map((s, i) => (
-                  // <div key={i}>
-                  <h4 key={i} onClick={(e) => remHandler(e, s)}>
-                    {s}
-                    <FontAwesomeIcon icon={faTimes} />
-                  </h4>
-                  // </div>
-                ))
-              ) : (
-                <FieldValidCheckMark
-                  text={"Please add your services"}
-                  isValid={services.length > 0}
-                />
+            <FormField
+              label="Name"
+              type="text"
+              placeholder="Name"
+              name="name"
+              defaultValue={shop?.name}
+              onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
+              className={[isValidName === false ? "invalid" : "", isValidName ? "valid" : ""].join(
+                " "
               )}
-              <div>
+            />
+            {isValidName === false ? (
+              <p className="alarm-text">Please input a valid name for your shop</p>
+            ) : (
+              ""
+            )}
+            <FormField
+              label="photo"
+              type="url"
+              placeholder="imageUrl"
+              name="imageUrl"
+              pattern="https?://.+"
+              defaultValue={shop?.imageUrl}
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^https?:\/\/.+$/i))}
+              className={[isValidUrl === false ? "invalid" : "", isValidUrl ? "valid" : ""].join(
+                " "
+              )}
+            />
+            {isValidUrl === false ? <p className="alarm-text">please input a valid url</p> : ""}
+            <RadioBtn
+              label="Body Shop"
+              name="specification"
+              type="radio"
+              value="bodyShop"
+              checked={specification === "bodyShop"}
+              onChange={setSpecification}
+            />
+            <RadioBtn
+              label="Mechanic Shop"
+              name="specification"
+              type="radio"
+              value="mechanicShop"
+              checked={specification === "mechanicShop"}
+              onChange={setSpecification}
+            />
+            <RadioBtn
+              label="Performance Shop"
+              name="specification"
+              type="radio"
+              value="performanceShop"
+              checked={specification === "performanceShop"}
+              onChange={setSpecification}
+            />
+            <div className={`services-list ${services.length <= 0 ? "invalid" : "valid"}`}>
+              {services.length > 0 ? (
+                <>
+                  <h3 className="services-list-heading">Offered services:</h3>
+                  {services.map((s, i) => (
+                    <div key={i} onClick={(e) => remHandler(e, s)} className="service-item">
+                      <p>{s}</p>
+                      <p>
+                        <FontAwesomeIcon icon={faTimes} />
+                      </p>
+                    </div>
+                  ))}
+                </>
+              ) : services.length <= 0 ? (
+                <p className="alarm-text">Please add your services</p>
+              ) : (
+                ""
+              )}
+              <div className={`add-service-controls`}>
                 <FormField
                   label="Service"
                   type="text"
@@ -158,7 +166,11 @@ function EditShop({ history }) {
                 <ClickButton label="Add" onClick={addHandler} />
               </div>
             </div>
-            <ClickButton label="Edit" type="submit" />
+            <ClickButton
+              label="Edit"
+              type="submit"
+              disabled={!(isValidName && isValidUrl && !isSending)}
+            />
           </form>
         </div>
       </div>

@@ -2,9 +2,8 @@ import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-// import "./Create.css";
+import "./Create.css";
 
-import FieldValidCheckMark from "../../UI/FieldValidCheckMark.js";
 import FormField from "../../UI/FormField.js";
 import { validateField } from "../../../utils/validator.js";
 import RadioBtn from "../../UI/RadioBtn.js";
@@ -75,17 +74,27 @@ function CreateShop({ history }) {
               placeholder="Name"
               name="name"
               onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
+              className={[isValidName === false ? "invalid" : "", isValidName ? "valid" : ""].join(
+                " "
+              )}
             />
-            <FieldValidCheckMark isValid={isValidName} text="Please input a name for your shop" />
+            {isValidName === false ? (
+              <p className="alarm-text">Please input a valid name for your shop</p>
+            ) : (
+              ""
+            )}
             <FormField
               label="photo"
               type="url"
               placeholder="imageUrl"
               name="imageUrl"
-              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^.+$/i))}
+              pattern="https?://.+"
+              onInput={(e) => setIsValidUrl(validateField(e.target.value, /^https?:\/\/.+$/i))}
+              className={[isValidUrl === false ? "invalid" : "", isValidUrl ? "valid" : ""].join(
+                " "
+              )}
             />
-            <FieldValidCheckMark isValid={isValidUrl} text="please input a valid url" />
-            <h3>TODO: add on click map location</h3>
+            {isValidUrl === false ? <p className="alarm-text">please input a valid url</p> : ""}
             <RadioBtn
               label="Body Shop"
               name="specification"
@@ -110,31 +119,35 @@ function CreateShop({ history }) {
               checked={specification === "performanceShop"}
               onChange={setSpecification}
             />
-            <h4>Offered services:</h4>
-            {services.length > 0 ? (
-              services.map((s, i) => (
-                // <div key={i}>
-                <h4 key={i} onClick={(e) => remHandler(e, s)}>
-                  {s}
-                  <FontAwesomeIcon icon={faTimes} />
-                </h4>
-                // </div>
-              ))
-            ) : (
-              <FieldValidCheckMark
-                text={"Please add your services"}
-                isValid={services.length > 0}
-              />
-            )}
-            <div>
-              <FormField
-                label="Service"
-                type="text"
-                placeholder="Service"
-                required={false}
-                onKeyPress={addHandler}
-              />
-              <ClickButton label="Add" onClick={addHandler} />
+            <div className={`services-list ${services.length <= 0 ? "invalid" : "valid"}`}>
+              {services.length > 0 ? (
+                <>
+                  <h3 className="services-list-heading">Offered services:</h3>
+                  {services.map((s, i) => (
+                    <div key={i} onClick={(e) => remHandler(e, s)} className="service-item">
+                      <p>{s}</p>
+                      <p>
+                        <FontAwesomeIcon icon={faTimes} />
+                      </p>
+                    </div>
+                  ))}
+                </>
+              ) : services.length <= 0 ? (
+                <p className="alarm-text">Please add your services</p>
+              ) : (
+                ""
+              )}
+
+              <div className={`add-service-controls`}>
+                <FormField
+                  label="Service"
+                  type="text"
+                  placeholder="Service"
+                  required={false}
+                  onKeyPress={addHandler}
+                />
+                <ClickButton label="Add" onClick={addHandler} />
+              </div>
             </div>
             <ClickButton
               label="Create"

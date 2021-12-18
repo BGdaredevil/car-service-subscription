@@ -1,0 +1,82 @@
+.services-list-heading {
+  padding-top: 10px;
+  color: var(--main-D1);
+  text-transform: uppercase;
+  font: inherit;
+  font-size: 1.3rem;
+}
+
+.services-list {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.service-item {
+  color: var(--main-D1);
+}
+
+.add-service-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.add-service-controls button {
+  margin: 0px;
+  flex-basis: 30%;
+}
+
+.add-service-controls input {
+  border-bottom: 3px solid var(--main-D1);
+  width: 100%;
+}
+
+.add-service-controls input:focus {
+  padding-bottom: 7px;
+}
+
+.services-list .inputGroup {
+  width: 100%;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.services-list .invalid {
+  border-radius: 0px;
+}
+
+.services-list .valid {
+  border-radius: 0px;
+}
+
+.services-list .alarm-text {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.service-item {
+  /* background-color: rosybrown; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 10px;
+}
+
+.service-item svg {
+  opacity: 0;
+}
+
+.service-item:hover {
+  background-color: var(--main-D4-L);
+  text-decoration: line-through;
+  color: var(--main-D1-L);
+}
+
+.service-item:hover svg {
+  color: var(--main-D4);
+  opacity: 1;
+}

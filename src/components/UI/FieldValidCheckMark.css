@@ -23,7 +23,7 @@
   border-top-right-radius: 20px;
 }
 .valid {
-  color: var(--main-D2);
+  /* color: var(--main-D2); */
   background-color: var(--main-D2-L);
   font-size: 1.2em;
   border-top-right-radius: 20px;
