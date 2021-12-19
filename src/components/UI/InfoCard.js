@@ -7,13 +7,7 @@ import "./InfoCard.css";
 function InfoCard({ item, isCar }) {
   const detailsLink = isCar ? `/car/${item._id}` : `/shop/${item._id}`;
 
-  const heading = isCar ? (
-    <p>{`${item.make} ${item.model}`}</p>
-  ) : (
-    <p>
-      {item.name} {item.rating?.toFixed(2)}
-    </p>
-  );
+  const heading = isCar ? <p>{`${item.make} ${item.model}`}</p> : <p>{item.name}</p>;
 
   const info = isCar ? (
     <p>Year: {item.year}</p>
@@ -34,7 +28,6 @@ function InfoCard({ item, isCar }) {
         </div>
         <div className="card-body">
           {rating}
-
           <div className="inner">
             {heading}
             {info}
