@@ -5,21 +5,31 @@ import { endpoints } from "../../../config/apiConfig.js";
 import { get } from "../../../services/apiService.js";
 import InfoCard from "../../UI/InfoCard.js";
 
+const shopTypes = {
+  mechanics: "Our best mechanics' workshops:",
+  body: "Need some bodywork fix - These are our best offers:",
+  performance: "Speed or clearance - The best performance engeneers are:",
+};
+
 function ShopsByType() {
   const { type } = useParams();
   const [shops, setShops] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     get(`${endpoints.shopApi}/shops/${type}`)
-      .then((r) => setShops(r))
+      .then((r) => {
+        setShops(r);
+        setIsLoading(false);
+      })
       .catch((e) => console.log(e));
   }, [type]);
 
   return (
-    <section className="view">
+    <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
-        <h1>Shops:</h1>
-        <div className="card">listings</div>
+        <h1>{shopTypes[type]}</h1>
+        <div className="card"></div>
         {shops.length > 0 ? (
           shops.map((s) => <InfoCard key={s._id} item={s} />)
         ) : (

@@ -14,6 +14,7 @@ import "./Details.css";
 function DetailsShop({ history }) {
   const { id } = useParams();
   const [shop, setShop] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const { user } = useContext(AuthContext);
 
@@ -21,6 +22,7 @@ function DetailsShop({ history }) {
     get(`${endpoints.shopApi}/details/${id}`)
       .then((r) => {
         setShop(r);
+        setIsLoading(false);
       })
       .catch((e) => console.log(e));
   }, [id]);
@@ -57,7 +59,7 @@ function DetailsShop({ history }) {
   );
 
   return (
-    <section className="view">
+    <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <div className="details-card">
           <div className="details-header">

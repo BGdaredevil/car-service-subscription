@@ -7,17 +7,19 @@ import InfoCard from "../../UI/InfoCard.js";
 
 function PersonalProfile({ user }) {
   const [userCars, setUserCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     get(`${endpoints.carApi}/${user.uid}`)
       .then((r) => {
         setUserCars(r);
+        setIsLoading(false);
       })
       .catch((e) => alert(e));
   }, [user.uid]);
 
   return (
-    <section className="view">
+    <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <h1>Personal</h1>
         <Link to="/car/create">create car</Link>

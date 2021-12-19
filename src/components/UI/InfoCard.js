@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import Stars from "./StarsRating.js";
+
 import "./InfoCard.css";
 
 function InfoCard({ item, isCar }) {
@@ -19,6 +21,8 @@ function InfoCard({ item, isCar }) {
     <p>Services: {item.offeredServices.registered?.map((x) => x.name).join(", ")}</p>
   );
 
+  const rating = isCar ? "" : <Stars rating={item.rating} />;
+
   return (
     <div className="card-container">
       <div>
@@ -29,6 +33,8 @@ function InfoCard({ item, isCar }) {
           </Link>
         </div>
         <div className="card-body">
+          {rating}
+
           <div className="inner">
             {heading}
             {info}

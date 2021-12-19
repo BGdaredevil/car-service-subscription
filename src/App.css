@@ -25,3 +25,7 @@ body {
   background-attachment: fixed;
   background-image: url("./static/img/screw-4929711_1920.jpg");
 }
+
+.loading {
+  filter: blur(10px);
+}

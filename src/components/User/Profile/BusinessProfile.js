@@ -7,17 +7,19 @@ import InfoCard from "../../UI/InfoCard.js";
 
 function BusinessProfile({ user }) {
   const [userShops, setUserShops] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     get(`${endpoints.shopApi}/${user.uid}`)
       .then((r) => {
         setUserShops(r);
+        setIsLoading(false);
       })
       .catch((e) => alert(e));
   }, [user.uid]);
 
   return (
-    <section className="view">
+    <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <h1>Business</h1>
         <Link to="/shop/create">create shop</Link>

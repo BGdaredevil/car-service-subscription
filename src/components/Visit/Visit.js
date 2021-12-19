@@ -12,6 +12,7 @@ function Visit({ shopId, hide, setShop, service }) {
   const { addMessage } = useContext(MessageContext);
 
   const [userCars, setUserCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     get(`${endpoints.carApi}/${user.uid}`)
@@ -24,6 +25,7 @@ function Visit({ shopId, hide, setShop, service }) {
           return a;
         }, []);
         setUserCars(temp);
+        setIsLoading(false);
       })
       .catch((e) => alert(e));
   }, [user.uid, service.bookings]);
@@ -32,19 +34,20 @@ function Visit({ shopId, hide, setShop, service }) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
     data.shop = shopId;
-
+    setIsLoading(true);
     patch(`${endpoints.serviceApi}/${service._id}`, data)
       .then((r) => {
         console.log(r);
         setShop(r);
         hide(e);
+        setIsLoading(false);
         addMessage("Booked a visit for your vehicle", mType.success);
       })
       .catch((e) => console.log(e));
   };
 
   return userCars.length > 0 ? (
-    <form onSubmit={confirmHandler}>
+    <form onSubmit={confirmHandler} className={`${isLoading ? "loading" : ""}`}>
       <select id="car" name="car">
         {userCars.map((c) => (
           <option key={c._id} value={c._id}>
@@ -56,7 +59,9 @@ function Visit({ shopId, hide, setShop, service }) {
       <ClickButton label="cancel" onClick={hide} />
     </form>
   ) : (
-    <ClickButton label="booked all cars" disabled />
+    <form className={`view ${isLoading ? "loading" : ""}`}>
+      <ClickButton label="booked all cars" disabled className={`${isLoading ? "loading" : ""}`} />
+    </form>
   );
 }
 

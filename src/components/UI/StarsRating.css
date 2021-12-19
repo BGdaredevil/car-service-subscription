@@ -1,0 +1,19 @@
+.star {
+  color: var(--main-warn);
+  display: inline;
+  width: 10px;
+}
+
+.stars {
+  width: 240px;
+  height: 25px;
+  overflow: hidden;
+}
+
+.rating {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px;
+}

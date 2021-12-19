@@ -15,16 +15,19 @@ function DetailsCar({ history }) {
 
   const { id } = useParams();
   const [carData, setCarData] = useState("null");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     get(`${endpoints.carApi}/details/${id}`)
       .then((r) => {
         setCarData(r);
+        setIsLoading(false);
       })
       .catch((e) => alert(e));
     get(`${endpoints.bookingApi}/car/${id}`)
       .then((r) => {
         setCarData((o) => ({ ...o, workHistory: r }));
+        setIsLoading(false);
       })
       .catch((e) => alert(e));
   }, [id]);
@@ -61,7 +64,7 @@ function DetailsCar({ history }) {
   };
 
   return (
-    <section className="view">
+    <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <div className="details-card">
           <div className="details-header">
