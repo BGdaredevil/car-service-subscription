@@ -19,6 +19,8 @@ function ShopsByType() {
   useEffect(() => {
     get(`${endpoints.shopApi}/shops/${type}`)
       .then((r) => {
+        // console.log(r);
+        r.sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name));
         setShops(r);
         setIsLoading(false);
       })
