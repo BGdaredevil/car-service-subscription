@@ -9,17 +9,26 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
     item.service = item.legacyService;
   }
 
+  const [isSending, setIsSending] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
 
   const feedbackHandler = (keyWord) => {
+    setIsSending(true);
     get(`${endpoints.shopApi}/voting/${keyWord}/${item._id}/${item.vendor._id}`)
-      .then((r) => handleFeedback(r))
+      .then((r) => {
+        setIsSending(false);
+        handleFeedback(r);
+      })
       .catch((e) => console.log(e));
   };
 
   const delHandler = () => {
+    setIsSending(true);
     del(`${endpoints.bookingApi}/${item._id}`)
-      .then((r) => cleanRejectedService(r))
+      .then((r) => {
+        setIsSending(false);
+        cleanRejectedService(r);
+      })
       .catch((e) => console.log(e));
   };
 
@@ -51,9 +60,21 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
           ""
         ) : showFeedback ? (
           <div className="feedback">
-            <ClickButton label="like" onClick={() => feedbackHandler("upvote")} />
-            <ClickButton label="dislike" onClick={() => feedbackHandler("downvote")} />
-            <ClickButton label="cancel" onClick={() => setShowFeedback(false)} />
+            <ClickButton
+              disabled={isSending}
+              label="like"
+              onClick={() => feedbackHandler("upvote")}
+            />
+            <ClickButton
+              disabled={isSending}
+              label="dislike"
+              onClick={() => feedbackHandler("downvote")}
+            />
+            <ClickButton
+              disabled={isSending}
+              label="cancel"
+              onClick={() => setShowFeedback(false)}
+            />
           </div>
         ) : (
           <ClickButton label="feedback" onClick={() => setShowFeedback(true)} />

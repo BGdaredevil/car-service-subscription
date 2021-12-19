@@ -1,4 +1,4 @@
-import { useContext, useCallback } from "react";
+import { useState, useContext, useCallback } from "react";
 
 import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
@@ -10,11 +10,14 @@ import FormField from "../../UI/FormField.js";
 function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
   const { addMessage } = useContext(MessageContext);
 
+  const [isSending, setIsSending] = useState(false);
+
   const submitHandler = useCallback(
     (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
 
+      setIsSending(true);
       post(`${endpoints.bookingApi}/accept`, {
         carId: car._id,
         bookingId,
@@ -22,6 +25,7 @@ function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
         odometer: data.odometer,
       })
         .then((r) => {
+          setIsSending(false);
           bookigngModify(r);
           console.log(r);
           addMessage("Accepted booking for ", mType.success);
@@ -29,7 +33,7 @@ function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
         .then(hide)
         .catch((e) => console.log(e));
     },
-    [car._id, hide, bookingId, bookigngModify]
+    [car._id, hide, bookingId, bookigngModify, addMessage]
   );
 
   return (
@@ -50,9 +54,10 @@ function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
           placeholder="Please input your comments here"
         ></textarea>
         <div className="controls">
-          <ClickButton label="confirm" />
+          <ClickButton label="confirm" disabled={isSending} />
           <ClickButton
             label="cancel"
+            disabled={isSending}
             onClick={(e) => {
               e.preventDefault();
               hide();

@@ -4,7 +4,7 @@ import "./Message.css";
 import { MessageContext } from "../../contexts/MessageContext.js";
 
 function Message() {
-  const { message, hideMessage } = useContext(MessageContext);
+  const { message } = useContext(MessageContext);
 
   console.log(message);
 

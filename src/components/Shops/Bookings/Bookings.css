@@ -35,7 +35,16 @@
 
 .accept-dialog textarea {
   box-sizing: border-box;
+  background-color: transparent;
   width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border-bottom: 2px solid var(--main-D1);
+  resize: vertical;
+  min-height: 40px;
+}
+.accept-dialog textarea::placeholder {
+  color: var(--main-D1);
 }
 
 .bookedCar > button {

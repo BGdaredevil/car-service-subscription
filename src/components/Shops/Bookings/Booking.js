@@ -19,7 +19,7 @@ function Booking({ car, bookigngModify, bookingId }) {
         addMessage("Canceled booking for", mType.success);
       })
       .catch((e) => console.log(e));
-  }, [bookigngModify, car._id, bookingId]);
+  }, [bookigngModify, car._id, bookingId, addMessage]);
 
   return (
     <div className="bookedCar">

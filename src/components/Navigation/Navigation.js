@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHorse, faSleigh } from "@fortawesome/free-solid-svg-icons";
+import { faSleigh } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthContext } from "../../contexts/AuthContext.js";
 
