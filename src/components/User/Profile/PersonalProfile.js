@@ -19,23 +19,23 @@ function PersonalProfile({ user }) {
   }, [user.uid]);
 
   return (
-    <section className={`view ${isLoading ? "loading" : ""}`}>
-      <div className="container">
-        <h1>Personal</h1>
-        <Link to="/car/create">create car</Link>
-        <section>
-          {userCars.length === 0 ? (
-            <h3>No cars yet</h3>
-          ) : (
-            <div className="cards-container">
-              {userCars.map((c) => (
-                <InfoCard key={c._id} item={c} isCar={true} />
-              ))}
-            </div>
-          )}
-        </section>
-      </div>
-    </section>
+    // <section className={`${isLoading ? "loading" : ""}`}>
+    <div className={`container ${isLoading ? "loading" : ""}`}>
+      <h1>Personal</h1>
+      <Link to="/car/create">create car</Link>
+      <section>
+        {userCars.length === 0 ? (
+          <h3>No cars yet</h3>
+        ) : (
+          <div className="cards-container">
+            {userCars.map((c) => (
+              <InfoCard key={c._id} item={c} isCar={true} />
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
+    // </section>
   );
 }
 

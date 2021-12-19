@@ -20,3 +20,44 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.userCardContainer {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.innerContainer {
+  margin: 0 auto;
+  padding: 30px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  max-width: 60%;
+  gap: 30px;
+  border-radius: 20px;
+  background-color: var(--main-t20);
+  box-shadow: 0px 0px 20px 20px var(--main-t20);
+  color: var(--main-D1);
+  line-height: 2.6rem;
+}
+
+.avatar {
+  text-align: center;
+  color: var(--main-D1);
+}
+
+/* .userDetails a {
+  margin-top: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  background-color: var(--main-D1);
+  border-radius: 5px;
+  color: var(--main-w);
+  width: 100%;
+  text-transform: uppercase;
+} */
