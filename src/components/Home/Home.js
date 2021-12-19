@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 import ClickButton from "../UI/ClickButton.js";
+import Search from "./Search.js";
 
 function Home() {
+  const [searchMode, setSearchMode] = useState(false);
+
   return (
     <section className="view">
       <div className="container">
@@ -25,9 +29,14 @@ function Home() {
                 inventore repudiandae culpa nisi totam perspiciatis, vitae, quibusdam necessitatibus
                 maiores vero iste unde ex asperiores distinctio tempora ipsam consequuntur.
               </p>
-              <Link to="/service/search">
-                <ClickButton label="Book a Visit" />
-              </Link>
+              {/* <Link to="/service/search"> */}
+
+              {searchMode ? (
+                <Search />
+              ) : (
+                <ClickButton label="Book a Visit" onClick={() => setSearchMode(true)} />
+              )}
+              {/* </Link> */}
             </div>
           </div>
         </div>

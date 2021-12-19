@@ -1,0 +1,24 @@
+.no-page {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  text-align: center;
+  margin-top: 4%;
+}
+
+.e404 {
+  height: 550px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 20px var(--main-t40);
+  object-fit: cover;
+}
+
+.no-page h1 {
+  margin: 8%;
+  padding: 1%;
+  font-size: 2rem;
+  color: var(--main-D1);
+  background-color: var(--main-t40);
+  box-shadow: 0px 0px 20px 20px var(--main-t40);
+  border-radius: 30px;
+}

@@ -19,6 +19,7 @@ import EditShop from "./components/Shops/Edit/Edit.js";
 import ShopsByType from "./components/Shops/ByType/ShopsByType.js";
 import MessageContextProvider from "./contexts/MessageContext.js";
 import Message from "./components/Message/Message.js";
+import Error404 from "./components/Error404/Error404.js";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
             <Route exact path="/user/login" component={Login} />
             <Route exact path="/user/register" component={Register} />
             <RouteGuard exact path="/user/logout" component={() => <Redirect to="/user/login" />} />
-            {/* <Route path="*" component={Error404} /> */}
+            <Route path="*" component={Error404} />
           </Switch>
           <Footer />
         </MessageContextProvider>
