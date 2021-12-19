@@ -18,14 +18,15 @@ import DetailsShop from "./components/Shops/Details/Details.js";
 import EditShop from "./components/Shops/Edit/Edit.js";
 import ShopsByType from "./components/Shops/ByType/ShopsByType.js";
 import MessageContextProvider from "./contexts/MessageContext.js";
+import Message from "./components/Message/Message.js";
 
 function App() {
   return (
     <div className="App">
-      <MessageContextProvider>
-        <AuthContextProvider>
-          {/* <ErrorComp /> */}
+      <AuthContextProvider>
+        <MessageContextProvider>
           <Navigation />
+          <Message />
           <Switch>
             <Route exact path="/" component={Home} />
             <RouteGuard exact path="/user/profile" component={Profile} />
@@ -42,8 +43,8 @@ function App() {
             {/* <Route path="*" component={Error404} /> */}
           </Switch>
           <Footer />
-        </AuthContextProvider>
-      </MessageContextProvider>
+        </MessageContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }

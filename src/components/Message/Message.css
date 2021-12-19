@@ -1,0 +1,60 @@
+.message-container {
+  position: fixed;
+  width: 300px;
+  top: 60px;
+  right: 1.5em;
+  z-index: 1;
+}
+
+.message-card {
+  margin-top: 20px;
+  width: 100%;
+  color: white;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.message-text {
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.error-m {
+  background-color: var(--main-D4-L60);
+  /* background-color: var(--main-D4); */
+}
+.error-m-card {
+  box-shadow: 0px 0px 5px 5px var(--main-D4-L60);
+  /* box-shadow: 0px 0px 5px 5px var(--main-D4); */
+}
+
+.success-m {
+  background-color: var(--main-D2-L50);
+  /* background-color: var(--main-D2); */
+}
+
+.success-m-card {
+  box-shadow: 0px 0px 5px 5px var(--main-D2-L50);
+  /* box-shadow: 0px 0px 5px 5px var(--main-D2); */
+}
+
+.info-m {
+  background-color: var(--main-w-L60);
+  /* background-color: var(--main-w); */
+  color: var(--main-D1);
+}
+.info-m-card {
+  box-shadow: 0px 0px 5px 5px var(--main-w-L60);
+  /* box-shadow: 0px 0px 5px 5px var(--main-w); */
+}
+
+.warn-m {
+  background-color: var(--main-warn-L60);
+  /* background-color: var(--main-warn); */
+  color: var(--main-D1);
+}
+.warn-m-card {
+  box-shadow: 0px 0px 5px 5px var(--main-warn-L60);
+  /* box-shadow: 0px 0px 5px 5px var(--main-warn); */
+}

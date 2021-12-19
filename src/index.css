@@ -9,13 +9,18 @@
   --main-t20: rgba(255, 255, 255, 0.3);
   --main-t40: rgba(255, 255, 255, 0.4);
   --main-w: #f5deb3;
+  --main-w-L60: rgba(245, 222, 179, 0.6);
+  --main-warn: rgba(252, 194, 0, 1);
+  --main-warn-L60: rgba(252, 194, 0, 0.6);
   --main-D1: #230c0f;
   --main-D1-L: #3b2d2b;
   --main-D2: #226f54;
   --main-D2-L: rgba(34, 111, 84, 0.3);
+  --main-D2-L50: rgba(34, 111, 84, 0.5);
   --main-D3: #084887;
   --main-D4: #d00000;
   --main-D4-L: rgba(208, 0, 0, 0.2);
+  --main-D4-L60: rgba(208, 0, 0, 0.6);
   --main-D5: #084887;
   --main-D6: #3d2f00;
 }

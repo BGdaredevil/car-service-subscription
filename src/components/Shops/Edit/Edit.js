@@ -12,10 +12,13 @@ import { get, patch } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import { validateField } from "../../../utils/validator.js";
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
 function EditShop({ history }) {
   const { id } = useParams();
+
   const { user } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
 
   const [shop, setShop] = useState();
   const [isValidName, setIsValidName] = useState(true);
@@ -27,7 +30,7 @@ function EditShop({ history }) {
   useEffect(() => {
     get(`${endpoints.shopApi}/details/${id}`)
       .then((r) => {
-        console.log(r);
+        // console.log(r);
         setShop(r);
         setSpecification(r.specification);
         setServices(r.offeredServices.notRegistered || []);
@@ -39,10 +42,14 @@ function EditShop({ history }) {
     e.preventDefault();
     const tt = e.target.parentElement.querySelector("input").value.trim();
     if (tt.length === 0) {
+      addMessage("Please add a service", mType.warn);
       return;
     }
 
     setServices((old) => {
+      if (old.includes(tt)) {
+        addMessage("This service is already added", mType.warn);
+      }
       let t = old.filter((e) => e !== tt);
       return [...t, tt];
     });
@@ -51,7 +58,11 @@ function EditShop({ history }) {
 
   const remHandler = (e, item) => {
     e.preventDefault();
-    setServices((old) => old.filter((s) => s !== item));
+    setServices((old) => {
+      let temp = old.filter((s) => s !== item);
+      addMessage("Removed", mType.info);
+      return temp;
+    });
   };
 
   const onSubmit = (e) => {
@@ -71,6 +82,7 @@ function EditShop({ history }) {
     patch(`${endpoints.shopApi}/details/${id}`, cleanData)
       .then((r) => {
         console.log(r);
+        addMessage(`${r.name} sucessfuly updated`, mType.success);
         history.push(`/shop/${id}`);
       })
       .catch((e) => console.log(e));

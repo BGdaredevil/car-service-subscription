@@ -9,11 +9,13 @@ import { validateField } from "../../../utils/validator.js";
 import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 import { post } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
 
 function CreateShop({ history }) {
   const { user } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
 
   const [isValidName, setIsValidName] = useState(undefined);
   const [specification, setSpecification] = useState("bodyShop");
@@ -25,10 +27,14 @@ function CreateShop({ history }) {
     e.preventDefault();
     const tt = e.target.parentElement.querySelector("input").value.trim();
     if (tt.length === 0) {
+      addMessage("Please add a service", mType.warn);
       return;
     }
 
     setServices((old) => {
+      if (old.includes(tt)) {
+        addMessage("This service is already added", mType.warn);
+      }
       let t = old.filter((e) => e !== tt);
       return [...t, tt];
     });
@@ -37,7 +43,11 @@ function CreateShop({ history }) {
 
   const remHandler = (e, item) => {
     e.preventDefault();
-    setServices((old) => old.filter((s) => s !== item));
+    setServices((old) => {
+      let temp = old.filter((s) => s !== item);
+      addMessage("Removed", mType.info);
+      return temp;
+    });
   };
 
   const onSubmit = (e) => {
@@ -55,6 +65,7 @@ function CreateShop({ history }) {
     post(`${endpoints.shopApi}`, cleanData)
       .then((r) => {
         history.push("/user/profile");
+        addMessage(`${r.name} sucessfuly created`, mType.success);
         setIsSending(false);
       })
       .catch((e) => console.log(e));

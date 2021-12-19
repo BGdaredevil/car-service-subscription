@@ -15,8 +15,10 @@ function Profile() {
       <div className="controls">
         {user.accountType === "business" ? (
           <BusinessProfile user={user} />
-        ) : (
+        ) : user.accountType === "persolnal" ? (
           <PersonalProfile user={user} />
+        ) : (
+          ""
         )}
       </div>
     </section>

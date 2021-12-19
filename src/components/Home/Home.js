@@ -8,7 +8,7 @@ function Home() {
       <div className="container">
         <div className="ad">
           <div className="left">
-            <h1> Ned some work to be done ?</h1>
+            <h1> Need some work to be done ?</h1>
             <ClickButton label="we offer the best options" />
           </div>
           <div className="right">
