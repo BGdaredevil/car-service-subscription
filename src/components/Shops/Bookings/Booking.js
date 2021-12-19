@@ -1,4 +1,6 @@
-import { useState, useCallback } from "react";
+import { useContext, useState, useCallback } from "react";
+
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
 import { post } from "../../../services/apiService.js";
 import { endpoints } from "../../../config/apiConfig.js";
@@ -8,9 +10,14 @@ import AcceptDialog from "./AcceptDialog.js";
 function Booking({ car, bookigngModify, bookingId }) {
   const [dialog, setDialog] = useState(false);
 
+  const { addMessage } = useContext(MessageContext);
+
   const handleReject = useCallback(() => {
     post(`${endpoints.bookingApi}/reject`, { carId: car._id, bookingId })
-      .then((r) => bookigngModify(r))
+      .then((r) => {
+        bookigngModify(r);
+        addMessage("Canceled booking for", mType.success);
+      })
       .catch((e) => console.log(e));
   }, [bookigngModify, car._id, bookingId]);
 

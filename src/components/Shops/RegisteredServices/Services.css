@@ -51,6 +51,12 @@
   grid-column: 3;
 }
 
+.service form:last-of-type {
+  margin: 0;
+  padding: 0;
+  grid-column: 3;
+}
+
 .register {
   display: flex;
   flex-direction: row;

@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
 import { endpoints } from "../../../config/apiConfig.js";
 import { del, get } from "../../../services/apiService.js";
@@ -9,6 +11,8 @@ import HistoryList from "../History/HistoryList.js";
 import "./Details.css";
 
 function DetailsCar({ history }) {
+  const { addMessage } = useContext(MessageContext);
+
   const { id } = useParams();
   const [carData, setCarData] = useState("null");
 
@@ -35,17 +39,25 @@ function DetailsCar({ history }) {
   };
 
   const cleanRejectedService = (booking) => {
-    setCarData((car) => ({
-      ...car,
-      workHistory: car.workHistory.filter((b) => b._id !== booking._id),
-    }));
+    setCarData((car) => {
+      const updatedCar = {
+        ...car,
+        workHistory: car.workHistory.filter((b) => b._id !== booking._id),
+      };
+      addMessage("Removed", mType.info);
+      return updatedCar;
+    });
   };
 
   const handleFeedback = (booking) => {
-    setCarData((car) => ({
-      ...car,
-      workHistory: car.workHistory.map((b) => (b._id === booking._id ? booking : b)),
-    }));
+    setCarData((car) => {
+      const updatedCar = {
+        ...car,
+        workHistory: car.workHistory.map((b) => (b._id === booking._id ? booking : b)),
+      };
+      addMessage("Feedback is sent", mType.info);
+      return updatedCar;
+    });
   };
 
   return (

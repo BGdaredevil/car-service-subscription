@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
 import { endpoints } from "../../../config/apiConfig.js";
 import { get, patch } from "../../../services/apiService.js";
@@ -10,6 +13,8 @@ import FormField from "../../UI/FormField.js";
 // import "./Edit.css";
 
 function EditCar({ history }) {
+  const { addMessage } = useContext(MessageContext);
+
   const { id } = useParams();
   const [car, setCar] = useState({});
 
@@ -41,11 +46,11 @@ function EditCar({ history }) {
       imageUrl: data.imageUrl.trim(),
     };
 
-    // console.log(cleanData);
     setIsSending(true);
     patch(`${endpoints.carApi}/details/${car._id}`, cleanData)
       .then((r) => {
         history.push(`/car/${car._id}`);
+        addMessage(`Updated your ${r.make} ${r.model}`, mType.success);
         setIsSending(false);
       })
       .catch((e) => console.log(e));

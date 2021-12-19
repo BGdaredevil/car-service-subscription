@@ -1,4 +1,6 @@
-import { useCallback } from "react";
+import { useContext, useCallback } from "react";
+
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
 
 import { endpoints } from "../../../config/apiConfig.js";
 import { post } from "../../../services/apiService.js";
@@ -6,6 +8,8 @@ import ClickButton from "../../UI/ClickButton.js";
 import FormField from "../../UI/FormField.js";
 
 function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
+  const { addMessage } = useContext(MessageContext);
+
   const submitHandler = useCallback(
     (e) => {
       e.preventDefault();
@@ -17,7 +21,11 @@ function AcceptDialog({ hide, car, bookigngModify, bookingId }) {
         comment: data.comments,
         odometer: data.odometer,
       })
-        .then((r) => bookigngModify(r))
+        .then((r) => {
+          bookigngModify(r);
+          console.log(r);
+          addMessage("Accepted booking for ", mType.success);
+        })
         .then(hide)
         .catch((e) => console.log(e));
     },

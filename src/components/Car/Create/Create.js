@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { Redirect } from "react-router";
 
-import { endpoints } from "../../../config/apiConfig.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
+import { MessageContext, mType } from "../../../contexts/MessageContext.js";
+
+import { endpoints } from "../../../config/apiConfig.js";
 import { post } from "../../../services/apiService.js";
 import { validateField } from "../../../utils/validator.js";
 import ClickButton from "../../UI/ClickButton.js";
@@ -12,6 +14,7 @@ import "./Create.css";
 
 function CreateCar({ history }) {
   const { user } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
 
   const [isValidMake, setIsValidMake] = useState(undefined);
   const [isValidModel, setIsValidModel] = useState(undefined);
@@ -33,11 +36,12 @@ function CreateCar({ history }) {
       imageUrl: data.imageUrl.trim(),
       owner,
     };
-    console.log("submited", cleanData);
+    // console.log("submited", cleanData);
     setIsSending(true);
     post(endpoints.carApi, cleanData)
       .then((r) => {
         history.push("/user/profile");
+        addMessage(`Updated your ${r.make} ${r.model}`, mType.success);
         setIsSending(false);
       })
       .catch((e) => alert(e));

@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 
+import { MessageContext, mType } from "../../contexts/MessageContext.js";
+
 import { endpoints } from "../../config/apiConfig.js";
 import { AuthContext } from "../../contexts/AuthContext.js";
 import { get, patch } from "../../services/apiService.js";
@@ -7,6 +9,8 @@ import ClickButton from "../UI/ClickButton.js";
 
 function Visit({ shopId, hide, setShop, service }) {
   const { user } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
+
   const [userCars, setUserCars] = useState([]);
 
   useEffect(() => {
@@ -34,6 +38,7 @@ function Visit({ shopId, hide, setShop, service }) {
         console.log(r);
         setShop(r);
         hide(e);
+        addMessage("Booked a visit for your vehicle", mType.success);
       })
       .catch((e) => console.log(e));
   };
