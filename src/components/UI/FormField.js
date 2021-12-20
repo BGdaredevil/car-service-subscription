@@ -13,6 +13,7 @@ function FormField({
   readonly,
   className,
   pattern,
+  autoFocus,
 }) {
   return (
     <div className={["inputGroup", className].join(" ")}>
@@ -30,6 +31,7 @@ function FormField({
         required={required && true}
         readOnly={readonly}
         pattern={pattern}
+        autoFocus={autoFocus}
       />
       <label className="inputLabel" htmlFor={id}>
         {label}

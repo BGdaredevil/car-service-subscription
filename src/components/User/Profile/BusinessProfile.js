@@ -19,23 +19,23 @@ function BusinessProfile({ user }) {
   }, [user.uid]);
 
   return (
-    <section className={`view ${isLoading ? "loading" : ""}`}>
-      <div className="container">
-        <h1>Business</h1>
-        <Link to="/shop/create">create shop</Link>
-        <section>
-          {userShops.length === 0 ? (
-            <h3>No shops yet</h3>
-          ) : (
-            <div className="cards-container">
-              {userShops.map((c) => (
-                <InfoCard key={c._id} item={c} />
-              ))}
-            </div>
-          )}
-        </section>
-      </div>
-    </section>
+    // <section className={`view ${isLoading ? "loading" : ""}`}>
+    <div className={`container ${isLoading ? "loading" : ""}`}>
+      <h1>Business</h1>
+      <Link to="/shop/create">create shop</Link>
+      <section>
+        {userShops.length === 0 ? (
+          <h3>No shops yet</h3>
+        ) : (
+          <div className="cards-container">
+            {userShops.map((c) => (
+              <InfoCard key={c._id} item={c} />
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
+    // </section>
   );
 }
 
