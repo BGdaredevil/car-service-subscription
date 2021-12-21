@@ -31,6 +31,7 @@ function PersonalProfile({ user }) {
             {userCars.map((c) => (
               <InfoCard key={c._id} item={c} isCar={true} />
             ))}
+            <InfoCard key={42} item={null} isDemo={true} />
           </div>
         )}
       </section>

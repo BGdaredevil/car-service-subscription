@@ -9,15 +9,29 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 function InfoCard({ item, isCar, isDemo }) {
   if (item === null && isDemo) {
     return isCar ? (
-      <Link to="/car/create" className="">
-        <FontAwesomeIcon icon={faPlus} size="10x" className="" />
-        <p>Create car</p>
-      </Link>
+      <div className="card-image">
+        <FontAwesomeIcon
+          icon={faPlus}
+          size="10x"
+          className="shown"
+          style={{ padding: "30px", width: "100%" }}
+        />
+        <Link to="/car/create" className="hidden">
+          <p>Create car</p>
+        </Link>
+      </div>
     ) : (
-      <Link to="/shop/create" className="">
-        <FontAwesomeIcon icon={faPlus} size="10x" className="" />
-        <p>Create Shop</p>
-      </Link>
+      <div className="card-image">
+        <FontAwesomeIcon
+          icon={faPlus}
+          size="10x"
+          className="shown"
+          style={{ padding: "30px", width: "100%" }}
+        />
+        <Link to="/shop/create" className="hidden">
+          <p>Create Shop</p>
+        </Link>
+      </div>
     );
   }
 

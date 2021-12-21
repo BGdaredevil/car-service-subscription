@@ -31,12 +31,13 @@ function ShopsByType() {
     <section className={`view ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <h1>{shopTypes[type]}</h1>
-        <div className="card"></div>
-        {shops.length > 0 ? (
-          shops.map((s) => <InfoCard key={s._id} item={s} />)
-        ) : (
-          <div>No such here</div>
-        )}
+        <div className="cards-container">
+          {shops.length > 0 ? (
+            shops.map((s) => <InfoCard key={s._id} item={s} />)
+          ) : (
+            <div>No such here</div>
+          )}
+        </div>
       </div>
     </section>
   );
