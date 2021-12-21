@@ -6,6 +6,8 @@ import ClickButton from "../UI/ClickButton.js";
 import InfoCard from "../UI/InfoCard.js";
 import Search from "./Search.js";
 
+import "./Home.css";
+
 function Home() {
   const [searchMode, setSearchMode] = useState(false);
   const [bestShops, setBestShops] = useState([]); //initilally best shops -- afeter -- whatever the client searches for
@@ -37,47 +39,40 @@ function Home() {
       .catch((e) => console.log(e));
   };
 
+  const hide = () => setSearchMode(false);
+
   return (
     <section className="view">
       <div className="container">
         <div className="ad">
-          <div className="left">
-            <h1> Need some work to be done ?</h1>
-            <ClickButton label="we offer the best options" />
-          </div>
-          <div className="right">
-            <h1>Looking for good business?</h1>
-            <ClickButton label="We can hook you up with clients" />
-          </div>
-        </div>
-        <div className="best-shops">
-          <div className="card">
-            <div className="">
-              <h1 className="Heading">Heading</h1>
-              <p className="description">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, quis laborum
-                inventore repudiandae culpa nisi totam perspiciatis, vitae, quibusdam necessitatibus
-                maiores vero iste unde ex asperiores distinctio tempora ipsam consequuntur.
-              </p>
-            </div>
-          </div>
-        </div>
-        {searchMode ? (
-          <Search onSubmit={onSubmit} />
-        ) : (
-          <ClickButton label="Book a Visit" onClick={() => setSearchMode(true)} />
-        )}
-        <section>
-          {bestShops.length === 0 ? (
-            <h3>No shops yet</h3>
+          <h1>Need some service to be done?</h1>
+          <h3>Look no further as our best profesionals are one click away!</h3>
+          {searchMode ? (
+            <Search onSubmit={onSubmit} hide={hide} />
           ) : (
-            <div className="cards-container">
-              {bestShops.map((c) => (
-                <InfoCard key={c._id} item={c} />
-              ))}
+            <div className="search">
+              <ClickButton label="Book a Visit" onClick={() => setSearchMode(true)} />
             </div>
           )}
-        </section>
+          {bestShops.length === 0 ? (
+            <h1>No shops yet</h1>
+          ) : (
+            <h1>Our clients recomend the folowing businesses:</h1>
+          )}
+        </div>
+        <div className="best-shops">
+          <section className="homeCarusell">
+            {bestShops.length === 0 ? (
+              <h1>No shops yet</h1>
+            ) : (
+              <div className="cards-container">
+                {bestShops.map((c) => (
+                  <InfoCard key={c._id} item={c} />
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </section>
   );

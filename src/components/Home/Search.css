@@ -1,0 +1,38 @@
+.search form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search form button {
+  border-bottom-width: 3px;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  align-self: flex-end;
+  flex-basis: 10%;
+}
+.search form input {
+  border-bottom-width: 3px;
+}
+
+.search form input:focus {
+  padding-bottom: 7px;
+}
+
+.search .inputGroup {
+  flex-basis: 90%;
+  margin-top: 0;
+}
+
+.search > button {
+  padding: 0;
+  margin: 0;
+  border-bottom-width: 3px;
+}
+
+.search {
+  height: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

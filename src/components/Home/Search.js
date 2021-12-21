@@ -1,7 +1,12 @@
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ClickButton from "../UI/ClickButton.js";
 import FormField from "../UI/FormField.js";
 
-function Search({ onSubmit }) {
+import "./Search.css";
+
+function Search({ onSubmit, hide }) {
   return (
     <div className="search">
       <form onSubmit={onSubmit}>
@@ -12,7 +17,16 @@ function Search({ onSubmit }) {
           name="service"
           autoFocus={true}
         />
-        <ClickButton label="search" />
+        <ClickButton
+          label={<FontAwesomeIcon icon={faSearch} size="lg" className="profile-icon" />}
+        />
+        <ClickButton
+          label={<FontAwesomeIcon icon={faTimes} size="lg" className="profile-icon" />}
+          onClick={(e) => {
+            e.preventDefault();
+            hide();
+          }}
+        />
       </form>
     </div>
   );

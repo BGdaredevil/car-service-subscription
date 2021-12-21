@@ -54,7 +54,8 @@ function HistoryItem({ item, state, cleanRejectedService, handleFeedback }) {
       <div className="history-item">
         <h4>
           Did {`${item.service.name}`} at {`${item.vendor.name}`} for {`${item.service.price}`} USD
-          at {`${item.odometer}`} km on the odometer
+          at {`${item.odometer}`} km on the odometer. <br />
+          Comment: {item.comment}
         </h4>
         {item.feedback ? (
           ""

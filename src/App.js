@@ -35,7 +35,7 @@ function App() {
             <RouteGuard exact path="/car/edit/:id" component={EditCar} />
             <RouteGuard exact path="/car/:id" component={DetailsCar} />
             <RouteGuard exact path="/shop/create" component={CreateShop} />
-            <RouteGuard exact path="/shop/:id" component={DetailsShop} />
+            <Route exact path="/shop/:id" component={DetailsShop} />
             <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
             <RouteGuard exact path="/shops/:type" component={ShopsByType} />
             <Route exact path="/user/login" component={Login} />
