@@ -23,6 +23,11 @@ function CreateShop({ history }) {
   const [isValidUrl, setIsValidUrl] = useState(undefined);
   const [isSending, setIsSending] = useState(false);
 
+  if (user.accountType === "personal") {
+    history.push("/car/create");
+    return null;
+  }
+
   const addHandler = (e) => {
     e.preventDefault();
     const tt = e.target.parentElement.querySelector("input").value.trim();
@@ -31,23 +36,19 @@ function CreateShop({ history }) {
       return;
     }
 
-    setServices((old) => {
-      if (old.includes(tt)) {
-        addMessage("This service is already added", mType.warn);
-      }
-      let t = old.filter((e) => e !== tt);
-      return [...t, tt];
-    });
+    if (services.includes(tt)) {
+      addMessage("This service is already added", mType.warn);
+      return;
+    }
+
+    setServices((old) => [...old, tt]);
     e.target.parentElement.querySelector("input").value = "";
   };
 
   const remHandler = (e, item) => {
     e.preventDefault();
-    setServices((old) => {
-      let temp = old.filter((s) => s !== item);
-      addMessage("Removed", mType.info);
-      return temp;
-    });
+    addMessage("Removed", mType.info);
+    setServices((old) => [...old.filter((s) => s !== item)]);
   };
 
   const onSubmit = (e) => {
@@ -60,12 +61,14 @@ function CreateShop({ history }) {
       imageUrl: data.imageUrl.trim(),
       owner: user.uid,
     };
-    console.log(cleanData);
+    // console.log(cleanData);
+
     setIsSending(true);
+
     post(`${endpoints.shopApi}`, cleanData)
       .then((r) => {
-        history.push("/user/profile");
         addMessage(`${r.name} sucessfuly created`, mType.success);
+        history.push("/user/profile");
         setIsSending(false);
       })
       .catch((e) => console.log(e));
@@ -84,7 +87,7 @@ function CreateShop({ history }) {
               type="text"
               placeholder="Name"
               name="name"
-              onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9]+$/i))}
+              onInput={(e) => setIsValidName(validateField(e.target.value, /^[a-z0-9 ]+$/i))}
               className={[isValidName === false ? "invalid" : "", isValidName ? "valid" : ""].join(
                 " "
               )}

@@ -4,9 +4,11 @@ import FormField from "../../UI/FormField.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
+import { MessageContext } from "../../../contexts/MessageContext.js";
 
 function Login({ history }) {
   const { isAuth, login } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
 
   const [isValidEmail, setValidEmail] = useState(undefined);
   const [isValidPassword, setValidPassword] = useState(undefined);
@@ -26,7 +28,17 @@ function Login({ history }) {
         setIsSending(false);
         history.push("/");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        setIsSending(false);
+        if (err.message.includes("auth/user-not-found")) {
+          addMessage("Email or password is wrong");
+          return;
+        } else if (err.message.includes("auth/wrong-password")) {
+          addMessage("Email or password is wrong");
+          return;
+        }
+        history.push("/404");
+      });
   };
 
   if (isAuth) {

@@ -71,13 +71,13 @@ function EditShop({ history }) {
       imageUrl: data.imageUrl.trim(),
       owner: user.uid,
     };
-    console.log(cleanData);
+    // console.log(cleanData);
 
     setIsSending(true);
 
     patch(`${endpoints.shopApi}/details/${id}`, cleanData)
       .then((r) => {
-        console.log(r);
+        // console.log(r);
         addMessage(`${r.name} sucessfuly updated`, mType.success);
         history.push(`/shop/${id}`);
       })

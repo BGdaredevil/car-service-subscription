@@ -79,7 +79,7 @@ function Service({ item, shopId, setShop, isRegistered, isOwner, isPersonal }) {
   );
   const visitorVIew = (
     <div className="service">
-      <div>
+      <div style={isPersonal ? { gridColumn: "1/span 2" } : { gridColumn: "1/span 3" }}>
         <h3>
           {item.name}: {item.price} USD
         </h3>

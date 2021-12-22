@@ -11,6 +11,9 @@ import "./Profile.css";
 function Profile() {
   const { user } = useContext(AuthContext);
 
+  // console.log(user.accountType);
+  // console.log(user.accountType === "business");
+  // console.log(user.accountType === "personal");
   return (
     <section className="profile view">
       <div className="userCardContainer">

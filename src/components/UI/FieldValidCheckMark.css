@@ -1,11 +1,11 @@
 .invalid {
   color: var(--main-D4);
-  background-color: var(--main-D4-L);
+  background-color: var(--main-D4-L) !important;
   font-size: 1.2em;
   border-top-right-radius: 20px;
 }
 .valid {
-  background-color: var(--main-D2-L);
+  background-color: var(--main-D2-L) !important;
   font-size: 1.2em;
   border-top-right-radius: 20px;
 }

@@ -24,7 +24,7 @@ function PersonalProfile({ user }) {
           <>
             <h3 className="no-shops">No cars yet. Try adding some :)</h3>
             <div className="cards-container">
-              <InfoCard key={42} item={null} isDemo={true} />
+              <InfoCard key={42} item={null} isCar={true} isDemo={true} />
             </div>
           </>
         ) : (
@@ -32,7 +32,7 @@ function PersonalProfile({ user }) {
             {userCars.map((c) => (
               <InfoCard key={c._id} item={c} isCar={true} />
             ))}
-            <InfoCard key={42} item={null} isDemo={true} />
+            <InfoCard key={42} item={null} isCar={true} isDemo={true} />
           </div>
         )}
       </section>

@@ -64,11 +64,16 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
               name="price"
               onInput={(e) => setValidPrice(validateField(e.target.value, /^[0-9]+$/i))}
               defaultValue={isEditMode ? item.price : ""}
+              className={[
+                isValidPrice === false ? "invalid" : "",
+                isValidPrice ? "valid" : "",
+              ].join(" ")}
             />
-            <FieldValidCheckMark
-              isValid={isValidPrice}
-              text="Please input a price for your service"
-            />
+            {isValidPrice === false ? (
+              <p className="alarm-text">Please input a price for your service</p>
+            ) : (
+              ""
+            )}
           </div>
           <div className="">
             <textarea
@@ -79,11 +84,21 @@ function RegisterService({ name, item, shopId, setShop, close, isEditMode }) {
               placeholder="Please describe your service"
               onInput={(e) => setValidDescriptopn(validateField(e.target.value, /.+/i))}
               defaultValue={isEditMode ? item.description : ""}
+              // style={{ backgroundColor: "red" }}
+              className={[
+                isValidDescription === false ? "invalid" : "",
+                isValidDescription ? "valid" : "",
+              ].join(" ")}
             ></textarea>
-            <FieldValidCheckMark
+            {isValidDescription === false ? (
+              <p className="alarm-text">Please input a description for your service</p>
+            ) : (
+              ""
+            )}
+            {/* <FieldValidCheckMark
               isValid={isValidDescription}
               text="Please input a description for your service"
-            />
+            /> */}
           </div>
           <ClickButton label="confirm" type="submit" />
         </form>

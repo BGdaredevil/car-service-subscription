@@ -25,6 +25,11 @@ function CreateCar({ history }) {
 
   const owner = user.uid;
 
+  if (user.accountType === "business") {
+    history.push("/shop/create");
+    return null;
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
@@ -64,7 +69,7 @@ function CreateCar({ history }) {
               type="text"
               placeholder="Make"
               name="make"
-              onInput={(e) => setIsValidMake(validateField(e.target.value, /^[a-z]+$/i))}
+              onInput={(e) => setIsValidMake(validateField(e.target.value, /^[a-z ]+$/i))}
               className={[isValidMake === false ? "invalid" : "", isValidMake ? "valid" : ""].join(
                 " "
               )}
@@ -75,7 +80,7 @@ function CreateCar({ history }) {
               type="text"
               placeholder="Model"
               name="model"
-              onInput={(e) => setIsValidModel(validateField(e.target.value, /^[a-z0-9]+$/i))}
+              onInput={(e) => setIsValidModel(validateField(e.target.value, /^[a-z0-9 ]+$/i))}
               className={[
                 isValidModel === false ? "invalid" : "",
                 isValidModel ? "valid" : "",

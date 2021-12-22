@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function InfoCard({ item, isCar, isDemo }) {
+  // console.log(item, isCar, isDemo);
+
   if (item === null && isDemo) {
     return isCar ? (
       <div className="card-image">

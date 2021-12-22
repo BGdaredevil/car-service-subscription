@@ -42,23 +42,23 @@ function DetailsCar({ history }) {
   };
 
   const cleanRejectedService = (booking) => {
+    addMessage("Removed", mType.info);
     setCarData((car) => {
       const updatedCar = {
         ...car,
         workHistory: car.workHistory.filter((b) => b._id !== booking._id),
       };
-      addMessage("Removed", mType.info);
       return updatedCar;
     });
   };
 
   const handleFeedback = (booking) => {
+    addMessage("Feedback is sent", mType.info);
     setCarData((car) => {
       const updatedCar = {
         ...car,
         workHistory: car.workHistory.map((b) => (b._id === booking._id ? booking : b)),
       };
-      addMessage("Feedback is sent", mType.info);
       return updatedCar;
     });
   };
