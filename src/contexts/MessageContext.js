@@ -9,19 +9,24 @@ export const mType = {
   warn: "warn-m",
 };
 
-const initialMessageState = { display: false, message: "", type: mType.error };
-
 function MessageContextProvider(props) {
-  const [message, setMessage] = useState(initialMessageState);
+  const [message, setMessage] = useState([]);
 
-  const addMessage = useCallback((text, type = mType.error) => {
-    setMessage({ display: true, message: text, type });
+  const addMessage = (text, type = mType.error) => {
+    const id = Date.now();
+    console.log(id);
+    setMessage((o) => {
+      console.log("adding init", id);
+      return [...o, { message: text, type, id }];
+    });
     setTimeout(() => {
-      setMessage(initialMessageState);
+      setMessage((o) => {
+        return [...o.filter((x) => x.id !== id)];
+      });
     }, 3000);
-  }, []);
+  };
 
-  const hideMessage = useCallback(() => setMessage(initialMessageState), []);
+  const hideMessage = useCallback(() => setMessage([]), []);
 
   return (
     <MessageContext.Provider value={{ message, addMessage, hideMessage }}>

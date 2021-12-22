@@ -46,23 +46,19 @@ function EditShop({ history }) {
       return;
     }
 
-    setServices((old) => {
-      if (old.includes(tt)) {
-        addMessage("This service is already added", mType.warn);
-      }
-      let t = old.filter((e) => e !== tt);
-      return [...t, tt];
-    });
+    if (services.includes(tt)) {
+      addMessage("This service is already added", mType.warn);
+      return;
+    }
+
+    setServices((old) => [...old, tt]);
     e.target.parentElement.querySelector("input").value = "";
   };
 
   const remHandler = (e, item) => {
     e.preventDefault();
-    setServices((old) => {
-      let temp = old.filter((s) => s !== item);
-      addMessage("Removed", mType.info);
-      return temp;
-    });
+    addMessage("Removed", mType.info);
+    setServices((old) => [...old.filter((s) => s !== item)]);
   };
 
   const onSubmit = (e) => {

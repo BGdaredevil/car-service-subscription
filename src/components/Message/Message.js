@@ -8,15 +8,17 @@ function Message() {
 
   console.log(message);
 
-  if (!message.display) {
+  if (message.length === 0) {
     return null;
   }
 
   return (
     <div className="message-container">
-      <div className={`message-card ${message.type}-card`}>
-        <div className={`message-text ${message.type}`}>{message.message}</div>
-      </div>
+      {message.map((m) => (
+        <div key={m.id} className={`message-card ${m.type}-card`}>
+          <div className={`message-text ${m.type}`}>{m.message}</div>
+        </div>
+      ))}
     </div>
   );
 }
