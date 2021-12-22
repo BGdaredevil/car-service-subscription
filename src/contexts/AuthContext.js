@@ -17,6 +17,8 @@ const blankUser = {
   uid: "",
 };
 
+const token = process.env.REACT_APP_TOKEN_LOCAL_STORAGE || "car-service-token";
+
 function AuthContextProvider(props) {
   const [user, setUserState] = useState(blankUser);
 
@@ -27,19 +29,16 @@ function AuthContextProvider(props) {
       if (data) {
         get(`${endpoints.userApi}/${data?.uid}`)
           .then((res) => {
-            localStorage.setItem(
-              process.env.REACT_APP_TOKEN_LOCAL_STORAGE,
-              JSON.stringify({ ...data, ...res })
-            );
+            localStorage.setItem(token, JSON.stringify({ ...data, ...res }));
             setUserState({ ...data, ...res });
           })
           .catch((e) => {
             addMessage("Pesho is lost back there... please excuse him");
-            localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+            localStorage.setItem(token, null);
             setUserState(blankUser);
           });
       } else {
-        localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+        localStorage.setItem(token, null);
         setUserState(blankUser);
       }
     },
@@ -72,10 +71,11 @@ function AuthContextProvider(props) {
   };
 
   const isAuth = Boolean(
-    localStorage.getItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE) !== "null"
+    localStorage.getItem(token) !== "null" && localStorage.getItem(token) !== null
   );
 
-  console.log("isAuth -- ", isAuth);
+  // console.log("isAuth -- ", isAuth);
+  // console.log(typeof localStorage.getItem(token), localStorage.getItem(token));
 
   return (
     <AuthContext.Provider value={{ user, isAuth, login, register, logout }}>
