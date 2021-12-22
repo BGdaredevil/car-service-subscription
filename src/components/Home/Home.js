@@ -63,7 +63,7 @@ function Home() {
         <div className="best-shops">
           <section className="homeCarusell">
             {bestShops.length === 0 ? (
-              <h1>No shops yet</h1>
+              "" // <h1 className="no-shops">No shops yet</h1>
             ) : (
               <div className="cards-container">
                 {bestShops.map((c) => (

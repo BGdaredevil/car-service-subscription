@@ -6,8 +6,6 @@ import { MessageContext } from "../../contexts/MessageContext.js";
 function Message() {
   const { message } = useContext(MessageContext);
 
-  console.log(message);
-
   if (message.length === 0) {
     return null;
   }

@@ -21,7 +21,8 @@ function Login({ history }) {
     };
     setIsSending(true);
     login(cleanData)
-      .then(() => {
+      .then((r) => {
+        // console.log(r);
         setIsSending(false);
         history.push("/");
       })

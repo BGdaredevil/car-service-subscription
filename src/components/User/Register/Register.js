@@ -6,9 +6,11 @@ import RadioBtn from "../../UI/RadioBtn.js";
 import ClickButton from "../../UI/ClickButton.js";
 import { validateField } from "../../../utils/validator.js";
 import { AuthContext } from "../../../contexts/AuthContext.js";
+import { MessageContext } from "../../../contexts/MessageContext.js";
 
 function Register({ history }) {
   const { isAuth, register } = useContext(AuthContext);
+  const { addMessage } = useContext(MessageContext);
 
   const [isValidName, setValidName] = useState(undefined);
   const [isValidEmail, setValidEmail] = useState(undefined);
@@ -35,7 +37,12 @@ function Register({ history }) {
         setIsSending(false);
         history.push("/");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        if (err.message.includes("auth/email-already-in-use")) {
+          addMessage("Sorry please use a different email.");
+          setIsSending(false);
+        }
+      });
   };
 
   if (isAuth) {
@@ -55,6 +62,7 @@ function Register({ history }) {
               name="username"
               type="text"
               placeholder="username"
+              // defaultValue={initialData.username}
               onInput={(e) => setValidName(validateField(e.target.value, /^[a-z]{3,}$/i))}
               className={[isValidName === false ? "invalid" : "", isValidName ? "valid" : ""].join(
                 " "

@@ -17,6 +17,7 @@
 }
 
 .cards-container {
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
@@ -51,15 +52,13 @@
   color: var(--main-D1);
 }
 
-/* .userDetails a {
-  margin-top: 5px;
+.no-shops {
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
+
   padding: 10px;
-  background-color: var(--main-D1);
-  border-radius: 5px;
-  color: var(--main-w);
-  width: 100%;
-  text-transform: uppercase;
-} */
+  margin: 10px;
+  border-radius: 20px;
+  color: var(--main-D1);
+  background-color: var(--main-t20);
+  box-shadow: 0px 0px 20px 20px var(--main-t20);
+}

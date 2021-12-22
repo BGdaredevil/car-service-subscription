@@ -41,20 +41,11 @@ function Services({ shop, setShop, isOwner, isPersonal }) {
         ))
       : "";
 
-  const noServices =
-    shop.offeredServices?.registered?.length === 0 &&
-    shop.offeredServices?.notRegistered?.length === 0 ? (
-      <h3>This shop doesn not offer public services</h3>
-    ) : (
-      ""
-    );
-
   return (
     <div className="services">
       {notRegisteredHeading}
       {notRegistered}
       {registered}
-      {noServices}
     </div>
   );
 }

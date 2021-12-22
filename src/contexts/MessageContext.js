@@ -14,15 +14,9 @@ function MessageContextProvider(props) {
 
   const addMessage = (text, type = mType.error) => {
     const id = Date.now();
-    console.log(id);
-    setMessage((o) => {
-      console.log("adding init", id);
-      return [...o, { message: text, type, id }];
-    });
+    setMessage((o) => [...o, { message: text, type, id }]);
     setTimeout(() => {
-      setMessage((o) => {
-        return [...o.filter((x) => x.id !== id)];
-      });
+      setMessage((o) => [...o.filter((x) => x.id !== id)]);
     }, 3000);
   };
 

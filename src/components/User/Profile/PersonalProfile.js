@@ -19,13 +19,15 @@ function PersonalProfile({ user }) {
   }, [user.uid]);
 
   return (
-    // <section className={`${isLoading ? "loading" : ""}`}>
     <div className={`container ${isLoading ? "loading" : ""}`}>
-      <h1>Personal</h1>
-      <Link to="/car/create">create car</Link>
       <section>
         {userCars.length === 0 ? (
-          <h3>No cars yet</h3>
+          <>
+            <h3 className="no-shops">No cars yet. Try adding some :)</h3>
+            <div className="cards-container">
+              <InfoCard key={42} item={null} isDemo={true} />
+            </div>
+          </>
         ) : (
           <div className="cards-container">
             {userCars.map((c) => (
@@ -36,7 +38,6 @@ function PersonalProfile({ user }) {
         )}
       </section>
     </div>
-    // </section>
   );
 }
 

@@ -4,11 +4,12 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "@firebase/auth";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { auth } from "../firebase/base.js";
 import { get, post } from "../services/apiService.js";
 import { endpoints } from "../config/apiConfig.js";
+import { MessageContext } from "./MessageContext.js";
 
 export const AuthContext = createContext();
 
@@ -18,6 +19,8 @@ const blankUser = {
 
 function AuthContextProvider(props) {
   const [user, setUserState] = useState(blankUser);
+
+  const { addMessage } = useContext(MessageContext);
 
   const setUser = (data) => {
     if (data) {
@@ -29,7 +32,12 @@ function AuthContextProvider(props) {
           );
           setUserState({ ...data, ...res });
         })
-        .catch((e) => alert(e));
+        .catch((e) => {
+          addMessage("Pesho is lost back there... please excuse him");
+          // alert(e);
+          localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+          setUserState(blankUser);
+        });
     } else {
       localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
       setUserState(blankUser);
@@ -53,8 +61,8 @@ function AuthContextProvider(props) {
     setUser({ ...user, ...rest });
   };
 
-  const login = async ({ email, password }) => {
-    await signInWithEmailAndPassword(auth, email, password);
+  const login = ({ email, password }) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logout = () => {

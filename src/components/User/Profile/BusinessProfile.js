@@ -19,13 +19,15 @@ function BusinessProfile({ user }) {
   }, [user.uid]);
 
   return (
-    // <section className={`view ${isLoading ? "loading" : ""}`}>
     <div className={`container ${isLoading ? "loading" : ""}`}>
-      {/* <h1>Business</h1> */}
-      {/* <Link to="/shop/create">create shop</Link> */}
       <section>
         {userShops.length === 0 ? (
-          <h3>No shops yet</h3>
+          <>
+            <h3 className="no-shops">No shops yet. Try adding some :)</h3>
+            <div className="cards-container">
+              <InfoCard key={42} item={null} isDemo={true} />
+            </div>
+          </>
         ) : (
           <div className="cards-container">
             {userShops.map((c) => (
@@ -36,7 +38,6 @@ function BusinessProfile({ user }) {
         )}
       </section>
     </div>
-    // </section>
   );
 }
 

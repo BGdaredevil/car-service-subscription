@@ -24,8 +24,8 @@ import Error404 from "./components/Error404/Error404.js";
 function App() {
   return (
     <div className="App">
-      <AuthContextProvider>
-        <MessageContextProvider>
+      <MessageContextProvider>
+        <AuthContextProvider>
           <Navigation />
           <Message />
           <Switch>
@@ -44,8 +44,8 @@ function App() {
             <Route path="*" component={Error404} />
           </Switch>
           <Footer />
-        </MessageContextProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </MessageContextProvider>
     </div>
   );
 }
