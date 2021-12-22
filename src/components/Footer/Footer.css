@@ -1,29 +1,67 @@
+footer {
+  color: var(--main-D1);
+  background-color: var(--main-w);
+}
+
 .footerContainer {
+  margin: 0 auto;
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 3fr;
+  gap: 1vw;
+}
+
+.logoSection,
+.infoSection,
+.aboutSection {
+  padding: 10px;
+}
+
+.footer-data {
+  padding-bottom: 15px;
+  line-height: 1;
+}
+.footer-data * {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: stretch;
-  gap: 5vw;
-  background-color: var(--main-w);
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .logoSection {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  text-align: center;
 }
-.infoSection section {
+.footer-data {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 5fr;
+  gap: 10px;
+  vertical-align: middle;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-evenly; */
+  /* gap: 1vw; */
+}
+
+.footer-icons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: 1vw;
 }
-.aboutSection {
-  display: flex;
-  flex-direction: column;
+
+.footer-icons svg {
+  color: var(--main-D1);
+}
+.footer-icons svg:hover {
+  color: var(--main-D6);
 }
 
-.aboutSection div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.aboutSection {
+  padding-top: 20px;
+  line-height: 2;
 }

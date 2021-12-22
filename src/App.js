@@ -20,32 +20,39 @@ import ShopsByType from "./components/Shops/ByType/ShopsByType.js";
 import MessageContextProvider from "./contexts/MessageContext.js";
 import Message from "./components/Message/Message.js";
 import Error404 from "./components/Error404/Error404.js";
+import ScrollToTop from "./components/UI/ScrollToTop.js";
 
 function App() {
   return (
     <div className="App">
-      <MessageContextProvider>
-        <AuthContextProvider>
-          <Navigation />
-          <Message />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <RouteGuard exact path="/user/profile" component={Profile} />
-            <RouteGuard exact path="/car/create" component={CreateCar} />
-            <RouteGuard exact path="/car/edit/:id" component={EditCar} />
-            <RouteGuard exact path="/car/:id" component={DetailsCar} />
-            <RouteGuard exact path="/shop/create" component={CreateShop} />
-            <Route exact path="/shop/:id" component={DetailsShop} />
-            <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
-            <RouteGuard exact path="/shops/:type" component={ShopsByType} />
-            <Route exact path="/user/login" component={Login} />
-            <Route exact path="/user/register" component={Register} />
-            <RouteGuard exact path="/user/logout" component={() => <Redirect to="/user/login" />} />
-            <Route path="*" component={Error404} />
-          </Switch>
-          <Footer />
-        </AuthContextProvider>
-      </MessageContextProvider>
+      <ScrollToTop>
+        <MessageContextProvider>
+          <AuthContextProvider>
+            <Navigation />
+            <Message />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <RouteGuard exact path="/user/profile" component={Profile} />
+              <RouteGuard exact path="/car/create" component={CreateCar} />
+              <RouteGuard exact path="/car/edit/:id" component={EditCar} />
+              <RouteGuard exact path="/car/:id" component={DetailsCar} />
+              <RouteGuard exact path="/shop/create" component={CreateShop} />
+              <Route exact path="/shop/:id" component={DetailsShop} />
+              <RouteGuard exact path="/shop/edit/:id" component={EditShop} />
+              <RouteGuard exact path="/shops/:type" component={ShopsByType} />
+              <Route exact path="/user/login" component={Login} />
+              <Route exact path="/user/register" component={Register} />
+              <RouteGuard
+                exact
+                path="/user/logout"
+                component={() => <Redirect to="/user/login" />}
+              />
+              <Route path="*" component={Error404} />
+            </Switch>
+            <Footer />
+          </AuthContextProvider>
+        </MessageContextProvider>
+      </ScrollToTop>
     </div>
   );
 }
