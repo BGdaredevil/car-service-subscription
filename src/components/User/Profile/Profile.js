@@ -1,7 +1,6 @@
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../../contexts/AuthContext.js";
 import BusinessProfile from "./BusinessProfile.js";

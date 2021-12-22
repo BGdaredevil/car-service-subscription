@@ -30,7 +30,7 @@ function ShopsByType() {
         setIsLoading(false);
       })
       .catch((e) => addMessage(e.message));
-  }, [type]);
+  }, [type, addMessage]);
 
   return (
     <section className={`view ${isLoading ? "loading" : ""}`}>

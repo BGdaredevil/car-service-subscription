@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "@firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 import { auth } from "../firebase/base.js";
 import { get, post } from "../services/apiService.js";
@@ -22,31 +22,33 @@ function AuthContextProvider(props) {
 
   const { addMessage } = useContext(MessageContext);
 
-  const setUser = (data) => {
-    if (data) {
-      get(`${endpoints.userApi}/${data?.uid}`)
-        .then((res) => {
-          localStorage.setItem(
-            process.env.REACT_APP_TOKEN_LOCAL_STORAGE,
-            JSON.stringify({ ...data, ...res })
-          );
-          setUserState({ ...data, ...res });
-        })
-        .catch((e) => {
-          addMessage("Pesho is lost back there... please excuse him");
-          // alert(e);
-          localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
-          setUserState(blankUser);
-        });
-    } else {
-      localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
-      setUserState(blankUser);
-    }
-  };
+  const setUser = useCallback(
+    (data) => {
+      if (data) {
+        get(`${endpoints.userApi}/${data?.uid}`)
+          .then((res) => {
+            localStorage.setItem(
+              process.env.REACT_APP_TOKEN_LOCAL_STORAGE,
+              JSON.stringify({ ...data, ...res })
+            );
+            setUserState({ ...data, ...res });
+          })
+          .catch((e) => {
+            addMessage("Pesho is lost back there... please excuse him");
+            localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+            setUserState(blankUser);
+          });
+      } else {
+        localStorage.setItem(process.env.REACT_APP_TOKEN_LOCAL_STORAGE, null);
+        setUserState(blankUser);
+      }
+    },
+    [addMessage]
+  );
 
   useEffect(() => {
     onAuthStateChanged(auth, setUser);
-  }, []);
+  }, [setUser]);
 
   const register = async ({ email, password, username, accountType }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
