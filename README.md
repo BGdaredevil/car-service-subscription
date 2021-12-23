@@ -2,4 +2,4 @@
 
 ## environments:
 
-### Development: ###`$root: npm start`
+### Development: ### `$root: npm start`
