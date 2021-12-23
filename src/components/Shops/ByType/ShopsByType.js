@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useContext } from "react/cjs/react.development";
+// import { useContext } from "react/cjs/react.development";
 
 import { endpoints } from "../../../config/apiConfig.js";
-import { MessageContext } from "../../../contexts/MessageContext.js";
+// import { MessageContext } from "../../../contexts/MessageContext.js";
 import { get } from "../../../services/apiService.js";
 import InfoCard from "../../UI/InfoCard.js";
 
@@ -16,7 +16,7 @@ const shopTypes = {
 };
 
 function ShopsByType() {
-  const { addMessage } = useContext(MessageContext);
+  // const { addMessage } = useContext(MessageContext);
 
   const { type } = useParams();
   const [shops, setShops] = useState([]);
@@ -29,8 +29,8 @@ function ShopsByType() {
         setShops(r);
         setIsLoading(false);
       })
-      .catch((e) => addMessage(e.message));
-  }, [type, addMessage]);
+      .catch((e) => /**addMessage(e.message) */ console.log(e));
+  }, [type]);
 
   return (
     <section className={`view ${isLoading ? "loading" : ""}`}>
